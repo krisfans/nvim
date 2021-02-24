@@ -1,0 +1,9 @@
+snippet figure
+alias   \begin{figure} \figure
+	\begin{figure}[${1}]
+		\centering
+		\includegraphics[${2:width=${3\}}]{${4}}
+		\caption{${5}}
+		\label{${6}}
+	\end{figure}
+	${0}

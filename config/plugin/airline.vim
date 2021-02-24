@@ -1,0 +1,13 @@
+set encoding=utf-8
+let g:airline_powerline_fonts = 1  "关于状态栏的配置
+""let g:airline_left_sep =  "\u25ba"
+let g:airline_left_alt_sep = ''
+""let g:airline_right_sep = "\u25e2"
+let g:airline_right_alt_sep = ''
+let g:airline#extensions#whitespace#enabled  = 0
+let g:airline#extensions#searchcount#enabled = 1
+let g:airline#extensions#localsearch#enabled = 1 " enable/disable localsearch indicator integration >
+let g:airline#extensions#tabline#enabled     = 1    " Air-line 显示上面的buffer tab
+let g:airline#extensions#neomake#enabled = 1
+let g:airline#extensions#coc#enabled         = 1    " coc
+let g:airline#extensions#wordcount#filetypes = ['asciidoc', 'help', 'mail', 'markdown', 'org', 'plaintex', 'rst', 'tex', 'text']
