@@ -1,244 +1,247 @@
 [[plugins]] # dein增强
-repo = '~/.cache/dein_gvim/repos/github.com/wsdjeg/dein-ui.vim'
-
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'Dein'
 [[plugins]] # dein增强
-repo = '~/.cache/dein_gvim/repos/github.com/haya14busa/dein-command.vim'
+repo = 'haya14busa/dein-command.vim'
 
-#[[plugins]] # 补全
-#repo = '~/.cache/dein_gvim/repos/github.com/neoclide/coc.nvim'
+#[[plugins]]
+#repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/neoclide/coc.nvim'
 #rev = 'release'
-#hook_add  = 'source ~/AppData/Local/nvim/config/plugin/coc.nvim.vim'
+#hook_add  = 'source $root/config/pluginsoc.nvim.vim'
 ## if = 'v:false'
 
-[[plugins]]
+[[plugins]]# deo补全
 repo = 'Shougo/deoplete.nvim'
 on_event = 'InsertEnter'
-hook_post_source = 'source ~/AppData/Local/nvim/config/plugin/deoplete.nvim.vim'
+hook_post_source = 'source $root/config/plugins/deoplete.nvim.vim'
 hook_add = 'let g:deoplete#enable_at_startup = 0'
-
-[[plugins]]
+[[plugins]]# deo补全
+repo = 'Shougo/neoinclude.vim'
+on_event = 'InsertEnter'
+[[plugins]]# deo补全
+repo = 'Shougo/echodoc.vim'
+hook_add = 'source $root/config/plugins/echodoc.vim'
+on_event = 'InsertEnter'
+[[plugins]]# deo补全
 repo = 'deoplete-plugins/deoplete-lsp'
 hook_add = '''
 let g:deoplete#lsp#handler_enabled = v:true
 let g:deoplete#lsp#use_icons_for_candidates = v:true
 '''
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-hook_add = 'source ~/AppData/Local/nvim/config/plugin/echodoc.vim'
-[[plugins]]
-repo = 'Shougo/neoinclude.vim'
+# [[plugins]] # deoplete/ncm2补全补丁
+# repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/roxma/nvim-yarp'
+# [[plugins]]
+# repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/roxma/vim-hug-neovim-rpc'
 
-[[plugins]]
-repo = '~/.cache/dein_gvim/repos/github.com/roxma/nvim-yarp'
-on_if = '!has("nvim")'
-
-[[plugins]]
-repo = '~/.cache/dein_gvim/repos/github.com/roxma/vim-hug-neovim-rpc'
-on_if = '!has("nvim")'
 
 [[plugins]] # buildin lsp
-repo = 'neovim/nvim-lspconfig'
+repo = 'https://github.com.cnpmjs.org/neovim/nvim-lspconfig'
 on_lua = 'lsp_config'
-#if = 'v:false'
+# if = 'v:false'
 on_if = 'has("nvim")'
 
-#[[plugins]] # lua 补全框架
-#repo = 'nvim-lua/completion-nvim'
-#hook_add = 'source ~/AppData/Local/nvim/config/plugin/completion-nvim.vim'
-#hook_source = '''autocmd BufEnter * lua require'completion'.on_attach()'''
-#on_lua = 'lsp_config'
-#on_if = 'has("nvim")'
-#if = 'v:false'
-
-#[[plugins]] # lua 补全源
-#repo = 'steelsojka/completion-buffers'
-#on_lua = 'lsp_config'
-#on_if = 'has("nvim")'
-#on_event = 'InsertEnter'
-#if = 'v:false'
-
-[[plugins]]
-repo =  'norcalli/nvim-colorizer.lua'
+[[plugins]] # lua 补全框架
+repo = 'https://github.com.cnpmjs.org/nvim-lua/completion-nvim'
+hook_add = 'source $root/config/plugins/completion-nvim.vim'
+hook_source = '''autocmd BufEnter * lua require'completion'.on_attach()'''
+on_lua = 'lsp_config'
+on_if = 'has("nvim")'
+if = 'v:false'
+#
+[[plugins]] # lua 补全源buffers
+repo = 'https://github.com.cnpmjs.org/steelsojka/completion-buffers'
+depends = 'completion-nvim'
+on_lua = 'lsp_config'
+on_if = 'has("nvim")'
+on_event = 'InsertEnter'
+hook_add = 'let g:completion_word_min_length=2'
+if = 'v:false'
+[[plugins]] # lua 颜色
+repo =  'https://github.com.cnpmjs.org/norcalli/nvim-colorizer.lua'
 on_lua = 'lsp_config'
 on_if = 'has("nvim")'
 # hook_source = '''
 #     lua require'colorizer'.setup()
-# '''
+# # '''
 
-#[[plugins]] #  lsp
-#repo = 'https://gitee.com/krisfan_zhang/LanguageClient-neovim.git'
-#rev = 'next'
-#hook_add = 'source ~/AppData/Local/nvim/config/plugin/LanguageClient-neovim.vim'
-#hook_post_update = '''
-	#if has('win32') || has('win64')
-		#call system(
-		#\ 'powershell -executionpolicy bypass -File install.ps1')
-	#else
-		#call system('bash install.sh')
-	#endif
-#'''
+[[plugins]] #  lsp
+repo = 'https://gitee.com/krisfan_zhang/LanguageClient-neovim_next'
+# rev = 'next'
+hook_add = 'source $root/config/plugins/LanguageClient-neovim.vim'
+hook_post_update = '''
+if has('win32') || has('win64')
+    call system(
+    \ 'powershell -executionpolicy bypass -File install.ps1')
+else
+    call system('bash install.sh')
+endif
+'''
+if = 'v:false'
 
-[[plugins]] # 代码片段
-repo = '~/.cache/dein_gvim/repos/github.com/honza/vim-snippets'
-on_event = 'InsertEnter'
-on_ft = 'snippet'
+# [[plugins]]
+# repo = 'https://github.com.cnpmjs.org/nvim-treesitter/nvim-treesitter'
+# on_lua = 'nvim_treesitter'
+[[plugins]] # 语法检查
+repo = 'https://github.com.cnpmjs.org/neomake/neomake'
+hook_add = 'source $root/config/plugins/neomake.vim'
+[[plugins]] # 文件树
+repo = 'https://github.com.cnpmjs.org/Shougo/defx.nvim'
+hook_add = 'source $root/config/plugins/defx.nvim.vim'
+[[plugins]]# 文件树图标
+repo = 'https://github.com.cnpmjs.org/kristijanhusak/defx-icons'
 
 [[plugins]] ## 代码片段
-repo = '~/.cache/dein_gvim/repos/github.com/Shougo/neosnippet.vim'
+repo = 'https://github.com.cnpmjs.org/Shougo/neosnippet.vim'
 on_event = 'InsertEnter'
 on_ft = 'snippet'
-hook_add = 'source ~/vimfiles/config/plugin/neosnippet.vim.vim'
-
+hook_add = 'source $root/config/plugins/neosnippet.vim.vim'
 [[plugins]]# 代码片段
-repo = '~/.cache/dein_gvim/repos/github.com/Shougo/neosnippet-snippets'
-
-[[plugins]] # 语法检查
-repo = 'neomake/neomake'
-hook_add = 'source ~/vimfiles/config/plugin/neomake.vim'
+repo = 'https://github.com.cnpmjs.org/Shougo/neosnippet-snippets'
 
 [[plugins]] # 对齐
-repo = '~/.cache/dein_gvim/repos/github.com/junegunn/vim-easy-align'
+repo = 'https://github.com.cnpmjs.org/junegunn/vim-easy-align'
 on_map = '<Plug>(EasyAlign)'
 hook_add = '''
     vmap <Enter> <Plug>(EasyAlign)
 '''
 
 [[plugins]] # 格式代码
-repo = '~/.cache/dein_gvim/repos/github.com/sbdchd/neoformat'
-hook_add = 'source ~/vimfiles/config/plugin/neoformat.vim'
+repo = 'https://github.com.cnpmjs.org/sbdchd/neoformat'
+hook_add = 'source $root/config/plugins/neoformat.vim'
+on_cmd = 'Neoformat'
 
 [[plugins]]  # 检索
-repo = '~/.cache/dein_gvim/repos/github.com/Yggdroot/LeaderF'
-hook_add = 'source ~/vimfiles/config/plugin/LeaderF.vim'
+repo = 'https://github.com.cnpmjs.org/Yggdroot/LeaderF'
+hook_add = 'source $root/config/plugins/LeaderF.vim'
+[[plugins]] # gtags
+repo = 'jsfaint/gen_tags.vim'
+hook_add = 'source $root/config/plugins/gen_tags.vim'
 
+[[plugins]]#函数列表
+repo = 'liuchengxu/vista.vim'
+hook_add = 'source $root/config/plugins/vista.vim.vim'
 [[plugins]] # 自动补全括号
-repo = 'jiangmiao/auto-pairs'
-
+repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/jiangmiao/auto-pairs'
+on_event = 'BufEnter'
 [[plugins]] # 高亮匹配
-repo = '~/.cache/dein_gvim/repos/github.com/Yggdroot/hiPairs'
-hook_add = 'source ~/vimfiles/config/plugin/hiPairs.vim'
+repo = 'https://repos/github.com.cnpmjs.org/Yggdroot/hiPairs'
+hook_add = 'source $root/config/plugins/hiPairs.vim'
 
 [[plugins]] # 起始界面
-repo = '~/.cache/dein_gvim/repos/github.com/mhinz/vim-startify'
-hook_add = 'source ~/AppData/Local/nvim/config/plugin/vim-startify.vim'
+repo = 'https://github.com.cnpmjs.org/mhinz/vim-startify'
+hook_add = 'source $root/config/plugins/vim-startify.vim'
 depends = 'vim-devicons'
 [[plugins]] # 启动时间
-repo = '~/.cache/dein_gvim/repos/github.com/dstein64/vim-startuptime'
+repo = 'https://github.com.cnpmjs.org/dstein64/vim-startuptime'
 on_cmd = 'StartupTime'
 
-[[plugins]] # 文件树
-repo = 'Shougo/defx.nvim'
-hook_add = 'source ~/vimfiles/config/plugin/defx.nvim.vim'
 
-[[plugins]]# 文件树图标
-repo = '~/.cache/dein_gvim/repos/github.com/kristijanhusak/defx-icons'
 
-#[[plugins]] # 状态栏图标
-#repo ='ryanoasis/vim-devicons'
-#hook_add = '''
-#let g:webdevicons_enable = 1
-#let g:webdevicons_enable_startify = 1
-#'''
 # [[plugins]] # airline
-# repo = '~/.cache/dein_gvim/repos/github.com/vim-airline/vim-airline'
+# repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/vim-airline/vim-airline'
 # hook_add = 'let g:airline#extensions#disable_rtp_load = 1'
-# # hook_add = '''source ~/vimfiles/config/plugin/airline.vim'
+# # hook_add = '''source $root/config/plugins/airline.vim'
 # if = 0
-
+#
 # [[plugins]] # airline
-# repo = '~/.cache/dein_gvim/repos/github.com/vim-airline/vim-airline-themes'
+# repo = '~/.cache/dein_gvim/repos/github.com.cnpmjs.org/vim-airline/vim-airline-themes'
 # on_source =  'vim-airline'
 # hook_add = 'let g:airline#extensions#disable_rtp_load = 1'
-# hook_add = 'source ~/vimfiles/config/plugin/airline.vim'
+# hook_add = 'source $root/config/plugins/airline.vim'
 # if = 'v:false'
-
+#
 [[plugins]] # lightline
-repo = '~/.cache/dein_gvim/repos/github.com/itchyny/lightline.vim'
+repo = 'https://github.com.cnpmjs.org/itchyny/lightline.vim'
 depends = 'vim-devicons'
-hook_add = 'source ~/AppData/Local/nvim/config/plugin/lightline.vim.vim'
+hook_add = 'source $root/config/plugins/lightline.vim.vim'
 hook_post_source = '''
 function! MyFiletype()
     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-  endfunction
+endfunction
 
-  function! MyFileformat()
+function! MyFileformat()
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-  endfunction
+endfunction
 '''
 
 [[plugins]] # lightline
-repo = '~/.cache/dein_gvim/repos/github.com/mengelbrecht/lightline-bufferline'
-hook_add = 'source ~/AppData/Local/nvim/config/plugin/lightline.vim.vim'
+repo = 'https://github.com.cnpmjs.org/mengelbrecht/lightline-bufferline'
+hook_add = 'source $root/config/plugins/lightline.vim.vim'
 # if = 'v:false'
 
 [[plugins]] # 中文帮助
-repo = '~/.cache/dein_gvim/repos/github.com/yianwillis/vimcdoc'
+repo = 'https://github.com.cnpmjs.org/yianwillis/vimcdoc'
 
 [[plugins]] # 翻译
-repo = '~/.cache/dein_gvim/repos/github.com/voldikss/vim-translator'
+repo = 'https://github.com.cnpmjs.org/voldikss/vim-translator'
 on_map = '<Plug>Translate'
-hook_add = 'source ~/vimfiles/config/plugin/vim-translator.vim'
+hook_add = 'source $root/config/plugins/vim-translator.vim'
 
 [[plugins]] # 多光标
-repo = '~/.cache/dein_gvim/repos/github.com/mg979/vim-visual-multi'
-
+repo = 'https://github.com.cnpmjs.org/mg979/vim-visual-multi'
+on_event = 'BufEnter'
 [[plugins]] # 缩进线
-repo = '~/.cache/dein_gvim/repos/github.com/Yggdroot/indentLine'
-hook_add = 'source ~/vimfiles/config/plugin/IndentLine.vim'
+repo = 'https://github.com.cnpmjs.org/Yggdroot/indentLine'
+hook_add = 'source $root/config/plugins/IndentLine.vim'
+on_event = 'BufEnter'
 
 [[plugins]] # 尾随空格
-repo = '~/.cache/dein_gvim/repos/github.com/ntpeters/vim-better-whitespace'
-hook_add = 'source ~/vimfiles/config/plugin/vim-better-whitespace.vim'
+repo = 'https://github.com.cnpmjs.org/ntpeters/vim-better-whitespace'
+hook_add = 'source $root/config/plugins/vim-better-whitespace.vim'
+on_event = 'BufEnter'
 
 [[plugins]] # 快速选择窗口
-repo = '~/.cache/dein_gvim/repos/github.com/t9md/vim-choosewin'
-hook_add = 'source ~/vimfiles/config/plugin/vim-choosewin.vim'
+repo = 'https://github.com.cnpmjs.org/t9md/vim-choosewin'
+hook_add = 'source $root/config/plugins/vim-choosewin.vim'
 
 [[plugins]] # 注释插件
-repo = '~/.cache/dein_gvim/repos/github.com/scrooloose/nerdcommenter'
+repo = 'https://github.com.cnpmjs.org/scrooloose/nerdcommenter'
 on_map = '<Plug>NERDCommenter'
 hook_add = '''
-source  ~/vimfiles/config/plugin/nerdcommenter.vim
+source  $root/config/plugins/nerdcommenter.vim
 nmap <Space>/ <Plug>NERDCommenterToggle
 vmap <Space>/ <Plug>NERDCommenterToggle
 '''
 
 [[plugins]] # 关闭buffer而不关闭窗口
-repo = '~/.cache/dein_gvim/repos/github.com/rbgrouleff/bclose.vim'
-hook_add = 'source ~/vimfiles/config/plugin/bclose.vim.vim'
+repo = 'https://github.com.cnpmjs.org/rbgrouleff/bclose.vim'
+hook_add = 'source $root/config/plugins/bclose.vim.vim'
 
 [[plugins]] # 包围
-repo = '~/.cache/dein_gvim/repos/github.com/tpope/vim-surround'
+repo = 'https://github.com.cnpmjs.org/tpope/vim-surround'
+on_event = 'BufEnter'
 
 [[plugins]] # 语言增强，高亮
-repo = '~/.cache/dein_gvim/repos/github.com/sheerun/vim-polyglot'
+repo = 'https://github.com.cnpmjs.org/sheerun/vim-polyglot'
+# on_event = 'BufEnter'
 hook_add = '''
 let g:polyglot_disabled = ['latex']
-source ~/vimfiles/config/plugin/vim-polyglot.vim
+source $root/config/plugins/vim-polyglot.vim
 '''
 
 [[plugins]] # cpp高亮
-repo = '~/.cache/dein_gvim/repos/github.com/octol/vim-cpp-enhanced-highlight'
+repo = 'https://github.com.cnpmjs.org/octol/vim-cpp-enhanced-highlight'
 on_ft = ['c', 'cpp']
 
 [[plugins]] # py高亮
-repo = '~/.cache/dein_gvim/repos/github.com/vim-python/python-syntax'
+repo = 'https://github.com.cnpmjs.org/vim-python/python-syntax'
 on_ft = 'python'
 
 [[plugins]] # 高亮复制
-repo = '~/.cache/dein_gvim/repos/github.com/machakann/vim-highlightedyank'
+repo = 'https://github.com.cnpmjs.org/machakann/vim-highlightedyank'
+on_event = 'BufEnter'
 
 # 语言
 [[plugins]] # toml
-repo = '~/.cache/dein_gvim/repos/github.com/cespare/vim-toml'
-
+repo = 'https://github.com.cnpmjs.org/cespare/vim-toml'
+on_ft = 'toml'
 [[plugins]] # latex插件
-repo = '~/.cache/dein_gvim/repos/github.com/lervag/vimtex'
+repo = 'https://github.com.cnpmjs.org/lervag/vimtex'
 on_ft = 'tex'
-hook_add = 'source ~/vimfiles/config/plugin/vimtex.vim'
+hook_add = 'source $root/config/plugins/vimtex.vim'
 
 [[plugins]] # 状态栏图标
-repo = 'ryanoasis/vim-devicons'
+repo = 'https://github.com.cnpmjs.org/ryanoasis/vim-devicons'
 hook_add  = '''
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_startify = 1

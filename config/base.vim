@@ -31,7 +31,7 @@ set noswapfile
 set autoread                   " 文件在外部被修改过，重新读入
 set autowrite                  " 自动写回
 set confirm                    " 显示确认对话框
-set showmode                   " 模式
+set noshowmode                 " 模式
 set shortmess+=c
 set sessionoptions+=globals
                                " set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽,space:· " 设置空白字符的视觉提示
@@ -76,6 +76,20 @@ filetype on
 filetype indent on        " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on        " 针对不同的文件类型加载对应的插件
 filetype plugin indent on
+" if has('win32') || has('win64')
+" let g:clipboard = {
+" \ 'name': 'win32yank',
+" \ 'copy': {
+" \ '+': 'win32yank.exe -i --crlf',
+" \ '*': 'win32yank.exe -i --crlf',
+" \ },
+" \ 'paste': {
+" \ '+': 'win32yank.exe -o --lf',
+" \ '*': 'win32yank.exe -o --lf',
+" \ },
+" \ 'cache_enabled': 0,
+" \ }
+" endif
 if has('clipboard')
     if has('unnamedplus') " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
@@ -87,7 +101,8 @@ set showcmd   " 状态栏显示目前所执行的指令
 set laststatus=2 " 开启状态栏信息
 set showtabline=2 " 开启tabline/bufferline
 set cmdheight=1    " 命令行的高度
-set guifont=Consolas\ NF:h12 "gui字体"
+" set guifont=Consolas\ NF:h12 "gui字体"
+
 "不显示工具/菜单栏
 set guioptions-=T "工具栏
 "set guioptions-=m "菜单栏
@@ -136,80 +151,4 @@ if has('nvim')
     let g:python3_host_prog = expand('D:\Software\Python38-32\python.exe')
 endif
 
-
-" ---编译、运行----"
-func! CompileC()       " 编译C源文件
-    exec "w"
-    exec "!clang -Wall %"
-endfunc
-func! CompileCpp()     " 编译C++源文件
-    exec "w"
-    exec "!clang++ -Wall %"
-endfunc
-func! Compilefortran() " 编译fortran源文件
-    exec "w"
-	exec "!gfortran -Wall %"
-endfunc
-func! RunLua()         " 运行Lua源文件
-    exec "w"
-    exec "!lua %"
-endfunc
-func! RunPerl()        " 运行Perl源文件
-    exec "w"
-    exec "!perl %"
-endfunc
-func! RunPython()      " 运行Python源文件
-    exec "w"
-    exec "!python %"
-endfunc
-func! CompileCode()    " 根据文件类型自动选择相应的编译函数
-    exec "w"
-    if &filetype == "c"
-        exec "call CompileC()"
-    elseif &filetype == "cpp"
-        exec "call CompileCpp()"
-    elseif &filetype == "fortran"
-        exec "call Compilefortran()"
-    elseif &filetype == "lua"
-        exec "call RunLua()"
-    elseif &filetype == "perl"
-        exec "call RunPerl()"
-    elseif &filetype == "python"
-        exec "call RunPython()"
-    endif
-endfunc
-func! RunResult()      " 运行可执行文件
-    exec "w"
-    if  &filetype == "c"
-        exec "w"
-        exec "!clang % -Wall -std=c99 -O2 -o %<.exe"
-        exec "!start cmd /c  \"\"%<.exe\" & pause & del *.exe\""
-    elseif &filetype == "cpp"
-        exec "w"
-        exec "!clang++ % -Wall -std=c++11 -O2 -o %<.exe"
-        exec "!start cmd /c  \"\"%<.exe\" & pause & del *.exe\""
-    elseif &filetype == "fortran"
-        exec "w"
-        exec "!gfortran % -Wall  -O2 -o %<.exe"
-        exec "!start cmd /c  \"\"%<.exe\" & pause & del *.exe\""
-    elseif &filetype == "lua"
-        exec "!start cmd /c lua %<.lua & pause"
-    elseif &filetype == "perl"
-        exec "!start cmd /c perl %<.pl & pause"
-    elseif &filetype == "python"
-		exec "w"
-        exec "!start cmd /c \"python  %<.py & pause\""
-	elseif &filetype == "markdown"
-		exec "w"
-		exec "MarkdownPreview"
-    endif
-endfunc
- " Ctrl + f5 一键保存、编译
-map <C-f5> :call CompileCode()<CR>
-imap <C-f5> <ESC>:call CompileCode()<CR>
-vmap <C-f5> <ESC>:call CompileCode()<CR>
- " Ctrl + b 一键保存、运行
-map <C-b> :call RunResult()<CR>
-imap <C-b> <ESC>:call RunResult()<CR>
-vmap <C-b> <ESC>:call RunResult()<CR>
 

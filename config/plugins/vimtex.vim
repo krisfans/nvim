@@ -49,16 +49,15 @@ let g:vimtex_syntax_conceal_default = 0
 " \lm查看内置的imaps
 "
 " TOC settings
-"let g:vimtex_toc_config = {
-			"\ 'name' : 'TOC',
-			"\ 'layers' : ['content', 'todo', 'include'],
-			"\ 'todo_sorted' : 0,
-			"\ 'show_help' : 1,
-			"\ 'show_numbers' : 1,
-			"\ 'mode' : 2,
-			"\ 'split_width' : 50,
-			"\ 'split_pos' : 'vert botright',
-			"\}
+let g:vimtex_toc_config = {
+            \ 'name' : 'TOC',
+            \ 'layers' : ['content', 'include'],
+            \ 'show_help' : 1,
+            \ 'show_numbers' : 1,
+            \ 'mode' : 2,
+            \ 'split_width' : 30,
+            \ 'split_pos' : 'vert botright',
+            \}
 
 
 " augroup vime_vimtex_group

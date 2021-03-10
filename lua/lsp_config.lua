@@ -1,8 +1,8 @@
 
-	-- vim.lsp.handlers["textDocument/publishDiagnostics"] = false
+
 require'colorizer'.setup()
 
-require'lspconfig'.vimls.setup{}
+-- require'lspconfig'.vimls.setup{}
 require'lspconfig'.texlab.setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.pyls.setup{}
@@ -64,3 +64,4 @@ local servers = { "clangd", "texlab", "pyls","vimls" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
