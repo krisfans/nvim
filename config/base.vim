@@ -145,10 +145,14 @@ endif
 
 
 " python3的可执行文件的位置"
-if has('nvim')
+" if has('nvim')
+"     let g:python3_host_prog = "D:/Software/Python38-32/python.exe"
+"     else
+    " let g:python3_host_prog = expand('D:\Software\Python38-32\python.exe')
+" endif
+
+if has("win32")||has("win64")
     let g:python3_host_prog = "D:/Software/Python38-32/python.exe"
-    else
-    let g:python3_host_prog = expand('D:\Software\Python38-32\python.exe')
+else
+    let g:python3_host_prog = "/usr/bin/python3"
 endif
-
-
