@@ -43,8 +43,9 @@ syntax enable
 " set background=light
 colorscheme one
 
-lua require("lsp_config")
-
+if has('nvim')
+    lua require("lsp_config")
+endif
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()

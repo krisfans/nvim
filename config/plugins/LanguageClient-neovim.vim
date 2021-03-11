@@ -49,14 +49,14 @@ augroup LSPShortcuts
 	autocmd FileType cpp,c,python,tex call SetLSPShortcuts()
 augroup END
 
-function! MyTexStopStart()
-    exec "LanguageClientStop"
-    exec "LanguageClientStart"
-endfunction
-augroup LSPMyTex
-    autocmd!
-    autocmd FileType tex call MyTexStopStart()
-augroup END
+" function! MyTexStopStart()
+"     exec "LanguageClientStop"
+"     exec "LanguageClientStart"
+" endfunction
+" augroup LSPMyTex
+"     autocmd!
+"     autocmd FileType tex call MyTexStopStart()
+" augroup END
 
 " Highlight the symbol and its references when holding the cursor.
 " autocmd CursorHold * silent call CocActionAsync('highlight')

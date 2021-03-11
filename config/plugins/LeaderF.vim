@@ -7,7 +7,8 @@ let g:Lf_IgnoreCurrentBufferName = 1
 " popup mode
 "let g:Lf_WindowPosition = 'popup'
 "let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+" let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 " let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
 
@@ -16,7 +17,11 @@ let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu S
 "Leaderf settings
 " should use `Leaderf gtags --update` first
 let g:Lf_GtagsAutoGenerate = 1
-let g:Lf_Gtagslabel = 'native-pygments'
+" let g:Lf_Gtagslabel = 'native-pygments'
+let $GTAGSLABEL='native-pygments'
+if has('win32')
+    let $GTAGSCONF='D:/Software/glo663wb/share/gtags/gtags.conf'
+endif
 "let g:Lf_Gtagslabel = 'default'
 noremap <space>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <space>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>

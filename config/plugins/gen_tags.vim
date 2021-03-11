@@ -11,6 +11,6 @@ let g:gen_tags#ctags_auto_gen=1
 " Ctrl+\ i    Find files #including this file
 " Ctrl+\ s    Find this C symbol
 " Ctrl+\ t    Find this text string
-let $GTAGSCONF='D:/Software/glo663wb/share/gtags/gtags.conf'
+" let $GTAGSCONF='D:/Software/glo663wb/share/gtags/gtags.conf'
 let $GTAGSLABEL='native-pygments'
 

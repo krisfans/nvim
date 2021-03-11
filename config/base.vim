@@ -17,7 +17,9 @@ set encoding=utf-8             " Vim 在与屏幕/键盘交互时使用的编码
 set fileencodings=utf-8,cp936,gb2123,latin1
 source $VIMRUNTIME/delmenu.vim " 解决菜单乱码
 source $VIMRUNTIME/menu.vim
-language messages zh_CN.utf-8  " 解决consle输出乱码}}}
+if has('win32')||has('win64')
+    language messages zh_CN.utf-8  " 解决consle输出乱码}}}
+endif
 
                                " --vim自身设置--"
 set novb                       " 取消响铃
@@ -90,19 +92,34 @@ filetype plugin indent on
 " \ 'cache_enabled': 0,
 " \ }
 " endif
-if has('clipboard')
-    if has('unnamedplus') " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
-    else                  " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
-endif
+" if has('clipboard')
+"     if has('unnamedplus') " When possible use + register for copy-paste
+"         set clipboard=unnamed,unnamedplus
+"     else                  " On mac and Windows, use * register for copy-paste
+"         set clipboard=unnamed
+"     endif
+" endif
+
+set clipboard+=unnamedplus
+" WSL yank support
+let g:clipboard = {
+          \   'name': 'win32yank-wsl',
+          \   'copy': {
+          \      '+': 'win32yank.exe -i --crlf',
+          \      '*': 'win32yank.exe -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': 'win32yank.exe -o --lf',
+          \      '*': 'win32yank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
+
 set showcmd   " 状态栏显示目前所执行的指令
 set laststatus=2 " 开启状态栏信息
 set showtabline=2 " 开启tabline/bufferline
 set cmdheight=1    " 命令行的高度
 " set guifont=Consolas\ NF:h12 "gui字体"
-
 "不显示工具/菜单栏
 set guioptions-=T "工具栏
 "set guioptions-=m "菜单栏

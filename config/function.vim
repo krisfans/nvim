@@ -24,6 +24,10 @@ func! RunResult()  " 先保存，再格式化，最后运行可执行文件
 	endif
 endfunc
 
+
+
+    "profiles": {
+    "        "defaults": {"
 " Ctrl + b 一键保存、运行
 map <C-b> :call RunResult()<CR>
 imap <C-b> <ESC>:call RunResult()<CR>

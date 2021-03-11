@@ -2,14 +2,20 @@
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 let g:vista_default_executive = 'ctags'
-let g:vista_executive_for = {
-  \ 'cpp': 'nvim_lsp',
-  \ 'c': 'nvim_lsp',
-  \ 'python': 'nvim_lsp'
-  \ }
-" let g:vista_ctags_cmd = {
-"       \ 'haskell': 'hasktags -x -o - -c',
-"       \ }
+if has('nvim')
+    let g:vista_executive_for = {
+                \ 'cpp': 'nvim_lsp',
+                \ 'c': 'nvim_lsp',
+                \ 'python': 'nvim_lsp'
+                \ }
+else
+    let g:vista_executive_for = {
+                \ 'cpp': 'lcn',
+                \ 'c': 'lcn',
+                \ 'python': 'lcn'
+                \ }
+endif
+
 let g:vista#renderer#enable_icon = 1
     " let g:vista#renderer#icons = {
     "     \   "function": "\uf794",

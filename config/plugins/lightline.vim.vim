@@ -9,10 +9,10 @@ let g:lightline = {
             \ 'colorscheme': 'one',
             \ 'tabline': {'right':[['close']], 'left':[['tabs']] },
             \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified']],
+            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified'],[ 'fileformat']],
             \ 'right': [ [ 'lineinfo' ],
             \            [ 'percent' ],
-            \            [ 'fileformat', 'fileencoding', 'filetype' ,'line'] ]
+            \            [  'fileencoding', 'filetype' ,'line'] ]
             \ },
             \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
             \ 'subseparator': { 'left': '', 'right': '' },
