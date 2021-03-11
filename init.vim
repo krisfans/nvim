@@ -20,7 +20,7 @@ if dein#load_state('$plugpath')
 
   " Let dein manage dein
   " Required:
-  call dein#add('$plugpath/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   " Add or remove your plugins here like this:
   call dein#load_toml('$root/config/plugins.toml')
   call dein#load_toml('$root/config/plugins_theme.toml')
