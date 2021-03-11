@@ -5,16 +5,22 @@ if &compatible
 endif
 
 let $root = fnamemodify(expand('<sfile>'), ':h')
+
+
+if has('nvim')
+    let $plugpath=$HOME . '/.cache/dein/'
+else
+    let $plugpath=$HOME . '/.cache/dein_vim/'
+endif
 " Required:
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
 " Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
+if dein#load_state('$plugpath')
+  call dein#begin('$plugpath')
 
   " Let dein manage dein
   " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('$plugpath/repos/github.com/Shougo/dein.vim')
   " Add or remove your plugins here like this:
   call dein#load_toml('$root/config/plugins.toml')
   call dein#load_toml('$root/config/plugins_theme.toml')
