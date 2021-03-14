@@ -4,11 +4,45 @@ require'colorizer'.setup()
 
 -- require'lspconfig'.vimls.setup{}
 require'lspconfig'.texlab.setup{}
-require'lspconfig'.clangd.setup{}
+-- require'lspconfig'.clangd.setup{}
+require'lspconfig'.ccls.setup{
+    init_options = {
+        highlight = {
+            lsRanges = true;
+        },
+        cache = {
+            directory = "~/.cache/ccls";
+        }
+    }
+}
 require'lspconfig'.pyls.setup{}
---cmd={ "dotnet", "exec", "D:/Software/Python38-32/python-language-server/output/bin/Debug/Microsoft.Python.languageServer.dll" --}
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = true
 vim.lsp.handlers["textDocument/publishDiagnostics"] = false
-
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+-- vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics,
+--     {
+--         update_in_insert =true,
+--         virtual_text = {
+--             prefix = "➤"
+--             -- "➤"
+--         }
+--     }
+--     )
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignError",
+--     {
+--         text = "✗",
+--         texthl = "LspDiagnosticsSignError"
+--     }
+--     )
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignWarning",
+--     {
+--         text = "⚡",
+--         texthl = "LspDiagnosticsSignWarning"
+--     }
+--     )
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end

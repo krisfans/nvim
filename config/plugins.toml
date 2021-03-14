@@ -1,9 +1,8 @@
 [[plugins]] # dein增强
 repo = 'wsdjeg/dein-ui.vim'
-on_cmd = 'Dein'
+on_cmd = 'DeinUpdate'
 [[plugins]] # dein增强
 repo = 'haya14busa/dein-command.vim'
-
 #[[plugins]]
 #repo = 'neoclide/coc.nvim'
 #rev = 'release'
@@ -24,6 +23,7 @@ hook_add = 'source $root/config/plugins/echodoc.vim'
 on_event = 'InsertEnter'
 [[plugins]]# deo补全
 repo = 'deoplete-plugins/deoplete-lsp'
+on_if = 'has("nvim")'
 hook_add = '''
 let g:deoplete#lsp#handler_enabled = v:true
 let g:deoplete#lsp#use_icons_for_candidates = v:true
@@ -38,7 +38,7 @@ on_if ='!has("nvim")'
 [[plugins]] # buildin lsp
 repo = 'neovim/nvim-lspconfig'
 on_lua = 'lsp_config'
-# if = 'v:false'
+if = 'v:false'
 on_if = 'has("nvim")'
 
 [[plugins]] # lua 补全框架
@@ -77,7 +77,7 @@ else
     call system('bash install.sh')
 endif
 '''
-on_if = '!has("nvim")'
+# on_if = '!has("nvim")'
 
 # [[plugins]]
 # repo = 'nvim-treesitter/nvim-treesitter'
@@ -85,6 +85,10 @@ on_if = '!has("nvim")'
 [[plugins]] # 语法检查
 repo = 'neomake/neomake'
 hook_add = 'source $root/config/plugins/neomake.vim'
+if = 'v:false'
+[[plugins]] # 语法检查
+repo = 'dense-analysis/ale'
+hook_add = 'source $root/config/plugins/ale.vim'
 [[plugins]] # 文件树
 repo = 'Shougo/defx.nvim'
 hook_add = 'source $root/config/plugins/defx.nvim.vim'
@@ -114,16 +118,13 @@ on_cmd = 'Neoformat'
 [[plugins]]  # 检索
 repo = 'Yggdroot/LeaderF'
 hook_add = 'source $root/config/plugins/LeaderF.vim'
-# [[plugins]] # gtags
-# repo = 'jsfaint/gen_tags.vim'
-# hook_add = 'source $root/config/plugins/gen_tags.vim'
 
 [[plugins]]#函数列表
 repo = 'liuchengxu/vista.vim'
 hook_add = 'source $root/config/plugins/vista.vim.vim'
 [[plugins]] # 自动补全括号
 repo = 'jiangmiao/auto-pairs'
-on_event = 'InsertEnter'
+on_event = 'BufEnter'
 [[plugins]] # 高亮匹配
 repo = 'Yggdroot/hiPairs'
 hook_add = 'source $root/config/plugins/hiPairs.vim'
@@ -152,7 +153,7 @@ on_cmd = 'StartupTime'
 #
 [[plugins]] # lightline
 repo = 'itchyny/lightline.vim'
-depends = 'vim-devicons'
+depends =[ 'vim-devicons', "ale"]
 hook_add = 'source $root/config/plugins/lightline.vim.vim'
 hook_post_source = '''
 function! MyFiletype()
@@ -218,9 +219,11 @@ hook_add = '''
 let g:polyglot_disabled = ['latex']
 source $root/config/plugins/vim-polyglot.vim
 '''
-
+[[plugins]]
+repo = 'jackguo380/vim-lsp-cxx-highlight'
+on_ft = ['c', 'cpp']
 [[plugins]] # cpp高亮
-repo = 'octol/vim-cpp-enhanced-highlight'
+repo = 'krisfans/vim-cpp-enhanced-highlight'
 on_ft = ['c', 'cpp']
 
 [[plugins]] # py高亮
@@ -240,7 +243,10 @@ repo = 'lervag/vimtex'
 on_ft = 'tex'
 depends = 'auto-pairs'
 hook_add = 'source $root/config/plugins/vimtex.vim'
-
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && npm install"'
 [[plugins]] # 状态栏图标
 repo = 'ryanoasis/vim-devicons'
 hook_add  = '''

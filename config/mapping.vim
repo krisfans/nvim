@@ -28,6 +28,7 @@ function! s:writeCurrent() abort
     endif
 endfunction
 
+tnoremap kj <C-\><C-n>
 
 nnoremap j gj
 nnoremap k gk

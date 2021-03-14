@@ -5,15 +5,18 @@ set shortmess+=c " Avoid showing message extra message when using completion
 "" 补全结束或离开插入模式时，关闭预览窗口
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 call deoplete#custom#option({
-            \ 'auto_complete_delay': 10,
-            \ 'auto_refresh_delay': 20,
+            \ 'auto_complete_delay': 0,
+            \ 'auto_refresh_delay': 0,
             \ 'smart_case': v:true,
             \ 'sources': {'_':[]},
             \ })
-            " 用户输入至少两个字符时再开始提示补全
+            " 用户输入至少一个字符时再开始提示补全
 call deoplete#custom#source('LanguageClient',
             \ 'min_pattern_length',
-            \ 2)
+            \ 0)
+" call deoplete#custom#source('ale',
+"             \ 'min_pattern_length',
+"             \ 1)
 call deoplete#custom#source('file',{
             \ 'enable_slash_completion': v:true,
             \ })

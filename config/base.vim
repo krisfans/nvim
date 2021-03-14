@@ -45,7 +45,7 @@ if &list
     set listchars+=trail:·
     " set listchars+=space:␣
 endif
-
+set tags=./tags;/,~/.vimtags "tags
 set smartindent
 set smarttab
 set copyindent
@@ -99,22 +99,32 @@ filetype plugin indent on
 "         set clipboard=unnamed
 "     endif
 " endif
-
-set clipboard+=unnamedplus
-" WSL yank support
-let g:clipboard = {
-          \   'name': 'win32yank-wsl',
-          \   'copy': {
-          \      '+': 'win32yank.exe -i --crlf',
-          \      '*': 'win32yank.exe -i --crlf',
-          \    },
-          \   'paste': {
-          \      '+': 'win32yank.exe -o --lf',
-          \      '*': 'win32yank.exe -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
-
+"set clipboard=unnamedplus " 与系统共用剪切板在某些系统上可能会出现vim打开时间长的问题
+if has('nvim')
+    set clipboard+=unnamedplus
+    " WSL yank support
+    let g:clipboard = {
+                \   'name': 'win32yank-wsl',
+                \   'copy': {
+                \      '+': 'win32yank.exe -i --crlf',
+                \      '*': 'win32yank.exe -i --crlf',
+                \    },
+                \   'paste': {
+                \      '+': 'win32yank.exe -o --lf',
+                \      '*': 'win32yank.exe -o --lf',
+                \   },
+                \   'cache_enabled': 0,
+                \ }
+else
+    " WSL yank support
+    let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+    if executable(s:clip)
+        augroup WSLYank
+            autocmd!
+            autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+        augroup END
+    endif
+endif
 set showcmd   " 状态栏显示目前所执行的指令
 set laststatus=2 " 开启状态栏信息
 set showtabline=2 " 开启tabline/bufferline
@@ -127,9 +137,13 @@ set guioptions-=L "左边滚动条
 set guioptions-=r "右边滚动条
 set guioptions-=b " 底部滚动条
 set guioptions-=e " 使用内置 tab 样式而不是 gui
+" hi Normal ctermfg=252 ctermbg=none
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
-
-"set infercase                             " Adjust case in insert completion mode
+" highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+" highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+" hi Normal guibg=NONE ctermbg=NONE "背景透明
+set infercase                             " Adjust case in insert completion mode
 set history=500                           " 历史命令
 set splitbelow                            " 在下方分割
 
@@ -143,7 +157,6 @@ if (empty($TMUX))
 		set termguicolors
 	endif
 endif
-"set clipboard=unnamedplus " 与系统共用剪切板在某些系统上可能会出现vim打开时间长的问题
 
 if has('nvim') == 0 && has('patch-8.1.2020')
     set cursorlineopt=number cursorline

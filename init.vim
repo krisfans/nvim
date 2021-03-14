@@ -46,12 +46,12 @@ filetype plugin indent on
 syntax enable
 " 颜色主题放在这里
 
-" set background=light
+set background=dark
 colorscheme one
 
-if has('nvim')
-    lua require("lsp_config")
-endif
+" if has('nvim')
+"     lua require("lsp_config")
+" endif
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
