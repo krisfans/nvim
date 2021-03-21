@@ -33,25 +33,32 @@ endif
 " if dein#check_install()
 "   call dein#install()
 " endif
+let g:dein#auto_recache = 1
 call dein#call_hook('source')
 autocmd VimEnter * call dein#call_hook('post_source')
 "End dein Scripts-------------------------
 
 
-for file in split(glob("$root/config/*.vim"), '\n')
-    execute 'source' file
-endfor
+" for file in split(glob("$root/config/*.vim"), '\n')
+"     execute 'source' file
+" endfor
+source $root/config/base.vim
+source $root/config/function.vim
+source $root/config/mapping.vim
 " Required:
 filetype plugin indent on
 syntax enable
 " 颜色主题放在这里
 
 set background=dark
-colorscheme one
-
-" if has('nvim')
-"     lua require("lsp_config")
-" endif
+" colorscheme one
+" colorscheme gruvbox-material
+colorscheme onebuddy
+if has('nvim')
+    lua require("lsp_config")
+    lua require("nvim_treesitter")
+    lua require("config")
+endif
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()

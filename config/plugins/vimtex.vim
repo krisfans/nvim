@@ -1,22 +1,26 @@
-function! SetServerName()
-    if has('win32')
-        let nvim_server_file = $TEMP . "/curnvimserver.txt"
-    else
-        let nvim_server_file = "/tmp/curnvimserver.txt"
-    endif
-    let cmd = printf("echo %s > %s", v:servername, nvim_server_file)
-    call system(cmd)
-endfunction
+" function! SetServerName()
+"     if has('win32')
+"         let nvim_server_file = $TEMP . "/curnvimserver.txt"
+"     else
+"         let nvim_server_file = "/tmp/curnvimserver.txt"
+"     endif
+"     let cmd = printf("echo %s > %s", v:servername, nvim_server_file)
+"     call system(cmd)
+" endfunction
 
-augroup vimtex_common
-    autocmd!
-    autocmd FileType tex call SetServerName()
-augroup END
+" augroup vimtex_common
+"     autocmd!
+"     autocmd FileType tex call SetServerName()
+" augroup END
 
 if has('nvim')
     let g:vimtex_compiler_progname = 'nvr'
 endif
-let g:tex_flavor  = 'latex'
+
+
+       let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
+
+let g:vimtex_view_general_options = '-reuse-instance @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
 let g:vimtex_compiler_method = 'latexmk'

@@ -1,9 +1,5 @@
 
 set encoding=utf-8
-"for f in split(glob('~/AppData/Local/nvim/container/plugin/*.vim'), '\n')
-    "exe 'source' f
-"endfor
-
 " 基本配置
 if &compatible
     " 不要兼容vi
@@ -21,6 +17,20 @@ if has('win32')||has('win64')
     language messages zh_CN.utf-8  " 解决consle输出乱码}}}
 endif
 
+" If sudo, disable vim swap/backup/undo/shada/viminfo writing
+if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
+		\ && $HOME !=# expand('~'.$USER)
+		\ && $HOME ==# expand('~'.$SUDO_USER)
+
+	set noswapfile
+	set nobackup
+	set noundofile
+	if has('nvim')
+		set shada="NONE"
+	else
+		set viminfo="NONE"
+	endif
+endif
                                " --vim自身设置--"
 set novb                       " 取消响铃
 set vb t_vb="<Esc>|0f"
@@ -45,6 +55,10 @@ if &list
     set listchars+=trail:·
     " set listchars+=space:␣
 endif
+if has('conceal') && v:version >= 703
+	" For snippet_complete marker
+	set conceallevel=2 concealcursor=niv
+endif
 set tags=./tags;/,~/.vimtags "tags
 set smartindent
 set smarttab
@@ -64,6 +78,7 @@ set number         " 显示行号
 set relativenumber " 相对行号
 set mouse=a        " 启用鼠标
 set lazyredraw     " 延迟绘制，提升性能
+set fileformat=unix
 "set colorcolumn=81
 "set textwidth=80
 "set fo+=mB
@@ -174,12 +189,6 @@ if has("autocmd")
 endif
 
 
-" python3的可执行文件的位置"
-" if has('nvim')
-"     let g:python3_host_prog = "D:/Software/Python38-32/python.exe"
-"     else
-    " let g:python3_host_prog = expand('D:\Software\Python38-32\python.exe')
-" endif
 
 if has("win32")||has("win64")
     let g:python3_host_prog = "D:/Software/Python38-32/python.exe"

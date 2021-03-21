@@ -1,47 +1,115 @@
-vim.o.termguicolors = true
-vim.api.nvim_set_keymap('n', '<Space>z',
-    ":<C-u>Tree -columns=mark:indent:git:icon:filename:size:time"..
-    " -split=vertical -direction=topleft -winwidth=40 -listed `expand('%:p:h')`<CR>",
-    {noremap=true, silent=true})
-local custom = require 'tree/custom'
-custom.option('_', {root_marker='[in]:'})
-custom.column('filename', {
-  root_marker_highlight='Ignore',
-  max_width=60,
-})
-custom.column('time', {
-  format="%d-%M-%Y",
-})
-custom.column('mark', {
-  readonly_icon="X",
-  selected_icon="*",
-})
-local tree = require('tree')
--- keymap(keys, action1, action2, ...)  action can be `vim action` or `tree action`
-tree.keymap('cp', 'copy')
-tree.keymap('m', 'move')
-tree.keymap('p', 'paste')
-tree.keymap('a', 'view')
-tree.keymap('o', 'open_or_close_tree')
-tree.keymap('R', 'open_tree_recursive')
-tree.keymap('r', 'rename')
-tree.keymap('x', 'execute_system')
-tree.keymap('<CR>', 'drop')
-tree.keymap('<C-l>', 'redraw')
-tree.keymap('<C-g>', 'print')
-tree.keymap('>', 'toggle_ignored_files')
-tree.keymap('*', 'toggle_select_all')
-tree.keymap('s', {'drop', 'split'}, 'quit')
-tree.keymap('N', 'new_file')
-tree.keymap('cd', {'cd', '.'})
-tree.keymap('~', 'cd')
-tree.keymap('<Tab>', 'toggle_select', 'j')  -- tree action and vim action
-tree.keymap('\\', {'cd', vim.fn.getcwd})
-tree.keymap('cD', {'call', function(context) print(vim.inspect(context)) end})
-tree.keymap('l', 'open')
-tree.keymap('yy', 'yank_path')
-tree.keymap('D', 'debug')
-tree.keymap('d', 'remove')
-tree.keymap('E', {'open', 'vsplit'})
-tree.keymap('h', {'cd', '..'})
-tree.keymap('gk', {'goto', 'parent'})
+
+require'colorizer'.setup()
+-- -- vim.o.termguicolors = true
+-- -- vim.api.nvim_set_keymap('n', '<Space>z',
+-- --     ":<C-u>Tree -columns=mark:indent:git:icon:filename:size:time"..
+-- --     " -split=vertical -direction=topleft -winwidth=40 -listed `expand('%:p:h')`<CR>",
+-- --     {noremap=true, silent=true})
+-- -- local custom = require 'tree/custom'
+-- -- custom.option('_', {root_marker='[in]:'})
+-- -- custom.column('filename', {
+-- --   root_marker_highlight='Ignore',
+-- --   max_width=60,
+-- -- })
+-- -- custom.column('time', {
+-- --   format="%d-%M-%Y",
+-- -- })
+-- -- custom.column('mark', {
+-- --   readonly_icon="X",
+-- --   selected_icon="*",
+-- -- })
+-- -- local tree = require('tree')
+-- -- -- keymap(keys, action1, action2, ...)  action can be `vim action` or `tree action`
+-- -- tree.keymap('cp', 'copy')
+-- -- tree.keymap('m', 'move')
+-- -- tree.keymap('p', 'paste')
+-- -- tree.keymap('a', 'view')
+-- -- tree.keymap('o', 'open_or_close_tree')
+-- -- tree.keymap('R', 'open_tree_recursive')
+-- -- tree.keymap('r', 'rename')
+-- -- tree.keymap('x', 'execute_system')
+-- -- tree.keymap('<CR>', 'drop')
+-- -- tree.keymap('<C-l>', 'redraw')
+-- -- tree.keymap('<C-g>', 'print')
+-- -- tree.keymap('>', 'toggle_ignored_files')
+-- -- tree.keymap('*', 'toggle_select_all')
+-- -- tree.keymap('s', {'drop', 'split'}, 'quit')
+-- -- tree.keymap('N', 'new_file')
+-- -- tree.keymap('cd', {'cd', '.'})
+-- -- tree.keymap('~', 'cd')
+-- -- tree.keymap('<Tab>', 'toggle_select', 'j')  -- tree action and vim action
+-- -- tree.keymap('\\', {'cd', vim.fn.getcwd})
+-- -- tree.keymap('cD', {'call', function(context) print(vim.inspect(context)) end})
+-- -- tree.keymap('l', 'open')
+-- -- tree.keymap('yy', 'yank_path')
+-- -- tree.keymap('D', 'debug')
+-- -- tree.keymap('d', 'remove')
+-- -- tree.keymap('E', {'open', 'vsplit'})
+-- -- tree.keymap('h', {'cd', '..'})
+-- -- tree.keymap('gk', {'goto', 'parent'})
+-- require'compe'.setup {
+--   enabled = true;
+--   autocomplete = true;
+--   debug = false;
+--   min_length = 0;
+--   preselect = 'enable';
+--   throttle_time = 80;
+--   source_timeout = 200;
+--   incomplete_delay = 400;
+--   max_abbr_width = 100;
+--   max_kind_width = 100;
+--   max_menu_width = 100;
+--   documentation = true;
+
+--   source = {
+--     path = true;
+--     buffer = true;
+--     calc = true;
+--     tags = true;
+--     nvim_lsp = true;
+--     nvim_lua = true;
+--     vsnip = true;
+--     ultisnips = true;
+--   };
+-- }
+-- local t = function(str)
+--   return vim.api.nvim_replace_termcodes(str, true, true, true)
+-- end
+
+-- local check_back_space = function()
+--     local col = vim.fn.col('.') - 1
+--     if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+--         return true
+--     else
+--         return false
+--     end
+-- end
+
+-- -- Use (s-)tab to:
+-- --- move to prev/next item in completion menuone
+-- --- jump to prev/next snippet's placeholder
+-- _G.tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t "<C-n>"
+--   elseif vim.fn.call("vsnip#available", {1}) == 1 then
+--     return t "<Plug>(vsnip-expand-or-jump)"
+--   elseif check_back_space() then
+--     return t "<Tab>"
+--   else
+--     return vim.fn['compe#complete']()
+--   end
+-- end
+-- _G.s_tab_complete = function()
+--   if vim.fn.pumvisible() == 1 then
+--     return t "<C-p>"
+--   elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+--     return t "<Plug>(vsnip-jump-prev)"
+--   else
+--     return t "<S-Tab>"
+--   end
+-- end
+
+-- vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})

@@ -5,6 +5,7 @@ let g:ale_disable_lsp = 1
 let g:ale_sign_column_always = 1
 "keep the sign gutter open
 ""打开文件时不进行检查
+let g:ale_virtualtext_cursor = 1
 let g:ale_lint_on_enter = 0
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✗'
@@ -19,8 +20,8 @@ let g:ale_linters = {
             \   'tex': ['texlab'],
             \   'python': ['flake8', 'yapf'],
             \ }
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = '✗'
+let g:ale_echo_msg_warning_str = '⚡'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_python_flake8_options = '--ignore=E501,W291,E2'
 let g:ale_c_clang_options = '-Wall -O2 -std=c99'

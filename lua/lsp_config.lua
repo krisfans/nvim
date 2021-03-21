@@ -1,20 +1,17 @@
 
-
-require'colorizer'.setup()
-
 -- require'lspconfig'.vimls.setup{}
 require'lspconfig'.texlab.setup{}
--- require'lspconfig'.clangd.setup{}
-require'lspconfig'.ccls.setup{
-    init_options = {
-        highlight = {
-            lsRanges = true;
-        },
-        cache = {
-            directory = "~/.cache/ccls";
-        }
-    }
-}
+require'lspconfig'.clangd.setup{}
+-- -- require'lspconfig'.ccls.setup{
+--     init_options = {
+--         highlight = {
+--             lsRanges = true;
+--         },
+--         cache = {
+--             directory = "~/.cache/ccls";
+--         }
+--     }
+-- }
 require'lspconfig'.pyls.setup{}
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = true
 vim.lsp.handlers["textDocument/publishDiagnostics"] = false

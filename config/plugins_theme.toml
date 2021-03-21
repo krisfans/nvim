@@ -16,6 +16,13 @@ repo = 'kristijanhusak/vim-hybrid-material'
 repo = 'mhartington/oceanic-next'
 [[plugins]]
 repo = 'liuchengxu/space-vim-theme'
+[[plugins]]
+repo = 'Th3Whit3Wolf/onebuddy'
+[[plugins]]
+repo = 'tjdevries/colorbuddy.vim'
+[[plugins]]
+repo = 'Th3Whit3Wolf/one-nvim'
+
 
 
 

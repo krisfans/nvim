@@ -68,6 +68,7 @@ imap <C-s> <ESC>:w<CR>a
 vmap <C-s> <ESC>:w<CR>
 nmap <space>th :noh<cr>
 nnoremap q :close<cr>
+nnoremap Q :qa<cr>
 "切换buff"
 nmap <space>te :tabnew<cr>
 nmap <space>tc :tabclose<cr>
