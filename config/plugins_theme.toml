@@ -3,12 +3,6 @@ repo = 'rakr/vim-one'
 [[plugins]]
 repo = 'lifepillar/vim-solarized8'
 [[plugins]]
-repo = 'arcticicestudio/nord-vim'
-[[plugins]]
-repo = 'morhetz/gruvbox'
-[[plugins]]
-repo = 'sainnhe/gruvbox-material'
-[[plugins]]
 repo = 'hardcoreplayers/oceanic-material'
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material'

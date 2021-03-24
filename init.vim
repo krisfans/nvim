@@ -53,7 +53,9 @@ syntax enable
 set background=dark
 " colorscheme one
 " colorscheme gruvbox-material
-colorscheme onebuddy
+" colorscheme OceanicNext
+colorscheme one-nvim
+" colorscheme onebuddy
 if has('nvim')
     lua require("lsp_config")
     lua require("nvim_treesitter")
