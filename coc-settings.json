@@ -1,81 +1,166 @@
 {
-    "suggest.triggerAfterInsertEnter": true,
-    "suggest.enablePreview": true,
-    "suggest.minTriggerInputLength": 2,
-    "diagnostic.enable": false,
-    "python.analysis.diagnosticEnabled": false,
-    "python.jediEnabled": true,
-    "tsserver.trace.server": "verbose",
-    "json.enable": true,
-    "languageserver": {
-        "clangd": {
-            "command": "clangd",
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-        },
-        "python": {
-            "command": "pyls",
-            "trace.server": "verbose",
-            "filetypes": [
-                "python"
-            ],
-            "settings": {
-                "pyls": {
-                    "enable": true,
-                    "trace": {
-                        "server": "verbose"
-                    },
-                    "commandPath": "",
-                    "configurationSources": [
-                        "pycodestyle"
-                    ],
-                    "plugins": {
-                        "jedi_completion": {
-                            "enabled": true
-                        },
-                        "jedi_hover": {
-                            "enabled": true
-                        },
-                        "jedi_references": {
-                            "enabled": true
-                        },
-                        "jedi_signature_help": {
-                            "enabled": true
-                        },
-                        "jedi_symbols": {
-                            "enabled": true,
-                            "all_scopes": true
-                        },
-                        "mccabe": {
-                            "enabled": true,
-                            "threshold": 15
-                        },
-                        "preload": {
-                            "enabled": true
-                        },
-                        "pycodestyle": {
-                            "enabled": true
-                        },
-                        "pydocstyle": {
-                            "enabled": false,
-                            "match": "(?!test_).*\\.py",
-                            "matchDir": "[^\\.].*"
-                        },
-                        "pyflakes": {
-                            "enabled": true
-                        },
-                        "rope_completion": {
-                            "enabled": true
-                        },
-                        "yapf": {
-                            "enabled": true
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "translator.engines": [
-        "youdao"
-    ]
+	"suggest.triggerAfterInsertEnter": false,
+	"suggest.timeout": 500,
+	"suggest.noselect": false,
+	"suggest.detailField": "abbr",
+	// "suggest.snippetIndicator": "🌟",
+	"suggest.triggerCompletionWait": 100,
+	"suggest.echodocSupport": true,
+	"suggest.completionItemKindLabels": {
+		"keyword": "\uf1de",
+		"variable": "\ue79b",
+		"value": "\uf89f",
+		"operator": "\u03a8",
+		"function": "\u0192",
+		"reference": "\ufa46",
+		"constant": "\uf8fe",
+		"method": "\uf09a",
+		"struct": "\ufb44",
+		"class": "\uf0e8",
+		"interface": "\uf417",
+		"text": "\ue612",
+		"enum": "\uf435",
+		"enumMember": "\uf02b",
+		"module": "\uf40d",
+		"color": "\ue22b",
+		"property": "\ue624",
+		"field": "\uf9be",
+		"unit": "\uf475",
+		"event": "\ufacd",
+		"file": "\uf15c",
+		"folder": "\uf114",
+		"snippet": "\ue60b",
+		"typeParameter": "\uf728",
+		"default": "\uf29c"
+	},
+	"yank.highlight.enable": false,
+	//pairs
+	"pairs.enableCharacters": ["(", "[", "{","'", "\"", "`"],
+	//diagnostic
+	"diagnostic.signOffset": 9999999,
+	"diagnostic.errorSign": "●",
+	"diagnostic.warningSign": "●",
+	"diagnostic.infoSign": "●",
+	"diagnostic.displayByAle": false,
+	"diagnostic.refreshOnInsertMode": true,
+	//git
+	// "git.enableGutters": true,
+	// "git.branchCharacter": "\uf418",
+	// "git.addGBlameToBufferVar": true,
+	// "git.addGBlameToVirtualText": true,
+	// "git.virtualTextPrefix": " ❯❯❯ ",
+	// "git.addedSign.hlGroup": "GitGutterAdd",
+	// "git.changedSign.hlGroup": "GitGutterChange",
+	// "git.removedSign.hlGroup": "GitGutterDelete",
+	// "git.topRemovedSign.hlGroup": "GitGutterDelete",
+	// "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+	// "git.addedSign.text": "▋",
+	// "git.changedSign.text": "▋",
+	// "git.removedSign.text": "▋",
+	// "git.topRemovedSign.text": "▔",
+	// "git.changeRemovedSign.text": "▋",
+	//python
+	"python.jediEnabled": true,
+	"python.linting.pylintEnabled": false,
+	"python.linting.flake8Enabled": true,
+	//Snippet
+	"snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+	"coc.preferences.snippetStatusText": "Ⓢ ",
+	//CocList
+	"list.source.files.defaultOptions": [
+		"--auto-preview"
+	],
+	"list.source.outline.defaultOptions": [
+		"--auto-preview"
+	],
+	//prettier
+	"coc.preferences.formatOnSaveFiletypes": [
+		"html",
+		"css",
+		"markdown",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"go",
+		"json"
+	],
+	"prettier.statusItemText": "ⓟ ",
+	"prettier.eslintIntegration": true,
+	"prettier.tslintIntegration": false,
+	"prettier.stylelintIntegration": true,
+	"prettier.disableSuccessMessage": true,
+	//emmet
+	"emmet.includeLanguages": {
+		"vue-html": "html",
+		"javascript": "javascriptreact",
+		"typescriptreact": "typescriptreact"
+	},
+	//imselect
+	"imselect.enableStatusItem": false,
+	//multiple curssor
+	"cursors.nextKey": "<C-n>",
+	"cursors.previousKey": "<C-p>",
+	"cursors.cancelKey": "<esc>",
+	//sessions
+	"session.directory": "~/.cache/vim/session",
+	// coc-explorer
+	"explorer.icon.expanded": "▾",
+	"explorer.icon.collapsed": "▸",
+	"explorer.width": 30,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.quitOnOpen": true,
+	"explorer.floating.width": -20,
+	"explorer.floating.height": -10,
+	"explorer.openAction.strategy": "sourceWindow",
+	// eslint
+	"eslint.filetypes": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"eslint.autoFix": true,
+	"eslint.autoFixOnSave": true,
+	// coc-actions
+	"coc-actions.hideCursor": false,
+	//language
+	"clangd.semanticHighlighting": true
+	// Cspell
+	// "cSpell.fixSpellingWithRenameProvider": true,
+	// "cSpell.showStatus": false,
+	// "cSpell.enabledLanguageIds": [
+	//   "asciidoc",
+	//   "c",
+	//   "cpp",
+	//   "csharp",
+	//   "css",
+	//   "git-commit",
+	//   "gitcommit",
+	//   "go",
+	//   "haskell",
+	//   "html",
+	//   "java",
+	//   "javascript",
+	//   "javascriptreact",
+	//   "json",
+	//   "jsonc",
+	//   "latex",
+	//   "less",
+	//   "markdown",
+	//   "php",
+	//   "plaintext",
+	//   "python",
+	//   "pug",
+	//   "restructuredtext",
+	//   "rust",
+	//   "scala",
+	//   "scss",
+	//   "text",
+	//   "typescript",
+	//   "typescriptreact",
+	//   "yaml",
+	//   "yml",
+	//   "vim"
+	// ]
 }

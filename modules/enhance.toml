@@ -1,0 +1,60 @@
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# [[plugins]]
+# repo = 'luochen1990/rainbow'
+# on_ft = [
+# 	'html',
+# 	'css',
+# 	'javascript',
+# 	'javascriptreact',
+# 	'go',
+# 	'python',
+# 	'lua',
+# 	'rust',
+# 	'vim',
+# 	'less',
+# 	'stylus',
+# 	'sass',
+# 	'scss',
+# 	'json',
+# 	'ruby',
+# 	'toml',
+# 	'tex',
+# ]
+# hook_source = '''
+# let g:rainbow_active = 1
+# '''
+# [[plugins]]
+# repo = 'voldikss/vim-floaterm'
+# on_cmd = ['FloatermNew', 'FloatermToggle', 'FloatermPrev', 'FloatermNext', 'FloatermSend']
+# hook_source= '''
+# let g:floaterm_position = 'center'
+# let g:floaterm_wintype = 'floating'
+
+# " Set floaterm window's background to black
+# hi Floaterm guibg=black
+# " Set floating window border line color to cyan, and background to orange
+# hi FloatermBorder guibg=none guifg=cyan
+# '''
+
+[[plugins]] # 格式代码
+repo = 'sbdchd/neoformat'
+on_cmd = 'Neoformat'
+hook_source = '''
+let g:neoformat_tex_latexindent = {
+\ 'exe': 'latexindent',
+\ 'args': ['-l'],
+\ 'stdin': 1
+\ }
+'''
+[[plugins]] # 对齐
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+
+[[plugins]] # 关闭buffer而不关闭窗口
+repo = 'rbgrouleff/bclose.vim'
+on_map = 'Bclose'
+
+
