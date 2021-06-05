@@ -1,7 +1,9 @@
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
-
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
 # [[plugins]]
 # repo = 'luochen1990/rainbow'
 # on_ft = [
@@ -39,16 +41,19 @@ repo = 'Shougo/dein.vim'
 # hi FloatermBorder guibg=none guifg=cyan
 # '''
 
-[[plugins]] # 格式代码
-repo = 'sbdchd/neoformat'
-on_cmd = 'Neoformat'
-hook_source = '''
-let g:neoformat_tex_latexindent = {
-\ 'exe': 'latexindent',
-\ 'args': ['-l'],
-\ 'stdin': 1
-\ }
-'''
+# [[plugins]] # 格式代码
+# repo = 'sbdchd/neoformat'
+# on_cmd = 'Neoformat'
+# hook_source = '''
+# let g:neoformat_tex_latexindent = {
+# \ 'exe': 'latexindent',
+# \ 'args': ['-l'],
+# \ 'stdin': 1
+# \ }
+# '''
+[[plugins]] #格式化
+repo = 'Chiel92/vim-autoformat'
+on_cmd = 'Autoformat'
 [[plugins]] # 对齐
 repo = 'junegunn/vim-easy-align'
 on_map = '<Plug>(EasyAlign)'

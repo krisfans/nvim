@@ -1,6 +1,6 @@
 
 "General settins{{{
-set mouse=nv                 " 命令模式禁用鼠标
+set mouse=a                  " 命令模式禁用鼠标
 set report=0                 " Don't report on line changes
 set errorbells               " Trigger bell on error
 set visualbell               " Use visual bell instead of beeping
@@ -12,6 +12,7 @@ set synmaxcol=2500           " 不高亮语法高亮过长的行
 " set autochdir " 自动设当前编辑的文件所在目录为当前工作路径,
 " 这样defx无法工作
 set tags=./.tags;,.tags      "tag
+" set tags=./tags,./../tags,./*/tags
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.config/nvim/gtags.conf')
 
@@ -257,23 +258,15 @@ if exists('+previewpopup')
 	set previewpopup=height:10,width:60
 endif
 
-" Pseudo-transparency for completion menu and floating windows
-if &termguicolors
-	if exists('&pumblend')
-		set pumblend=10
-	endif
-	if exists('&winblend')
-		set winblend=10
-	endif
-endif
+
 "  For Vim<8, replace EndOfBuffer by NonText
-" 背景透明
-autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
-autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi VertSplit guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi NonText guibg=NONE ctermbg=NONE
-autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+" " 背景透明
+" autocmd vimenter * hi LineNr guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+" " autocmd vimenter * hi VertSplit guibg=NONE ctermbg=NONE
+" " autocmd vimenter * hi NonText guibg=NONE ctermbg=NONE
+" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 " " }}}
 "
 "
@@ -281,3 +274,6 @@ autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif | normal! zvzz
 endif
+
+let g:python3_host_prog = '/usr/bin/python3'
+

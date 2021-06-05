@@ -1,5 +1,5 @@
 
-[[plugins]]
+[[plugins]] # 图标
 repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
@@ -16,11 +16,12 @@ hook_add = 'set termguicolors'
 hook_source = '''
 	lua require'colorizer'.setup()
 '''
+# [[plugins]]
+# repo = 'folke/lsp-colors.nvim'
 
 [[plugins]]
 repo = 'mhartington/oceanic-next'
-[[plugins]]
-repo = 'lifepillar/vim-solarized8'
+
 [[plugins]]
 repo = 'glepnir/zephyr-nvim'
 depends = 'nvim-treesitter'
@@ -40,7 +41,15 @@ depends = 'nvim-treesitter'
 # '''
 [[plugins]]
 repo = 'hardcoreplayers/dashboard-nvim'
-
+# [[plugins]]
+# repo = 'tanvirtin/monokai.nvim'
+# depends = 'nvim-treesitter'
+[[plugins]]
+repo = 'krisfans/vim-monokai'
+hook_source = '''
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+'''
 [[plugins]]
 repo = 'bagrat/vim-buffet'
 depends = 'vim-devicons'
@@ -82,13 +91,14 @@ let g:lightline = {
 		\},
     \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [  'readonly', 'filename', 'modified' ] ]
+        \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
             \ },
     \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
     \ 'subseparator': { 'left': '', 'right': '' },
     \ 'component_function': {
         \   'filetype': 'MyFiletype',
         \   'fileformat': 'MyFileformat',
+		\   'cocstatus': 'coc#status'
         \ },
     \ 'mode_map': {
         \ 'n' : 'N',
