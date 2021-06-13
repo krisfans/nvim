@@ -31,20 +31,5 @@ function! initself#mkdir_as_necessary(dir, force) abort
   endif
 endfunction
 
-" Jump definition in other window
-function! initself#definition_other_window() abort
-  if winnr('$') >= 4 || winwidth(0) < 120
-    exec "normal \<Plug>(coc-definition)"
-  else
-    exec 'vsplit'
-    exec "normal \<Plug>(coc-definition)"
-  endif
-endfunction
 
-" COC select the current word
-function! initself#select_current_word()
-    if !get(g:, 'coc_cursors_activated', 0)
-        return "\<Plug>(coc-cursors-word)"
-    endif
-    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
-endfunction
+

@@ -17,12 +17,10 @@ nmap <leader>8 <Plug>BuffetSwitch(8)
 nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
-
+" defx --------------------
 nnoremap <silent> <f10>
 			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
-"
-" nnoremap <silent> <f10>
-" \ :<C-u>Fern -drawer -toggle %:h<CR>
+
 "--------------------------"
 "     vim-clap Keymap      "
 "--------------------------"
@@ -56,6 +54,8 @@ nnoremap <silent> <Leader>cs  :Clap coc_symbols<CR>
 nnoremap <silent> <Leader>cS  :Clap coc_services<CR>
 nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
 
+
+" 注释 ---------------------
 function! InitCaw() abort
 	if ! (&l:modifiable && &buftype ==# '')
 		" silent! nunmap <buffer> gc
@@ -72,9 +72,7 @@ endfunction
 autocmd FileType * call InitCaw()
 call InitCaw()
 
-nnoremap <silent> <Leader>lt :<C-u>Vista!!<CR>
 
-nnoremap <silent> <Leader>t :<C-u>FloatermToggle<CR>
 
 nmap <silent> sa <Plug>(operator-sandwich-add)
 xmap <silent> sa <Plug>(operator-sandwich-add)
@@ -123,11 +121,25 @@ xmap <silent> if <Plug>(textobj-function-i)
 "--------------------------"
 "     Coc Keymap           "
 "--------------------------"
+" CocLSP
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :call function#CocJumpDefinition()<cr>
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <Leader>lr <Plug>(coc-rename)
+nmap <Leader>lT <Plug>(coc-type-definition)
+nnoremap <leader>lf  :call CocAction('format')<CR>
+
+
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
+nnoremap <silent> <Leader>lt :<C-u>Vista!!<CR>
+nnoremap <silent> <leader>lk :call CocActionAsync('doHover')<CR>
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>la  <Plug>(coc-codeaction-selected)
 nmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-cursor)
+nmap <leader>ca  <Plug>(coc-codeaction-cursor)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
@@ -143,18 +155,9 @@ nmap <Leader>cf  <Plug>(coc-format-selected)
 " Fix autofix problem of current line
 nmap <Leader>cF  <Plug>(coc-fix-current)
 " Remap keys for gotos
-" nmap <silent> gd :<C-u>call initself#definition_other_window()<CR>
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <Leader>lr <Plug>(coc-rename)
-nmap <Leader>lT <Plug>(coc-type-definition)
-" Use K for show documentation in float window
-nnoremap <silent> <leader>lk :call CocActionAsync('doHover')<CR>
-" Use [e and ]e for navigate diagnostics
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
+
+
 " use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap ]g <Plug>(coc-git-prevchunk)
@@ -174,17 +177,21 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 " Add :OR command for organize imports of the current buffer.
 command! -nargs=0 OR  :call CocAction('runCommand', 'editor.action.organizeImport')
 nnoremap <silent> <Leader>co :<C-u>OR<CR>
+
 " multiple cursors
-nmap <silent><M-s> <Plug>(coc-cursors-position)
-nmap <expr> <silent><M-d> initself#select_current_word()
-xmap <silent><M-d> <Plug>(coc-cursors-range)
-nmap <silent><M-c>  <Plug>(coc-cursors-operator)
+nmap <expr> <silent> <C-d> <SID>select_current_word()
+function! s:select_current_word()
+  if !get(b:, 'coc_cursors_activated', 0)
+    return "\<Plug>(coc-cursors-word)"
+  endif
+  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunc
+
 " coc-snippet
 nmap <leader>s :CocCommand snippets.editSnippets<cr>
 " Use :Format for format current buffer
-" command! -nargs=0 Format :call CocAction('format')
-nnoremap <leader>lf  :call MyFormat()<CR>
-nnoremap  <Leader>fz :<C-u>CocSearch -w<Space>
+command! -nargs=0 Format :call CocAction('format')
+
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
@@ -193,26 +200,13 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 nmap gcj :execute 'CocCommand docthis.documentThis'<CR>
 
-function! MyFormat() abort
-	if  &filetype == "json"
-		:call CocAction('format')
-	elseif &filetype == 'jsonc'
-		:call CocAction('format')
-	else
-		:Autoformat
-	endif
-	:w
-endfunction
-
-nnoremap Q :Bclose<cr>
-
-vmap <Enter> <Plug>(EasyAlign)
-
-" dein
+" dein ----------------
 
 command! -nargs=0 PluginInstall :call dein#install()
 command! -nargs=0 PluginUpdate :call dein#update()
 command! -nargs=0 PluginClean :call map(dein#check_clean(), "delete(v:val, 'rf')") | :call dein#recache_runtimepath()
 
+" 其他
+nnoremap Q :Bclose<cr>
 
-
+vmap <Enter> <Plug>(EasyAlign)

@@ -1,6 +1,6 @@
-
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+# on_event = ['VimEnter']
 merged = 0
 rev = 'release'
 hook_add = '''
@@ -19,7 +19,8 @@ hook_add = '''
 		\ 'coc-yaml',
 		\ 'coc-db',
 		\ 'coc-vimlsp',
-		\ 'coc-pyright'
+		\ 'coc-pyright',
+		\ 'coc-pairs',
 		\]
 
 	augroup coc_event
@@ -50,31 +51,32 @@ hook_add = '''
 
 [[plugins]]
 repo = 'honza/vim-snippets'
+on_event = ['BufReadPre','BufNewFile']
 depends = 'coc.nvim'
 if = 'has("python3")'
 merged =  0
 
 
-[[plugins]]
-repo = 'windwp/nvim-autopairs'
-on_event = 'InsertEnter'
-hook_source = '''
-lua << EOF
---require('nvim-autopairs').setup()
-require('nvim-autopairs').setup()
-local Rule = require('nvim-autopairs.rule')
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
--- you can use some builtin condition
-local cond = require('nvim-autopairs.conds')
-npairs.add_rules({
-  Rule("$", "$",{"tex", "latex"})
-    -- don't add a pair if  the previous character is xxx
-    :with_pair(cond.not_before_regex_check("xxx", 3))
-     }
-)
-EOF
-'''
+# [[plugins]]
+# repo = 'windwp/nvim-autopairs'
+# on_event = 'InsertEnter'
+# hook_source = '''
+# lua << EOF
+# --require('nvim-autopairs').setup()
+# require('nvim-autopairs').setup()
+# local Rule = require('nvim-autopairs.rule')
+# local remap = vim.api.nvim_set_keymap
+# local npairs = require('nvim-autopairs')
+# -- you can use some builtin condition
+# local cond = require('nvim-autopairs.conds')
+# npairs.add_rules({
+#   Rule("$", "$",{"tex", "latex"})
+#     -- don't add a pair if  the previous character is xxx
+#     :with_pair(cond.not_before_regex_check("xxx", 3))
+#      }
+# )
+# EOF
+# '''
 
 
 # [[plugins]]

@@ -56,3 +56,16 @@ function! function#RunResult() abort " 先保存，再格式化，最后运行�
 		endif
 	endif
 endfunction
+
+
+" Jump definition in other window
+function! function#CocJumpDefinition() abort
+  if winnr('$') >= 4 || winwidth(0) < 120
+    exec "normal \<Plug>(coc-definition)"
+  else
+    exec 'vsplit'
+    exec "normal \<Plug>(coc-definition)"
+  endif
+endfunction
+
+
