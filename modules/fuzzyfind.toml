@@ -29,6 +29,7 @@ hook_source = '''
     " endfunction
 				"
     " autocmd User ClapOnEnter call s:ClapSymbolHL()
+hi default link ClapPreview Pmenu
 '''
 [[plugins]]
 repo = 'vn-ki/coc-clap'
