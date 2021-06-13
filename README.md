@@ -61,12 +61,12 @@
 ## 主题
 主题使用的`gruvbox`
 文件数用的`defx`
-![avatar](./fig/config.png)
-![avatar](./fig/program.png)
+![config.png](https://i.loli.net/2021/06/14/yuWM1HOAPKm3ojG.png)
+![program.png](https://i.loli.net/2021/06/14/cGiSW7h9PzdfA8J.png)
 ## 补全
 使用neovim的内置lsp和`lspsaga`增强,用`nvim-compe`+`vsnip`补全
-![avatar](./fig/lsp.png)
-![avatar](./fig/compe.png)
+![lsp.png](https://i.loli.net/2021/06/14/luK6VZM8adkUETc.png)
+![compe.png](https://i.loli.net/2021/06/14/ZmhY2cfzvEUCtwe.png)
 ## 查找
 使用`vim-clap`
-![avatar](./fig/fuzzy.png)
+![fuzzy.png](https://i.loli.net/2021/06/14/Bf3erQEP4b2KATa.png)
