@@ -73,6 +73,7 @@ vnoremap x "_x
 nnoremap X "_X
 vnoremap X "_X
 inoremap  jj <esc>o
+inoremap  kk <esc>O
 
 " Ctrl + b 一键保存、运行
 map <C-b> :call function#RunResult()<CR>

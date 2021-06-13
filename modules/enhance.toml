@@ -4,6 +4,28 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd = 'DeinUpdate'
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['BufReadPre','BufNewFile']
+hook_post_update = ':TSUpdate'
+hook_source = '''
+	lua require("treesitter")
+'''
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter-refactor'
+depends = 'nvim-treesitter'
+
+[[plugins]]
+repo = 'glepnir/lspsaga.nvim'
+# hook_source = '''
+# lua require('lspsagacof')
+# '''
+[[plugins]]
+repo = 'folke/lsp-colors.nvim'
+
+# [[plugins]]
+# rep0 = 'folke/trouble.nvim'
 # [[plugins]]
 # repo = 'luochen1990/rainbow'
 # on_ft = [
@@ -51,12 +73,8 @@ on_cmd = 'DeinUpdate'
 # \ 'stdin': 1
 # \ }
 # '''
-[[plugins]] #格式化
-repo = 'Chiel92/vim-autoformat'
-on_cmd = 'Autoformat'
-[[plugins]] # 对齐
-repo = 'junegunn/vim-easy-align'
-on_map = '<Plug>(EasyAlign)'
+
+
 
 [[plugins]] # 关闭buffer而不关闭窗口
 repo = 'rbgrouleff/bclose.vim'

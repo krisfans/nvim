@@ -3,28 +3,14 @@
 require'lspconfig'.texlab.setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.pylsp.setup{}
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = true
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = false
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     -- Enable underline, use default values
---     underline = true,
---     -- Enable virtual text, override spacing to 4
---     virtual_text = true,
---     signs = {
---       enable = true,
---       priority = 20
---     },
---     -- Disable a feature
---     update_in_insert = false,
--- })
+require'lspconfig'.vimls.setup{}
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] =vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
-        update_in_insert =true,
+        update_in_insert =false,
         virtual_text = {
             prefix = "➤"
-            -- "➤"
         },
         signs = {
 		      enable = true,
@@ -55,24 +41,6 @@ local on_attach = function(client, bufnr)
 
 
 
-	-- Mappings.
-	local opts = { noremap=true, silent=true }
-	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-	buf_set_keymap('n', '<space>lk', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	buf_set_keymap('n', '<space>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-	buf_set_keymap('n', '<space>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	buf_set_keymap('n', '<space>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	buf_set_keymap('n', '<space>le', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	buf_set_keymap('n', '<space>ld', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
 	-- Set some keybinds conditional on server capabilities
 	--if client.resolved_capabilities.document_formatting then
 	--buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
@@ -102,3 +70,18 @@ for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
+
+local saga = require 'lspsaga'
+
+
+saga.init_lsp_saga {
+
+-- add your config value here
+-- default value
+-- use_saga_diagnostic_sign = true
+error_sign = '✗',
+warn_sign = '⚡',
+hint_sign = '●',
+infor_sign = '●',
+
+}

@@ -1,22 +1,21 @@
-
-[[plugins]] # 缩进线
-repo = 'Yggdroot/indentLine'
-on_event = 'BufReadPre'
-hook_source = '''
-    let g:indentLine_enabled = 1
-    let g:indentLine_char='│'
-    let g:indentLine_fileTypeExclude = ['denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard','json','jsonc']
-    let g:indentLine_concealcursor = 'niv'
-	let g:vim_json_syntax_conceal = 0
-'''
+# [[plugins]] # 缩进线
+# repo = 'Yggdroot/indentLine'
+# on_event = 'BufReadPre'
+# hook_source = '''
+#     let g:indentLine_enabled = 1
+#     let g:indentLine_char='│'
+#     let g:indentLine_fileTypeExclude = ['denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard','json','jsonc']
+#     let g:indentLine_concealcursor = 'niv'
+# 	let g:vim_json_syntax_conceal = 0
+# '''
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 rev = 'lua'
-on_source = 'indentLine'
-# on_event = 'BufReadPre'
+on_event = ['BufReadPre','BufNewFile']
 hook_source = '''
+let g:indent_blankline_char = '│'
 set colorcolumn=99999
-    let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard','json','jsonc']
+let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard','json','jsonc']
 '''
 
 [[plugins]] #注释
@@ -28,22 +27,67 @@ on_map = { nx = '<Plug>' }
 repo = 'liuchengxu/vista.vim'
 on_cmd = ['Vista', 'Vista!', 'Vista!!']
 hook_source = '''
-
-	let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-    let g:vista_disable_statusline = 1
-    let g:vista_default_executive = 'ctags'
-    let g:vista_echo_cursor_strategy = 'echo'
-    let g:vista_vimwiki_executive = 'markdown'
-    let g:vista_executive_for = {
-		\ 'c': 'coc',
-		\ 'cpp': 'coc',
-		\ 'vimwiki': 'markdown',
-		\ 'pandoc': 'markdown',
-		\ 'markdown': 'toc',
-		\ 'yaml': 'coc',
-		\ 'typescript': 'coc',
-		\ 'typescriptreact': 'coc',
-		\ }
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_disable_statusline = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_echo_cursor_strategy = 'echo'
+let g:vista_vimwiki_executive = 'markdown'
+let g:vista_executive_for = {
+\ 'c': 'nvim_lsp',
+\ 'cpp': 'nvim_lsp',
+\ 'vimwiki': 'markdown',
+\ 'pandoc': 'markdown',
+\ 'markdown': 'toc',
+\ 'yaml': 'nvim_lsp',
+\ 'typescript': 'nvim_lsp',
+\ 'typescriptreact': 'nvim_lsp',
+\ }
+let g:vista#renderer#icons = {}
+let g:vista#renderer#icons = {
+\    'func': "\uf794",
+\    'function': "\uf794",
+\    'functions': "\uf794",
+\    'var': "\uf71b",
+\    'variable': "\uf71b",
+\    'variables': "\uf71b",
+\    'const': "\uf8ff",
+\    'constant': "\uf8ff",
+\    'constructor': "\uf976",
+\    'method': "\uf6a6",
+\    'package': "\ue612",
+\    'packages': "\ue612",
+\    'enum': "\uf702",
+\    'enummember': "\uf282",
+\    'enumerator': "\uf702",
+\    'module': "\uf136",
+\    'modules': "\uf136",
+\    'type': "\uf7fd",
+\    'typedef': "\uf7fd",
+\    'types': "\uf7fd",
+\    'field': "\uf30b",
+\    'fields': "\uf30b",
+\    'macro': "\uf8a3",
+\    'macros': "\uf8a3",
+\    'map': "\ufb44",
+\    'class': "\uf0e8",
+\    'augroup': "\ufb44",
+\    'struct': "\uf318",
+\    'union': "\ufacd",
+\    'member': "\uf02b",
+\    'target': "\uf893",
+\    'property': "\ufab6",
+\    'interface': "\uf7fe",
+\    'namespace': "\uf475",
+\    'subroutine': "\uf9af",
+\    'implementation': "\uf776",
+\    'typeParameter': "\uf278",
+\    'default': "\uf29c",
+\    'label': '笠',
+\	 'section': '',
+\    'chapter': '',
+\    'subsubsection': '',
+\    'subsection': ''
+\}
 '''
 
 [[plugins]] #tags
@@ -51,13 +95,31 @@ repo = 'ludovicchabant/vim-gutentags'
 if = 'executable("ctags")'
 on_event = ['BufReadPost', 'BufWritePost']
 hook_source = '''
-    let g:gutentags_cache_dir = $DATA_PATH . '/tags'
-    let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod','/usr/local']
-    let g:gutentags_generate_on_write = 1
-    let g:gutentags_generate_on_missing = 1
-    let g:gutentags_generate_on_new = 0
-    let g:gutentags_exclude_filetypes = [ 'defx', 'denite', 'vista', 'magit' ]
-    let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
-    let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
+let g:gutentags_cache_dir = $DATA_PATH . '/tags'
+let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod','/usr/local']
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_new = 0
+let g:gutentags_exclude_filetypes = [ 'defx', 'denite', 'vista', 'magit' ]
+let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
+let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
 '''
-
+# [[plugins]] #格式化
+# repo = 'Chiel92/vim-autoformat'
+# on_cmd = 'Autoformat'
+# hook_source = '''
+# autocmd FileType vim,tex let b:autoformat_autoindent=0
+# '''
+# [[plugins]] # 格式代码
+# repo = 'sbdchd/neoformat'
+# on_cmd = 'Neoformat'
+# hook_source = '''
+# let g:neoformat_tex_latexindent = {
+# \ 'exe': 'latexindent',
+# \ 'args': ['-l'],
+# \ 'stdin': 1
+# \ }
+# '''
+[[plugins]] # 对齐
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'

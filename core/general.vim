@@ -158,23 +158,24 @@ set complete=.,w,b,k  " C-n completion: Scan buffers, windows and dictionary
 if exists('+inccommand')
 	set inccommand=nosplit
 endif
-" " 在wsl中很影响启动速度
-" " if executable('rg')
-" " 	set grepformat=%f:%l:%m
-" " 	let &grepprg = 'rg --vimgrep' . (&smartcase ? ' --smart-case' : '')
-" " elseif executable('ag')
-" " 	set grepformat=%f:%l:%m
-" " 	let &grepprg = 'ag --vimgrep' . (&smartcase ? ' --smart-case' : '')
-" " endif
+" 在wsl中很影响启动速度
+if executable('rg')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'rg --vimgrep' . (&smartcase ? ' --smart-case' : '')
+elseif executable('ag')
+	set grepformat=%f:%l:%m
+	let &grepprg = 'ag --vimgrep' . (&smartcase ? ' --smart-case' : '')
+endif
 "
 " " }}}
 "
 " Behavior {{{
 " --------
 set autoread                    " Auto readfile
-set nowrap                      " No wrap by default
+set wrap                      " No wrap by default
 set linebreak                   " Break long lines at 'breakat'
 set breakat=\ \	;:,!?           " Long lines break chars
+" set showbreak=->
 set nostartofline               " Cursor in same column for few commands
 set whichwrap+=h,l,<,>,[,],~    " Move to following line on certain keys
 set splitbelow splitright       " Splits open bottom right
