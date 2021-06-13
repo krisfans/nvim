@@ -46,7 +46,6 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
 hook_source = '''
-" let g:vsnip_snippet_dir = expand('~/.vsnip')
 let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
 " Jump forward or backward
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
