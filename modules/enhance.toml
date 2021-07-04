@@ -5,7 +5,18 @@ repo = 'Shougo/dein.vim'
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd = 'DeinUpdate'
 
-
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['BufReadPre','BufNewFile']
+hook_post_update = ':TSUpdate'
+hook_source = '''
+	lua require("treesitter")
+'''
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter-refactor'
+depends = 'nvim-treesitter'
+# [[plugins]]
+# repo = 'folke/lsp-colors.nvim'
 # [[plugins]]
 # repo = 'luochen1990/rainbow'
 # on_ft = [
