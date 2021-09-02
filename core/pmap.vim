@@ -18,7 +18,7 @@ nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
 
-nnoremap <silent> <f10>
+nnoremap <silent> <f9>
 			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "
 " nnoremap <silent> <f10>

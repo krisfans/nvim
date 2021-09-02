@@ -22,7 +22,6 @@ on_ft = 'python'
 # [[plugins]]
 # repo = 'raimon49/requirements.txt.vim'
 # on_ft = 'requirements'
-
 [[plugins]]
 repo = 'lervag/vimtex'
 on_ft = 'tex'
@@ -123,6 +122,10 @@ on_ft = 'toml'
 
 
 
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build ='sh -c "cd app && yarn install"'
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
 on_ft = 'markdown'

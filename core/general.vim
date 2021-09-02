@@ -1,3 +1,7 @@
+if has('vim_starting')
+	set encoding=utf-8
+	scriptencoding utf-8
+endif
 
 "General settins{{{
 set mouse=a                  " 命令模式禁用鼠标
@@ -16,28 +20,28 @@ set tags=./.tags;,.tags      "tag
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = expand('~/.config/nvim/gtags.conf')
 
-if has('vim_starting')
-	set encoding=utf-8
-	scriptencoding utf-8
-endif
-
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
 set sessionoptions=curdir,help,tabpages,winsize
 " 剪切板
-set clipboard+=unnamedplus
-let g:clipboard = {
-			\   'name': 'win32yank-wsl',
-			\   'copy': {
-			\      '+': 'win32yank.exe -i --crlf',
-			\      '*': 'win32yank.exe -i --crlf',
-			\    },
-			\   'paste': {
-			\      '+': 'win32yank.exe -o --lf',
-			\      '*': 'win32yank.exe -o --lf',
-			\   },
-			\   'cache_enabled': 0,
-			\ }
+if executable('cmd.exe') && has('unix')
+	" https://github.com/neovim/neovim/wiki/FAQ
+	set clipboard+=unnamedplus
+	let g:clipboard = {
+				\   'name': 'win32yank-wsl',
+				\   'copy': {
+				\      '+': 'win32yank.exe -i --crlf',
+				\      '*': 'win32yank.exe -i --crlf',
+				\    },
+				\   'paste': {
+				\      '+': 'win32yank.exe -o --lf',
+				\      '*': 'win32yank.exe -o --lf',
+				\   },
+				\   'cache_enabled': 0,
+				\ }
+else
+	set clipboard=unnamed,unnamedplus
+endif
 "
 " 命令行补全以增强模式运行 {{{
 if has('wildmenu')
@@ -171,6 +175,7 @@ endif
 "
 " Behavior {{{
 " --------
+set cc=80
 set autoread                    " Auto readfile
 set wrap                      " No wrap by default
 set linebreak                   " Break long lines at 'breakat'

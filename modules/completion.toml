@@ -5,6 +5,8 @@ hook_source ='''
 lua require('lsp')
 '''
 [[plugins]]
+repo = 'glepnir/lspsaga.nvim'
+[[plugins]]
 repo = 'hrsh7th/nvim-compe'
 on_event = 'InsertEnter'
 hook_source = '''
@@ -24,10 +26,10 @@ let g:compe.documentation = v:true
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.source = {
-  \ 'path': {'ignored_filetypes': ['clap_input']},
-  \ 'buffer': {'ignored_filetypes': ['clap_input']},
-  \ 'ultisnips': {'ignored_filetypes': ['clap_input']},
-  \ }
+	\ 'path': {'ignored_filetypes': ['clap_input']},
+	\ 'buffer': {'ignored_filetypes': ['clap_input']},
+	\ 'ultisnips': {'ignored_filetypes': ['clap_input']},
+	\ }
 
 let g:compe.source.calc = v:false
 let g:compe.source.nvim_lsp = v:true
@@ -59,6 +61,9 @@ repo = 'hrsh7th/vim-vsnip-integ'
 on_event = 'InsertEnter'
 
 [[plugins]]
+repo = 'krisfans/friendly-snippets'
+on_event = 'InsertEnter'
+[[plugins]]
 repo = 'windwp/nvim-autopairs'
 on_event = 'InsertEnter'
 hook_source = '''
@@ -71,17 +76,81 @@ local npairs = require('nvim-autopairs')
 -- you can use some builtin condition
 local cond = require('nvim-autopairs.conds')
 npairs.add_rules({
-  Rule("$", "$",{"tex", "latex"})
-    -- don't add a pair if  the previous character is xxx
-    :with_pair(cond.not_before_regex_check("xxx", 3))
-     }
+Rule("$", "$",{"tex", "latex"})
+-- don't add a pair if  the previous character is xxx
+:with_pair(cond.not_before_regex_check("xxx", 3))
+}
 )
 EOF
 '''
 
-[[plugins]]
-repo = 'krisfans/friendly-snippets'
-on_event = 'InsertEnter'
 
-
-
+# [[plugins]]
+# repo = 'vim-denops/denops.vim'
+# [[plugins]]
+# repo = 'vim-denops/denops-helloworld.vim'
+#
+# [[plugins]]
+# repo = 'Shougo/ddc.vim'
+# hook_source = '''
+# " Customize global settings
+# " Use around source.
+# " https://github.com/Shougo/ddc-around
+#
+# " Use matcher_head and sorter_rank.
+# call ddc#custom#patch_global('sources', ['nvimlsp',  'ultisnips','dictionary','around'])
+# call ddc#custom#patch_global('sourceOptions', {
+#       \ '_': {
+#         \   'matchers': ['matcher_head'],
+#         \   'sorters': ['sorter_rank'],
+# 		\   'smartCase': v:true,
+#         \ },
+#         \ 'around': {'mark': 'A'},
+#         \ 'dictionary': {'matchers': ['matcher_editdistance'], 'sorters': [], 'maxCandidates': 6, 'mark': 'D', 'minAutoCompleteLength': 3},
+#         \ 'necovim': {'mark': 'neco'},
+#         \ 'nvimlsp': {'mark':'LSP'},
+#         \ 'buffer': {'mark': 'B', 'minAutoCompleteLength': 3},
+#         \ 'ultisnips': {'mark': 'US'},
+#         \ })
+# " Change source options
+# call ddc#custom#patch_global('sourceParams', {
+#       \ 'around': {'maxSize': 500},
+#       \ 'nvimlsp': {'useIcon': v:true},
+#       \ })
+# call ddc#custom#patch_global('filterParams', {
+#       \ 'matcher_fuzzy': {'camelcase': v:true},
+#       \ })
+# " ,'minAutoCompleteLength':0,'keywordPattern':'.'
+#
+#
+#
+# " <TAB>: completion.
+# inoremap <silent><expr> <TAB>
+# \ pumvisible() ? "\<C-n>" :
+# \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+# \ "\<TAB>" : ddc#manual_complete()
+#
+# " <S-TAB>: completion back.
+# inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+#
+# " Use ddc.
+# call ddc#enable()
+# '''
+# [[plugins]]
+# repo = 'Shougo/ddc-around'
+# [[plugins]]
+# repo = 'matsui54/ddc-buffer'
+# [[plugins]]
+# repo = 'Shougo/ddc-matcher_head'
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+# [[plugins]]
+# repo = 'Shougo/ddc-nvim-lsp'
+# [[plugins]]
+# repo = 'matsui54/ddc-nvim-lsp-doc'
+# hook_source = '''
+# call ddc_nvim_lsp_doc#enable()
+# '''
+# [[plugins]]
+# repo = 'SirVer/ultisnips'
+# on_source = 'ddc.vim'
