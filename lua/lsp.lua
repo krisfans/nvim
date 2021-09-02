@@ -70,18 +70,16 @@ for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
-
 local saga = require 'lspsaga'
-
 
 saga.init_lsp_saga {
 
 -- add your config value here
 -- default value
 -- use_saga_diagnostic_sign = true
-error_sign = '✗',
-warn_sign = '⚡',
-hint_sign = '●',
-infor_sign = '●',
+	error_sign = '✗',
+	warn_sign = '⚡',
+	hint_sign = '●',
+	infor_sign = '●',
 
 }

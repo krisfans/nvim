@@ -10,8 +10,6 @@ nnoremap <space>p a <esc>p
 " Whitespace jump (see plugin/whitespace.vim)
 nnoremap ]w :<C-u>WhitespaceNext<CR>
 nnoremap [w :<C-u>WhitespacePrev<CR>
-" Remove spaces at the end of lines
-nnoremap <silent> <Space>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 nnoremap <leader>a ggVG
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <ESC>:w<cr>a

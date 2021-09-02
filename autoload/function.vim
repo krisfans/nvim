@@ -45,8 +45,8 @@ function! function#RunResult() abort " 先保存，再格式化，最后运行�
 		elseif &filetype == 'python'
 		:sp
 			:term time python3 -u %
-		" elseif &filetype == 'markdown'
-			" :InstantMarkdownPreview
+		elseif &filetype == 'markdown'
+			:MarkdownPreview
 		elseif &filetype == 'tex'
 			silent! exec "VimtexStop"
 			silent! exec "VimtexCompile"
