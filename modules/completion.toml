@@ -2,47 +2,11 @@
 repo = 'neovim/nvim-lspconfig'
 on_event = ['BufReadPre','BufNewFile']
 hook_source ='''
-lua require('lsp')
+	lua require('lsp')
 '''
 [[plugins]]
 repo = 'glepnir/lspsaga.nvim'
-[[plugins]]
-repo = 'hrsh7th/nvim-compe'
-on_event = 'InsertEnter'
-hook_source = '''
-let g:compe = {}
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 0
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.source = {
-	\ 'path': {'ignored_filetypes': ['clap_input']},
-	\ 'buffer': {'ignored_filetypes': ['clap_input']},
-	\ 'ultisnips': {'ignored_filetypes': ['clap_input']},
-	\ }
-
-let g:compe.source.calc = v:false
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-highlight link CompeDocumentation NormalFloat
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-'''
+on_event = ['BufReadPre','BufNewFile']
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
@@ -50,12 +14,11 @@ on_event = 'InsertEnter'
 hook_source = '''
 let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
 " Jump forward or backward
-imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
 '''
-
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
 on_event = 'InsertEnter'
@@ -63,6 +26,8 @@ on_event = 'InsertEnter'
 [[plugins]]
 repo = 'krisfans/friendly-snippets'
 on_event = 'InsertEnter'
+
+
 [[plugins]]
 repo = 'windwp/nvim-autopairs'
 on_event = 'InsertEnter'
@@ -70,71 +35,100 @@ hook_source = '''
 lua << EOF
 --require('nvim-autopairs').setup()
 require('nvim-autopairs').setup()
-local Rule = require('nvim-autopairs.rule')
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
+	local Rule = require('nvim-autopairs.rule')
+	local remap = vim.api.nvim_set_keymap
+	local npairs = require('nvim-autopairs')
 -- you can use some builtin condition
-local cond = require('nvim-autopairs.conds')
+	local cond = require('nvim-autopairs.conds')
 npairs.add_rules({
-Rule("$", "$",{"tex", "latex"})
--- don't add a pair if  the previous character is xxx
-:with_pair(cond.not_before_regex_check("xxx", 3))
+	Rule("$", "$",{"tex", "latex"})
+	-- don't add a pair if  the previous character is xxx
+	:with_pair(cond.not_before_regex_check("xxx", 3))
 }
 )
 EOF
 '''
 
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+on_event = 'InsertEnter'
+hook_source = '''
+lua << EOF
+    local cmp = require("cmp")
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                vim.fn["vsnip#anonymous"](args.body)
+            end,
+        },
+        sources = {
+            { name = "nvim_lsp" },
+            { name = "path" },
+            { name = "buffer" },
+            { name = "vsnip" },
+        },
+        mapping = {
+            ["<S-TAB>"] = cmp.mapping.select_prev_item(),
+            ["<TAB>"] = cmp.mapping.select_next_item(),
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm()
+        },
+    })
+EOF
+'''
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
 
 # [[plugins]]
 # repo = 'vim-denops/denops.vim'
 # [[plugins]]
-# repo = 'vim-denops/denops-helloworld.vim'
-#
-# [[plugins]]
 # repo = 'Shougo/ddc.vim'
 # hook_source = '''
-# " Customize global settings
-# " Use around source.
-# " https://github.com/Shougo/ddc-around
-#
-# " Use matcher_head and sorter_rank.
-# call ddc#custom#patch_global('sources', ['nvimlsp',  'ultisnips','dictionary','around'])
+# call ddc#custom#patch_global('sources', ['nvimlsp','around','vsnip'])
 # call ddc#custom#patch_global('sourceOptions', {
-#       \ '_': {
+#         \ '_': {
 #         \   'matchers': ['matcher_head'],
 #         \   'sorters': ['sorter_rank'],
 # 		\   'smartCase': v:true,
+# 		\	'isVolatile': v:true,
+# 		\	'minAutoCompleteLength': 0
 #         \ },
-#         \ 'around': {'mark': 'A'},
-#         \ 'dictionary': {'matchers': ['matcher_editdistance'], 'sorters': [], 'maxCandidates': 6, 'mark': 'D', 'minAutoCompleteLength': 3},
-#         \ 'necovim': {'mark': 'neco'},
-#         \ 'nvimlsp': {'mark':'LSP'},
+#         \ 'around': {'mark': 'A', 'minAutoCompleteLength': 3},
+#         \ 'nvimlsp': {'matchers': ['matcher_head'],'mark':'LSP','forceCompletionPattern':  '\.\w*|:\w*|->\w*'},
 #         \ 'buffer': {'mark': 'B', 'minAutoCompleteLength': 3},
-#         \ 'ultisnips': {'mark': 'US'},
+#         \ 'vsnip': {'mark': 'Vsnip', 'minAutoCompleteLength': 1}
 #         \ })
 # " Change source options
 # call ddc#custom#patch_global('sourceParams', {
-#       \ 'around': {'maxSize': 500},
-#       \ 'nvimlsp': {'useIcon': v:true},
-#       \ })
-# call ddc#custom#patch_global('filterParams', {
-#       \ 'matcher_fuzzy': {'camelcase': v:true},
-#       \ })
-# " ,'minAutoCompleteLength':0,'keywordPattern':'.'
+#     \ 'nvimlsp': {'useIcon': v:true},
+#     \ })
+# " Customize settings on a filetype
 #
-#
-#
+# call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+# 	\ 'nvimlsp':{'matchers':['matcher_head'],'mark':'LSP','forceCompletionPattern': ' ','minAutoCompleteLength': 1},
+#     \ })
 # " <TAB>: completion.
 # inoremap <silent><expr> <TAB>
 # \ pumvisible() ? "\<C-n>" :
 # \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
 # \ "\<TAB>" : ddc#manual_complete()
-#
 # " <S-TAB>: completion back.
 # inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 #
 # " Use ddc.
 # call ddc#enable()
+# call ddc_nvim_lsp_doc#enable()
 # '''
 # [[plugins]]
 # repo = 'Shougo/ddc-around'
@@ -148,9 +142,8 @@ EOF
 # repo = 'Shougo/ddc-nvim-lsp'
 # [[plugins]]
 # repo = 'matsui54/ddc-nvim-lsp-doc'
-# hook_source = '''
-# call ddc_nvim_lsp_doc#enable()
-# '''
 # [[plugins]]
 # repo = 'SirVer/ultisnips'
 # on_source = 'ddc.vim'
+
+

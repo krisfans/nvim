@@ -21,7 +21,7 @@ nmap <leader>0 <Plug>BuffetSwitch(10)
 nnoremap <silent> <f9>
 			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "
-" nnoremap <silent> <f10>
+" nnoremap <silent> <f9>
 " \ :<C-u>Fern -drawer -toggle %:h<CR>
 "--------------------------"
 "     vim-clap Keymap      "
@@ -207,43 +207,25 @@ command! -nargs=0 PluginClean :call map(dein#check_clean(), "delete(v:val, 'rf')
 
 
 
-
-
-"  -- code action
-
-" -- or use command
-
-" SignatureHelp
-
-" -- preview definition
-
-" can use smart_scroll_with_saga to scroll
-" -- show
-
-
-
-" Async Lsp Finder
-
 " Jump Diagnostic and Show Diagnostics
-nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
-
-nnoremap gD        <Cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap gd        <Cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap gr        <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap gi        <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap gh   :Lspsaga lsp_finder<CR>
-nnoremap gs :Lspsaga signature_help<CR>
-nnoremap <leader>lf  <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>lk   :Lspsaga hover_doc<CR>
-nnoremap <leader>ls    :Lspsaga signature_help<CR>
-nnoremap <space>wa <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
-nnoremap <space>wr <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
-nnoremap <space>wl <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
-nnoremap <space>D  <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <space>lr :Lspsaga rename<CR>
-nnoremap <space>ld  :Lspsaga show_line_diagnostics<CR>
-nnoremap [e        :Lspsaga diagnostic_jump_prev<CR>
-nnoremap ]e        :Lspsaga diagnostic_jump_next<CR>
-nnoremap <space>lq  <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <leader>ca :Lspsaga code_action<CR>
-vnoremap <leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent> 		<leader>cd :Lspsaga show_line_diagnostics<CR>
+nnoremap gD        		<cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap gd        		<cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap gr        		<cmd>lua vim.lsp.buf.references()<CR>
+nnoremap gi       		<cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap gh   			:Lspsaga lsp_finder<CR>
+nnoremap gs 			:Lspsaga signature_help<CR>
+nnoremap <leader>lf 	<cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>lk   	:Lspsaga hover_doc<CR>
+nnoremap <leader>ls     :Lspsaga signature_help<CR>
+nnoremap <space>wa 		<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
+nnoremap <space>wr 		<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
+nnoremap <space>wl 		<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+nnoremap <space>D  		<cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <space>lr 		:Lspsaga rename<CR>
+nnoremap <space>ld  	:Lspsaga show_line_diagnostics<CR>
+nnoremap [e        		:Lspsaga diagnostic_jump_prev<CR>
+nnoremap ]e        		:Lspsaga diagnostic_jump_next<CR>
+nnoremap <space>lq  	<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <leader>ca 	:Lspsaga code_action<CR>
+vnoremap <leader>ca 	:<C-U>Lspsaga range_code_action<CR>
