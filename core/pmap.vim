@@ -18,7 +18,7 @@ nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
 " defx --------------------
-nnoremap <silent> <f10>
+nnoremap <silent> <f9>
 			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 "--------------------------"
@@ -123,18 +123,16 @@ xmap <silent> if <Plug>(textobj-function-i)
 "--------------------------"
 " CocLSP
 " nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gd :call function#CocJumpDefinition()<cr>
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <Leader>lr <Plug>(coc-rename)
-nmap <Leader>lT <Plug>(coc-type-definition)
-nnoremap <leader>lf  :call CocAction('format')<CR>
-
-
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
-nnoremap <silent> <Leader>lt :<C-u>Vista!!<CR>
-nnoremap <silent> <leader>lk :call CocActionAsync('doHover')<CR>
+nmap gd 			:call function#CocJumpDefinition()<cr>
+nmap gr 			<Plug>(coc-references)
+nmap gi 			<Plug>(coc-implementation)
+nmap <Leader>lr 	<Plug>(coc-rename)
+nmap <Leader>lT 	<Plug>(coc-type-definition)
+nmap <leader>lf   	:call CocAction('format')<CR>
+nmap <leader>lk 	:call CocActionAsync('doHover')<CR>
+nmap  [e 			<Plug>(coc-diagnostic-prev)
+nmap  ]e 			<Plug>(coc-diagnostic-next)
+nmap <Leader>lt 	:<C-u>Vista!!<CR>
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>la  <Plug>(coc-codeaction-selected)
@@ -162,10 +160,7 @@ nmap <Leader>cF  <Plug>(coc-fix-current)
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap ]g <Plug>(coc-git-prevchunk)
 nmap [g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-" nmap <Leader>gi <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-" nmap <Leader>gm <Plug>(coc-git-commit)
+
 " float window scroll
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
 nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
@@ -181,10 +176,10 @@ nnoremap <silent> <Leader>co :<C-u>OR<CR>
 " multiple cursors
 nmap <expr> <silent> <C-d> <SID>select_current_word()
 function! s:select_current_word()
-  if !get(b:, 'coc_cursors_activated', 0)
-    return "\<Plug>(coc-cursors-word)"
-  endif
-  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+ 	if !get(b:, 'coc_cursors_activated', 0)
+		return "\<Plug>(coc-cursors-word)"
+	endif
+	return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
 
 " coc-snippet

@@ -1,20 +1,25 @@
 
 [[plugins]] # 图标
 repo = 'ryanoasis/vim-devicons'
-hook_source = '''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
-'''
+# hook_source = '''
+# let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+# let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
+# '''
+
 [[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
-hook_add = 'set termguicolors'
+repo = 'folke/lsp-colors.nvim'
 on_event = ['BufReadPre','BufNewFile']
+[[plugins]] # 颜色
+repo = 'norcalli/nvim-colorizer.lua'
+on_event = ['BufReadPre','BufNewFile']
+hook_add = 'set termguicolors'
 hook_source = '''
-	lua require'colorizer'.setup()
+    lua require'colorizer'.setup()
 '''
 # [[plugins]]
 # repo = 'folke/lsp-colors.nvim'
 
+# 主题
 [[plugins]]
 repo = 'mhartington/oceanic-next'
 [[plugins]] # 耗时2ms
@@ -33,47 +38,55 @@ repo = 'Th3Whit3Wolf/onebuddy'
 [[plugins]]
 repo = 'Th3Whit3Wolf/one-nvim'
 depends = 'nvim-treesitter'
-# hook_source = '''
-# lua vim.g.one_nvim_transparent_bg = true
-# '''
+[[plugins]] # 耗时15ms
+repo = 'krisfans/vim-monokai'
+hook_source = '''
+    let g:monokai_term_italic = 1
+    let g:monokai_gui_italic = 1
+'''
+
+
 [[plugins]]
 repo = 'hardcoreplayers/dashboard-nvim'
 hook_add = '''
     let g:dashboard_custom_shortcut={
-      \ 'last_session' : 'SPC s l',
-      \ 'find_history' : 'SPC f h',
-      \ 'find_file' : 'SPC f f',
-      \ 'new_file' : 'SPC c n',
-      \ 'change_colorscheme' : 'SPC c c',
-      \ 'find_word' : 'SPC f w',
-      \ 'book_marks' : 'SPC f m',
-      \ }
-'''
-# [[plugins]]
-# repo = 'tanvirtin/monokai.nvim'
-# depends = 'nvim-treesitter'
-[[plugins]]
-repo = 'krisfans/vim-monokai'
-hook_source = '''
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
+        \ 'last_session' : 'SPC s l',
+        \ 'find_history' : 'SPC f h',
+        \ 'find_file' : 'SPC f f',
+        \ 'new_file' : 'SPC c n',
+        \ 'change_colorscheme' : 'SPC c c',
+        \ 'find_word' : 'SPC f w',
+        \ 'book_marks' : 'SPC f m',
+        \ }
 '''
 [[plugins]]
 repo = 'bagrat/vim-buffet'
 depends = 'vim-devicons'
 on_event = ['BufReadPre','BufNewFile']
 hook_add = '''
-let g:buffet_powerline_separators = 1
-" let g:buffet_tab_icon = "🌟"
-let g:buffet_left_trunc_icon = "\uf0a8"
-let g:buffet_right_trunc_icon = "\uf0a9"
-" Note: Make sure the function is defined before `vim-buffet` is loaded.
-function! g:BuffetSetCustomColors()
-	hi! BuffetTab cterm=NONE ctermbg=117 ctermfg=238 guibg=#8ac6f2 guifg=#444444
-	hi! BuffetCurrentBuffer cterm=NONE ctermbg=119 ctermfg=8 guibg=#95e454 guifg=#000000
-endfunction
+    let g:buffet_powerline_separators = 1
+    let g:buffet_left_trunc_icon = "\uf0a8"
+    let g:buffet_right_trunc_icon = "\uf0a9"
+    " Note: Make sure the function is defined before `vim-buffet` is loaded.
+    function! g:BuffetSetCustomColors()
+        " hi! BuffetTab cterm=NONE ctermbg=117 ctermfg=238 guibg=#8ac6f2 guifg=#444444
+        " hi! BuffetCurrentBuffer cterm=NONE ctermbg=119 ctermfg=8 guibg=#95e454 guifg=#000000
+        hi! BuffetTab cterm=NONE ctermbg=117 ctermfg=238 guibg=#a89984 guifg=#282828
+        hi! BuffetCurrentBuffer cterm=NONE ctermbg=119 ctermfg=8 guibg=#b8bb26 guifg=#282828
+    endfunction
 '''
-
+#
+# gruvbox
+  # black        = '#282828',
+  # white        = '#ebdbb2',
+  # red          = '#fb4934',
+  # green        = '#b8bb26',
+  # blue         = '#83a598',
+  # yellow       = '#fe8019',
+  # gray         = '#a89984',
+  # darkgray     = '#3c3836',
+  # lightgray    = '#504945',
+  # inactivegray = '#7c6f64',
 # [[plugins]]
 # repo = 'vim-airline/vim-airline'
 # on_event = ['BufReadPre','BufNewFile']
@@ -83,55 +96,61 @@ endfunction
 #   let g:airline#extensions#vista#enabled = 0
 # '''
 [[plugins]]
-repo = 'itchyny/lightline.vim'
+repo = 'hoob3rt/lualine.nvim'
 on_event = ['BufReadPre','BufNewFile']
-depends = 'vim-devicons'
-hook_add = '''
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'enable' : {
-        \ 'statusline': 1,
-        \ 'tabline': 0
-        \ },
-	\ 'inactive': {
-		\ 'left': [ ['filename' ] ],
-		\ 'right': [[ 'filetype' ]]
-		\},
-    \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-            \ },
-    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    \ 'subseparator': { 'left': '', 'right': '' },
-    \ 'component_function': {
-        \   'filetype': 'MyFiletype',
-        \   'fileformat': 'MyFileformat',
-		\   'cocstatus': 'coc#status'
-        \ },
-    \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ },
-    \ }
-   '''
-hook_post_source = '''
-function! MyFiletype()
-   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+hook_source = '''
+    lua require('line')
 '''
+# [[plugins]]
+# repo = 'itchyny/lightline.vim'
+# on_event = ['BufReadPre','BufNewFile']
+# depends = 'vim-devicons'
+# hook_add = '''
+# let g:lightline = {
+# \ 'colorscheme': 'solarized',
+# \ 'enable' : {
+# \ 'statusline': 1,
+# \ 'tabline': 0
+# \ },
+# \ 'inactive': {
+# \ 'left': [ ['filename' ] ],
+# \ 'right': [[ 'filetype' ]]
+# \},
+# \ 'active': {
+# \   'left': [ [ 'mode', 'paste' ],
+# \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+# \ },
+# \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+# \ 'subseparator': { 'left': '', 'right': '' },
+# \ 'component_function': {
+# \   'filetype': 'MyFiletype',
+# \   'fileformat': 'MyFileformat',
+# \   'cocstatus': 'coc#status'
+# \ },
+# \ 'mode_map': {
+# \ 'n' : 'N',
+# \ 'i' : 'I',
+# \ 'R' : 'R',
+# \ 'v' : 'V',
+# \ 'V' : 'VL',
+# \ "\<C-v>": 'VB',
+# \ 'c' : 'C',
+# \ 's' : 'S',
+# \ 'S' : 'SL',
+# \ "\<C-s>": 'SB',
+# \ 't': 'T',
+# \ },
+# \ }
+# '''
+# hook_post_source = '''
+# function! MyFiletype()
+#   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+# endfunction
+#
+# function! MyFileformat()
+#   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+# endfunction
+# '''
 # [[plugins]]
 # repo = 'kyazdani42/nvim-tree.lua'
 # depends = 'nvim-web-devicons'
@@ -145,157 +164,113 @@ endfunction
 repo = 'Shougo/defx.nvim'
 on_cmd = 'Defx'
 hook_source = '''
-" autocmd FileType defx  setlocal noautochdir
-    call defx#custom#option('_', {
-      \ 'resume': 1,
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'columns': 'indent:git:icons:filename',
-      \ 'floating_preview': 1,
-      \ 'vertical_preview': 1,
-      \ 'preview_height': 50,
-      \ })
+autocmd FileType defx  setlocal noautochdir
+autocmd FileType defx setlocal shiftwidth=2  tabstop=2  softtabstop=2
+call defx#custom#option('_', {
+    \ 'winwidth': 30,
+    \ 'split': 'vertical',
+    \ 'direction': 'topleft',
+    \ 'show_ignored_files': 0,
+    \ 'columns': 'indent:indent:git:icons:filename',
+    \ 'floating_preview': 1,
+    \ 'vertical_preview': 1,
+    \ 'preview_height': 50,
+    \ })
 
 
-    call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
+call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
 
-    " Events
-    " ---
+" Events
+" ---
 
-    augroup user_plugin_defx
-      autocmd!
+augroup user_plugin_defx
+autocmd!
+    " Define defx window mappings
+    autocmd FileType defx call <SID>defx_mappings()
 
-      " Define defx window mappings
-      autocmd FileType defx call <SID>defx_mappings()
+    " Delete defx if it's the only buffer left in the window
+    autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
 
-      " Delete defx if it's the only buffer left in the window
-      autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
-
-      " Move focus to the next window if current buffer is defx
-      autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
-
-    augroup END
+    " Move focus to the next window if current buffer is defx
+    autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
+augroup END
 
     " Internal functions
-    " ---
-    function! s:jump_dirty(dir) abort
-      " Jump to the next position with defx-git dirty symbols
-      let l:icons = get(g:, 'defx_git_indicators', {})
-      let l:icons_pattern = join(values(l:icons), '\|')
-
-      if ! empty(l:icons_pattern)
-        let l:direction = a:dir > 0 ? 'w' : 'bw'
-        return search(printf('\(%s\)', l:icons_pattern), l:direction)
-      endif
-    endfunction
-
-    function! s:defx_toggle_tree() abort
-      " Open current file, or toggle directory expand/collapse
-      if defx#is_directory()
+function! s:defx_toggle_tree() abort
+    " Open current file, or toggle directory expand/collapse
+    if defx#is_directory()
         return defx#do_action('open_or_close_tree')
-      endif
-      return defx#do_action('multi', ['drop'])
-    endfunction
+    endif
+    return defx#do_action('multi', ['drop'])
+endfunction
 
-    function! s:defx_mappings() abort
-      " Defx window keyboard mappings
-      " setlocal signcolumn=no expandtab
+function! s:defx_mappings() abort
+    " Defx window keyboard mappings
 
-      nnoremap <silent><buffer><expr> l  defx#do_action('drop')
-      nnoremap <silent><buffer><expr> <cr>     <sid>defx_toggle_tree()
-      nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-      nnoremap <silent><buffer><expr> s     defx#do_action('open', 'botright vsplit')
-      nnoremap <silent><buffer><expr> i     defx#do_action('open', 'botright split')
-      nnoremap <silent><buffer><expr> N     defx#do_action('new_file')                      " 新建文件/文件夹
-      nnoremap <silent><buffer><expr> D     defx#do_action('remove')                        " 删除
-      nnoremap <silent><buffer><expr> Y     defx#do_action('copy')                          " 复制
-      nnoremap <silent><buffer><expr> P     defx#do_action('paste')                         " 粘贴
-      nnoremap <silent><buffer><expr> K  defx#do_action('new_directory')
-      nnoremap <silent><buffer><expr> V     defx#do_action('preview')
-      nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
-      nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
-      nnoremap <silent><buffer><expr> r     defx#do_action('rename')
-      nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
-      nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
-      nnoremap <silent><buffer><expr> yy    defx#do_action('yank_path')
-      nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-      nnoremap <silent><buffer><expr> q     defx#do_action('quit')
-      nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-        \ ':<C-u>wincmd w<CR>' :
-        \ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
-      " Defx's buffer management
-      nnoremap <silent><buffer><expr> q      defx#do_action('quit')
-      nnoremap <silent><buffer><expr> se     defx#do_action('save_session')
-      nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
-      nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
-      " File/dir management
-      nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
-      nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
-      nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
-      nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
-      nnoremap <silent><buffer><expr> N  defx#do_action('new_multiple_files')
-    nnoremap <silent><buffer><expr> cd   defx#do_action('change_vim_cwd')                " 将当前目录设置为工作目录
-      " Jump
-      nnoremap <silent><buffer>  [g :<C-u>call <SID>jump_dirty(-1)<CR>
-      nnoremap <silent><buffer>  ]g :<C-u>call <SID>jump_dirty(1)<CR>
+    nnoremap <silent><buffer><expr> l     defx#do_action('drop')
+    nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> <cr>  <sid>defx_toggle_tree()
+    nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
+    nnoremap <silent><buffer><expr> s     defx#do_action('open', 'botright vsplit')
+    nnoremap <silent><buffer><expr> i     defx#do_action('open', 'botright split')
+    nnoremap <silent><buffer><expr> N     defx#do_action('new_file')                      " 新建文件/文件夹
+    nnoremap <silent><buffer><expr> D     defx#do_action('remove')                        " 删除
+    nnoremap <silent><buffer><expr> Y     defx#do_action('copy')                          " 复制
+    nnoremap <silent><buffer><expr> P     defx#do_action('paste')                         " 粘贴
+    nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> V     defx#do_action('preview')
+    nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
+    nnoremap <silent><buffer><expr> r     defx#do_action('rename')
+    nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
+    nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> yy    defx#do_action('yank_path')
+    nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
+    nnoremap <silent><buffer><expr> q     defx#do_action('quit')
+    nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
+    \ ':<C-u>wincmd w<CR>' :
+    \ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
+    " Defx's buffer management
+    nnoremap <silent><buffer><expr> q      defx#do_action('quit')
+    nnoremap <silent><buffer><expr> se     defx#do_action('save_session')
+    nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
+    nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
+    " File/dir management
+    nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
+    nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
+    nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
+    nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
+    nnoremap <silent><buffer><expr> N          defx#do_action('new_multiple_files')
+    nnoremap <silent><buffer><expr> cd         defx#do_action('change_vim_cwd')                " 将当前目录设置为工作目录
 
-      " Change directory
-      nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
-      nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
-      nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-      nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
-      nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
-      nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
+    " Change directory
+    nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
+    nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
+    nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
+    nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
 
-      " Selection
-      nnoremap <silent><buffer><expr> *  defx#do_action('toggle_select_all')
-      nnoremap <silent><buffer><expr><nowait> <Space>
-        \ defx#do_action('toggle_select') . 'j'
+    " Selection
+    nnoremap <silent><buffer><expr> *  defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr><nowait> <Space>
+    \ defx#do_action('toggle_select') . 'j'
 
-      nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
-      nnoremap <silent><buffer><expr> C
-        \ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
-    endfunction
+    nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
+    nnoremap <silent><buffer><expr> C
+    \ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
+endfunction
+    " autocmd FileType defx setlocal nonumber
+    " autocmd FileType defx setlocal norelativenumber
+    " autocmd FileType defx setlocal signcolumn=no
+
 '''
-
-# [[plugins]]
-# repo = 'kristijanhusak/defx-git'
-# on_source = 'defx.nvim'
-# hook_source = '''
-#     let g:defx_git#indicators = {
-#       \ 'Modified'  : '•',
-#       \ 'Staged'    : '✚',
-#       \ 'Untracked' : 'ᵁ',
-#       \ 'Renamed'   : '≫',
-#       \ 'Unmerged'  : '≠',
-#       \ 'Ignored'   : 'ⁱ',
-#       \ 'Deleted'   : '✖',
-#       \ 'Unknown'   : '⁇'
-#       \ }
-# '''
 
 [[plugins]]
 repo = 'kristijanhusak/defx-icons'
 on_source = 'defx.nvim'
 hook_add = '''
-    let g:defx_icons_column_length = 1
+    let g:defx_icons_column_length = 2
     let g:defx_icons_mark_icon = ''
-	let g:defx_icons_default_icon = ''
+    let g:defx_icons_default_icon = ''
 '''
-
-
-
-
-
-
-
-
-
-
-
-

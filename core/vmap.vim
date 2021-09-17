@@ -10,8 +10,6 @@ nnoremap <space>p a <esc>p
 " Whitespace jump (see plugin/whitespace.vim)
 nnoremap ]w :<C-u>WhitespaceNext<CR>
 nnoremap [w :<C-u>WhitespacePrev<CR>
-" Remove spaces at the end of lines
-nnoremap <silent> <Space>cw :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 nnoremap <leader>a ggVG
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <ESC>:w<cr>a
@@ -73,11 +71,12 @@ vnoremap x "_x
 nnoremap X "_X
 vnoremap X "_X
 inoremap  jj <esc>o
+inoremap  kk <esc>O
 
 " Ctrl + b 一键保存、运行
 map <C-b> :call function#RunResult()<CR>
 imap <C-b> <ESC>:call function#RunResult()<CR>
 vmap <C-b> <ESC>:call function#RunResult()<CR>
-noremap <slient> <expr> j (v:count == 0 ? 'gj' : 'j')
-" noremap  <slient> <expr> j (v:count == 0 ? 'j' : 'gj')
-noremap  <slient> <expr> k (v:count == 0 ? 'k' : 'gk')
+
+noremap j (v:count == 0 ? 'gj' : 'j')
+noremap k (v:count == 0 ? 'gk' : 'k')
