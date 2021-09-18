@@ -17,7 +17,7 @@ my vimrc for nvim
 │   ├── pmap.vim	# 插件快捷键
 │   └── vmap.vim	# vim自带快捷键
 ├── fig
-│   ├── compe.png
+│   ├── commplete.png
 │   ├── config.png
 │   ├── fuzzy.png
 │   ├── lsp.png
@@ -43,22 +43,21 @@ my vimrc for nvim
 │   ├── nicefold.vim
 │   └── whitespace.vim
 └── snips			# 代码片段
+    ├── toml.json
     └── toml.snippets
+        
 ```
 
 ## 插件管理器
 插件管理器是`dein`
 
 ## 主题
-主题使用的`gruvbox`
-开启界面是 `dashboard`
-![dashboard](https://github.com/krisfans/nvim/blob/coc/fig/dashboard.png)
-
 文件树用的`defx`
-![program](https://github.com/krisfans/nvim/blob/coc/fig/program.png)
+![program](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/program.png)
 ## 补全
-使用coc.nvim补全
-![complete](https://github.com/krisfans/nvim/blob/coc/fig/complete.png)
+使用cpm补全
+![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/complete.png)
+![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/lsp.png)
 ## 查找
 使用`vim-clap`
-![fuzzy](https://github.com/krisfans/nvim/blob/coc/fig/fuzzy.png)
+![fuzzy](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/fuzzy.png)
