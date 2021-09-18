@@ -1,7 +1,6 @@
 # Neovim配置
-
-我的一些nvim配置
-
+我的一nvim配置
+my vimrc for nvim
 ## 目录结构
 ```
 ├── README.md
@@ -49,13 +48,17 @@
 
 ## 插件管理器
 插件管理器是`dein`
+
 ## 主题
 主题使用的`gruvbox`
-文件数用的`defx`
 开启界面是 `dashboard`
+![dashboard](https://github.com/krisfans/nvim/blob/coc/fig/dashboard.png)
 
+文件树用的`defx`
+![program](https://github.com/krisfans/nvim/blob/coc/fig/program.png)
 ## 补全
 使用coc.nvim补全
-
+![complete](https://github.com/krisfans/nvim/blob/coc/fig/complete.png)
 ## 查找
 使用`vim-clap`
+![fuzzy](https://github.com/krisfans/nvim/blob/coc/fig/fuzzy.png)
