@@ -37,6 +37,6 @@
         lualine_y = {},
         lualine_z = {}
     },
-      tabline = {},
-      extensions = {}
+        tabline = {},
+        extensions = {}
 }

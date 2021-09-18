@@ -7,7 +7,7 @@ on_cmd = 'DeinUpdate'
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = ['BufReadPre','BufNewFile']
+on_event = ['BufReadPre', 'BufNewFile']
 hook_post_update = ':TSUpdate'
 hook_source = '''
 	lua require("treesitter")
@@ -15,8 +15,6 @@ hook_source = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter-refactor'
 depends = 'nvim-treesitter'
-
-
 # [[plugins]]
 # rep0 = 'folke/trouble.nvim'
 # [[plugins]]
@@ -63,12 +61,12 @@ on_map = 'Bclose'
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['BufReadPre','BufNewFile']
+on_event = ['BufReadPre', 'BufNewFile']
 hook_source = '''
-let g:indent_blankline_char = '│'
-" set colorcolumn=99999
-let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar',
-	\ 'vista_kind','vista','coc-explorer','dashboard','json','jsonc']
+    let g:indent_blankline_char = '│'
+    set colorcolumn=99999
+    let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar',
+        \ 'vista_kind','vista','coc-explorer','dashboard','json','jsonc']
 '''
 
 [[plugins]] #注释
@@ -97,50 +95,50 @@ let g:vista_executive_for = {
 	\ }
 let g:vista#renderer#icons = {}
 let g:vista#renderer#icons = {
-	\  'func': "\uf794",
-	\  'function': "\uf794",
-	\  'functions': "\uf794",
-	\  'var': "\uf71b",
-	\  'variable': "\uf71b",
-	\  'variables': "\uf71b",
-	\  'const': "\uf8ff",
-	\  'constant': "\uf8ff",
-	\  'constructor': "\uf976",
-	\  'method': "\uf6a6",
-	\  'package': "\ue612",
-	\  'packages': "\ue612",
-	\  'enum': "\uf702",
-	\  'enummember': "\uf282",
-	\  'enumerator': "\uf702",
-	\  'module': "\uf136",
-	\  'modules': "\uf136",
-	\  'type': "\uf7fd",
-	\  'typedef': "\uf7fd",
-	\  'types': "\uf7fd",
-	\  'field': "\uf30b",
-	\  'fields': "\uf30b",
-	\  'macro': "\uf8a3",
-	\  'macros': "\uf8a3",
-	\  'map': "\ufb44",
-	\  'class': "\uf0e8",
-	\  'augroup': "\ufb44",
-	\  'struct': "\uf318",
-	\  'union': "\ufacd",
-	\  'member': "\uf02b",
-	\  'target': "\uf893",
-	\  'property': "\ufab6",
-	\  'interface': "\uf7fe",
-	\  'namespace': "\uf475",
-	\  'subroutine': "\uf9af",
-	\  'implementation': "\uf776",
-	\  'typeParameter': "\uf278",
-	\  'default': "\uf29c",
-	\  'label': '笠',
-	\  'section': '',
-	\  'chapter': '',
-	\  'subsubsection': '',
-	\  'subsection': ''
-	\}
+	\ 'func': "\uf794",
+	\ 'function': "\uf794",
+	\ 'functions': "\uf794",
+	\ 'var': "\uf71b",
+	\ 'variable': "\uf71b",
+	\ 'variables': "\uf71b",
+	\ 'const': "\uf8ff",
+	\ 'constant': "\uf8ff",
+	\ 'constructor': "\uf976",
+	\ 'method': "\uf6a6",
+	\ 'package': "\ue612",
+	\ 'packages': "\ue612",
+	\ 'enum': "\uf702",
+	\ 'enummember': "\uf282",
+	\ 'enumerator': "\uf702",
+	\ 'module': "\uf136",
+	\ 'modules': "\uf136",
+	\ 'type': "\uf7fd",
+	\ 'typedef': "\uf7fd",
+	\ 'types': "\uf7fd",
+	\ 'field': "\uf30b",
+	\ 'fields': "\uf30b",
+	\ 'macro': "\uf8a3",
+	\ 'macros': "\uf8a3",
+	\ 'map': "\ufb44",
+	\ 'class': "\uf0e8",
+	\ 'augroup': "\ufb44",
+	\ 'struct': "\uf318",
+	\ 'union': "\ufacd",
+	\ 'member': "\uf02b",
+	\ 'target': "\uf893",
+	\ 'property': "\ufab6",
+	\ 'interface': "\uf7fe",
+	\ 'namespace': "\uf475",
+	\ 'subroutine': "\uf9af",
+	\ 'implementation': "\uf776",
+	\ 'typeParameter': "\uf278",
+	\ 'default': "\uf29c",
+	\ 'label': '笠',
+	\ 'section': '',
+	\ 'chapter': '',
+	\ 'subsubsection': '',
+	\ 'subsection': ''
+	\ }
 '''
 
 [[plugins]] #tags
@@ -204,6 +202,11 @@ hook_source = '''
     " autocmd User ClapOnEnter call s:ClapSymbolHL()
 hi default link ClapPreview Pmenu
 '''
+[[plugins]]
+repo = 'vn-ki/coc-clap'
+on_source = 'vim-clap'
+
 # [[plugins]]
-# repo = 'vn-ki/coc-clap'
-# on_source = 'vim-clap'
+# repo = 'nvim-lua/plenary.nvim'
+# [[plugins]]
+# repo = 'nvim-telescope/telescope.nvim'

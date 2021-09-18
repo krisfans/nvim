@@ -19,14 +19,14 @@ nmap <leader>0 <Plug>BuffetSwitch(10)
 
 " defx --------------------
 nnoremap <silent> <f9>
-			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+            \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 "--------------------------"
 "     vim-clap Keymap      "
 "--------------------------"
 nnoremap <silent> <Leader>cc :<C-u>Clap colors<CR>
 nnoremap <silent> <Leader>fb :<C-u>Clap buffers<CR>
-nnoremap <silent> <Leader>fw :<C-u>Clap grep2<CR>
+nnoremap <silent> <Leader>fw :<C-u>Clap grep<CR>
 nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
 "like emacs counsel-find-file
 nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
@@ -57,17 +57,17 @@ nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
 
 " 注释 ---------------------
 function! InitCaw() abort
-	if ! (&l:modifiable && &buftype ==# '')
-		" silent! nunmap <buffer> gc
-		" silent! xunmap <buffer> gc
-		silent! nunmap <buffer> <leader>/
-		silent! xunmap <buffer> <leader>/
-	else
-		" nmap <buffer> gc <Plug>(caw:prefix)
-		" xmap <buffer> gc <Plug>(caw:prefix)
-		nmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
-		xmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
-	endif
+    if ! (&l:modifiable && &buftype ==# '')
+        " silent! nunmap <buffer> gc
+        " silent! xunmap <buffer> gc
+        silent! nunmap <buffer> <leader>/
+        silent! xunmap <buffer> <leader>/
+    else
+        " nmap <buffer> gc <Plug>(caw:prefix)
+        " xmap <buffer> gc <Plug>(caw:prefix)
+        nmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
+        xmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
+    endif
 endfunction
 autocmd FileType * call InitCaw()
 call InitCaw()
@@ -123,16 +123,16 @@ xmap <silent> if <Plug>(textobj-function-i)
 "--------------------------"
 " CocLSP
 " nmap <silent> gd <Plug>(coc-definition)
-nmap gd 			:call function#CocJumpDefinition()<cr>
-nmap gr 			<Plug>(coc-references)
-nmap gi 			<Plug>(coc-implementation)
-nmap <Leader>lr 	<Plug>(coc-rename)
-nmap <Leader>lT 	<Plug>(coc-type-definition)
-nmap <leader>lf   	:call CocAction('format')<CR>
-nmap <leader>lk 	:call CocActionAsync('doHover')<CR>
-nmap  [e 			<Plug>(coc-diagnostic-prev)
-nmap  ]e 			<Plug>(coc-diagnostic-next)
-nmap <Leader>lt 	:<C-u>Vista!!<CR>
+nmap gd             :call function#CocJumpDefinition()<cr>
+nmap gr             <Plug>(coc-references)
+nmap gi             <Plug>(coc-implementation)
+nmap <Leader>lr     <Plug>(coc-rename)
+nmap <Leader>lT     <Plug>(coc-type-definition)
+nmap <leader>lf     :call CocAction('format')<CR>
+nmap <leader>lk     :call CocActionAsync('doHover')<CR>
+nmap  [e            <Plug>(coc-diagnostic-prev)
+nmap  ]e            <Plug>(coc-diagnostic-next)
+nmap <Leader>lt     :<C-u>Vista!!<CR>
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>la  <Plug>(coc-codeaction-selected)
@@ -176,10 +176,10 @@ nnoremap <silent> <Leader>co :<C-u>OR<CR>
 " multiple cursors
 nmap <expr> <silent> <C-d> <SID>select_current_word()
 function! s:select_current_word()
- 	if !get(b:, 'coc_cursors_activated', 0)
-		return "\<Plug>(coc-cursors-word)"
-	endif
-	return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+    if !get(b:, 'coc_cursors_activated', 0)
+        return "\<Plug>(coc-cursors-word)"
+    endif
+    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
 
 " coc-snippet

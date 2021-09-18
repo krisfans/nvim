@@ -1,4 +1,4 @@
-augroup common "{{{
+augroup common " {{{
 	autocmd!
 	" Reload vim config automatically
 	autocmd BufWritePost $VIM_PATH/{*.vim,*.yaml,vimrc} nested

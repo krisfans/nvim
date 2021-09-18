@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-# on_event = ['VimEnter']
+on_event = 'VimEnter'
 merged = 0
 rev = 'release'
 hook_add = '''
@@ -21,7 +21,8 @@ hook_add = '''
 		\ 'coc-vimlsp',
 		\ 'coc-pyright',
 		\ 'coc-pairs',
-		\]
+		\ 'coc-toml',
+		\ ]
 
 	augroup coc_event
 	autocmd!
@@ -33,6 +34,8 @@ hook_add = '''
 
 	" Highlight symbol under cursor on CursorHold
 	autocmd CursorHold * silent call CocActionAsync('highlight')
+	" 刷新补全列表
+	autocmd TextChangedI * silent call coc#refresh()
 
 	"Use tab for trigger completion with characters ahead and navigate
 	inoremap <silent><expr> <TAB>
@@ -51,10 +54,10 @@ hook_add = '''
 
 [[plugins]]
 repo = 'honza/vim-snippets'
-on_event = ['BufReadPre','BufNewFile']
-depends = 'coc.nvim'
+# on_event = 'InsertEnter'
+# depends = 'coc.nvim'
 if = 'has("python3")'
-merged =  0
+merged = 0
 
 
 # [[plugins]]
@@ -131,5 +134,3 @@ merged =  0
 
 # [[plugins]]
 # repo = 'hrsh7th/vim-vsnip-integ'
-
-

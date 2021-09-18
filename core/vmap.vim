@@ -1,5 +1,6 @@
 
-
+nnoremap < <<
+nnoremap > >>
 "Write buffer (save)
 nnoremap <C-s> :<C-u>write<CR>
 "yank to end
@@ -43,7 +44,7 @@ cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 
-tnoremap <jk> <C-\><C-n>
+tnoremap jk <C-\><C-n>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa<CR>
@@ -78,5 +79,3 @@ map <C-b> :call function#RunResult()<CR>
 imap <C-b> <ESC>:call function#RunResult()<CR>
 vmap <C-b> <ESC>:call function#RunResult()<CR>
 
-noremap j (v:count == 0 ? 'gj' : 'j')
-noremap k (v:count == 0 ? 'gk' : 'k')
