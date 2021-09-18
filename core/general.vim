@@ -182,11 +182,14 @@ if has('folding') && has('vim_starting')
 	set foldmethod=indent
 	set foldlevelstart=99
 endif
-"
-if has('nvim-0.4')
-	set signcolumn=yes:1
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
 else
-	set signcolumn=yes           " Always show signs column
+  set signcolumn=yes
 endif
 
 if has('conceal') && v:version >= 703
