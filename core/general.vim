@@ -87,7 +87,6 @@ set cc=80               " 高亮80列
 set textwidth=80        " Text width maximum chars before wrapping
 set smartindent
 set smarttab
-set expandtab
 set copyindent
 set tabstop=4  softtabstop=4 shiftwidth=4
 set cindent             " 按照C语言的形式缩进
@@ -171,7 +170,7 @@ set matchtime=1         " Tenths of a second to show the matching paren
 " set winwidth=30       " Minimum width for active window
 " set winminwidth=10    " Minimum width for inactive windows
 set winheight=4         " Minimum height for active window
-set winminheight=1      " Minimum height for inactive window
+set winminheight=1  " Minimum height for inactive window
 set pumheight=15        " Pop-up menu's line height
 set helpheight=12       " Minimum help window height
 set previewheight=12    " Completion preview height
@@ -183,7 +182,7 @@ if has('folding') && has('vim_starting')
     set foldmethod=indent
     set foldlevelstart=99
 endif
-"
+
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -210,7 +209,7 @@ endif
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 " " autocmd vimenter * hi VertSplit guibg=NONE ctermbg=NONE
 " " autocmd vimenter * hi NonText guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 " " }}}
 
 " 定位到退出位置并移动到屏幕中央

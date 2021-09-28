@@ -1,4 +1,3 @@
-
 [[plugins]]
 repo = 'Shougo/dein.vim'
 [[plugins]]
@@ -10,7 +9,7 @@ repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufReadPre', 'BufNewFile']
 hook_post_update = ':TSUpdate'
 hook_source = '''
-	lua require("treesitter")
+    lua require("treesitter")
 '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter-refactor'
@@ -20,23 +19,23 @@ depends = 'nvim-treesitter'
 # [[plugins]]
 # repo = 'luochen1990/rainbow'
 # on_ft = [
-# 	'html',
-# 	'css',
-# 	'javascript',
-# 	'javascriptreact',
-# 	'go',
-# 	'python',
-# 	'lua',
-# 	'rust',
-# 	'vim',
-# 	'less',
-# 	'stylus',
-# 	'sass',
-# 	'scss',
-# 	'json',
-# 	'ruby',
-# 	'toml',
-# 	'tex',
+#   'html',
+#   'css',
+#   'javascript',
+#   'javascriptreact',
+#   'go',
+#   'python',
+#   'lua',
+#   'rust',
+#   'vim',
+#   'less',
+#   'stylus',
+#   'sass',
+#   'scss',
+#   'json',
+#   'ruby',
+#   'toml',
+#   'tex',
 # ]
 # hook_source = '''
 # let g:rainbow_active = 1
@@ -66,7 +65,7 @@ hook_source = '''
     let g:indent_blankline_char = '│'
     set colorcolumn=99999
     let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar',
-        \ 'vista_kind','vista','coc-explorer','dashboard','json','jsonc']
+        \ 'vista_kind','vista','coc-explorer','dashboard']
 '''
 
 [[plugins]] #注释
@@ -84,62 +83,64 @@ let g:vista_default_executive = 'ctags'
 let g:vista_echo_cursor_strategy = 'echo'
 let g:vista_vimwiki_executive = 'markdown'
 let g:vista_executive_for = {
-	\ 'c': 'nvim_lsp',
-	\ 'cpp': 'nvim_lsp',
-	\ 'vimwiki': 'markdown',
-	\ 'pandoc': 'markdown',
-	\ 'markdown': 'toc',
-	\ 'yaml': 'nvim_lsp',
-	\ 'typescript': 'nvim_lsp',
-	\ 'typescriptreact': 'nvim_lsp',
-	\ }
+    \ 'c': 'coc',
+    \ 'cpp': 'coc',
+    \ 'vimwiki': 'markdown',
+    \ 'pandoc': 'markdown',
+    \ 'markdown': 'toc',
+    \ 'yaml': 'coc',
+    \ 'typescript': 'coc',
+    \ 'typescriptreact': 'coc',
+    \ }
 let g:vista#renderer#icons = {}
 let g:vista#renderer#icons = {
-	\ 'func': "\uf794",
-	\ 'function': "\uf794",
-	\ 'functions': "\uf794",
-	\ 'var': "\uf71b",
-	\ 'variable': "\uf71b",
-	\ 'variables': "\uf71b",
-	\ 'const': "\uf8ff",
-	\ 'constant': "\uf8ff",
-	\ 'constructor': "\uf976",
-	\ 'method': "\uf6a6",
-	\ 'package': "\ue612",
-	\ 'packages': "\ue612",
-	\ 'enum': "\uf702",
-	\ 'enummember': "\uf282",
-	\ 'enumerator': "\uf702",
-	\ 'module': "\uf136",
-	\ 'modules': "\uf136",
-	\ 'type': "\uf7fd",
-	\ 'typedef': "\uf7fd",
-	\ 'types': "\uf7fd",
-	\ 'field': "\uf30b",
-	\ 'fields': "\uf30b",
-	\ 'macro': "\uf8a3",
-	\ 'macros': "\uf8a3",
-	\ 'map': "\ufb44",
-	\ 'class': "\uf0e8",
-	\ 'augroup': "\ufb44",
-	\ 'struct': "\uf318",
-	\ 'union': "\ufacd",
-	\ 'member': "\uf02b",
-	\ 'target': "\uf893",
-	\ 'property': "\ufab6",
-	\ 'interface': "\uf7fe",
-	\ 'namespace': "\uf475",
-	\ 'subroutine': "\uf9af",
-	\ 'implementation': "\uf776",
-	\ 'typeParameter': "\uf278",
-	\ 'default': "\uf29c",
-	\ 'label': '笠',
-	\ 'section': '',
-	\ 'chapter': '',
-	\ 'subsubsection': '',
-	\ 'subsection': ''
-	\ }
+    \ 'func': "",
+    \ 'function': "",
+    \ 'functions': "",
+    \ 'var': "𝒙",
+    \ 'variable': "𝒙",
+    \ 'variables': "𝒙",
+    \ 'const': "",
+    \ 'constant': "",
+    \ 'constructor': "略",
+    \ 'method': "",
+    \ 'package': "",
+    \ 'packages': "",
+    \ 'enum': "",
+    \ 'enummember': "",
+    \ 'enumerator': "",
+    \ 'module': "",
+    \ 'modules': "",
+    \ 'type': "",
+    \ 'typedef': "",
+    \ 'types': "",
+    \ 'field': "",
+    \ 'fields': "",
+    \ 'macro': "",
+    \ 'macros': "",
+    \ 'map': "פּ",
+    \ 'class': "",
+    \ 'augroup': "פּ",
+    \ 'struct': "",
+    \ 'union': "鬒",
+    \ 'member': "",
+    \ 'target': "",
+    \ 'property': "襁",
+    \ 'prototype': "襁",
+    \ 'interface': "",
+    \ 'namespace': "",
+    \ 'subroutine': "羚",
+    \ 'implementation': "",
+    \ 'typeParameter': "",
+    \ 'default': "",
+    \ 'label': '笠',
+    \ 'chapter': '',
+    \ 'section': '',
+    \ 'subsection': '',
+    \ 'subsubsection': '',
+    \ }
 '''
+
 
 [[plugins]] #tags
 repo = 'ludovicchabant/vim-gutentags'
@@ -147,7 +148,7 @@ if = 'executable("ctags")'
 on_event = ['BufReadPost', 'BufWritePost']
 hook_source = '''
 let g:gutentags_cache_dir = $DATA_PATH . '/tags'
-let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod','/usr/local']
+let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod']
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_new = 0
@@ -183,6 +184,7 @@ build = 'bash install.sh'
 on_map = { n = '<Plug>' }
 hook_source = '''
     let g:clap_cache_directory = $DATA_PATH . '/clap'
+    let g:clap_layout = { 'relative': 'editor' }
     " let g:clap_theme = 'material_design_dark'
     let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
     " let g:clap_layout = { 'relative': 'editor' }
@@ -198,9 +200,9 @@ hook_source = '''
     "         hi ClapSymbol guibg=NONE ctermbg=NONE
     "     endif
     " endfunction
-				"
+                "
     " autocmd User ClapOnEnter call s:ClapSymbolHL()
-hi default link ClapPreview Pmenu
+    hi default link ClapPreview Pmenu
 '''
 [[plugins]]
 repo = 'vn-ki/coc-clap'
