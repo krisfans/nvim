@@ -2,7 +2,8 @@
     "plugins": {
         "prefix": "plugins",
         "body": [
-            "[[plugins]]\nrepo = '$0'"
+            "[[plugins]]",
+            "repo = '$0'"
         ],
         "description": "Install a plugin"
     }

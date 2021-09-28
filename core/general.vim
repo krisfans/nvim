@@ -209,7 +209,7 @@ endif
 " autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 " " autocmd vimenter * hi VertSplit guibg=NONE ctermbg=NONE
 " " autocmd vimenter * hi NonText guibg=NONE ctermbg=NONE
-" autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
+autocmd vimenter * hi SignColumn guibg=NONE ctermbg=NONE
 " " }}}
 
 " 定位到退出位置并移动到屏幕中央

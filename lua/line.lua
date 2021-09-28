@@ -1,4 +1,4 @@
- require'lualine'.setup {
+require'lualine'.setup {
     options = {
         icons_enabled = true,
         theme = 'gruvbox',
@@ -37,6 +37,10 @@
         lualine_y = {},
         lualine_z = {}
     },
-      tabline = {},
-      extensions = {}
+    tabline = {},
+    extensions = {}
 }
+
+
+
+

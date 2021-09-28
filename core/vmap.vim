@@ -45,7 +45,7 @@ cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <C-t> <C-R>=expand("%:p:h") . "/" <CR>
 
-tnoremap <jk> <C-\><C-n>
+tnoremap jk <C-\><C-n>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa<CR>
@@ -76,7 +76,7 @@ inoremap  jj <esc>o
 inoremap  kk <esc>O
 
 " Ctrl + b 一键保存、运行
-map <C-b> :call function#RunResult()<CR>
-imap <C-b> <ESC>:call function#RunResult()<CR>
-vmap <C-b> <ESC>:call function#RunResult()<CR>
+map <C-M-b> :call function#RunResult()<CR>
+imap <C-M-b> <ESC>:call function#RunResult()<CR>
+vmap <C-M-b> <ESC>:call function#RunResult()<CR>
 

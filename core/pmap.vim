@@ -19,28 +19,39 @@ nmap <leader>0 <Plug>BuffetSwitch(10)
 
 
 nnoremap <silent> <f9>
-			\ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+            \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "
 " nnoremap <silent> <f9>
 " \ :<C-u>Fern -drawer -toggle %:h<CR>
 "--------------------------"
 "     vim-clap Keymap      "
-"--------------------------"
-nnoremap <silent> <Leader>cc :<C-u>Clap colors<CR>
-nnoremap <silent> <Leader>fb :<C-u>Clap buffers<CR>
-nnoremap <silent> <Leader>fw :<C-u>Clap grep2<CR>
-nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
-"like emacs counsel-find-file
-nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
-nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
-nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
-nnoremap <silent> <Leader>fa :<C-u>Clap grep ++query=<cword><cr>
-nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
-nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
-nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
-nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
-nnoremap <silent> <Leader>fv :<C-u>Clap grep ++query=@visual<CR>
-nnoremap <silent> <Leader>oc :<C-u>Clap personalconf<CR>
+" "--------------------------"
+" nnoremap <silent> <Leader>cc :<C-u>Clap colors<CR>
+" nnoremap <silent> <Leader>fb :<C-u>Clap buffers<CR>
+" nnoremap <silent> <Leader>fw :<C-u>Clap grep2<CR>
+" nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
+" "like emacs counsel-find-file
+" nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
+" nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
+" nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
+" nnoremap <silent> <Leader>fa :<C-u>Clap grep ++query=<cword><cr>
+" nnoremap <silent> <Leader>fh :<C-u>Telescope history<CR>
+" nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
+" nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
+" nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
+" nnoremap <silent> <Leader>fv :<C-u>Clap grep ++query=@visual<CR>
+" nnoremap <silent> <Leader>oc :<C-u>Clap personalconf<CR>
+
+nnoremap <silent> <leader>fh :<C-u>Telescope oldfiles<CR>
+nnoremap <silent> <leader>fc :<C-u>Telescope colorscheme<CR>
+nnoremap <silent> <leader>fb :<C-u>Telescope buffers<CR>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>fk <cmd>Telescope keymaps<cr>
+nnoremap <silent> <leader>fl :<C-u>Telescope loclist<CR>
+nnoremap <silent> <leader>fm :<C-u>Telescope marks<CR>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
+nnoremap <silent> <leader>ft <cmd>Telescope help_tags<cr>
+nnoremap <silent>  <leader>; :<C-u>Telescope buildin<CR>
 
 " "--------------------------"
 " "     coc-clap Keymap      "
@@ -57,17 +68,17 @@ nnoremap <silent> <Leader>oc :<C-u>Clap personalconf<CR>
 " nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
 
 function! InitCaw() abort
-	if ! (&l:modifiable && &buftype ==# '')
-		" silent! nunmap <buffer> gc
-		" silent! xunmap <buffer> gc
-		silent! nunmap <buffer> <leader>/
-		silent! xunmap <buffer> <leader>/
-	else
-		" nmap <buffer> gc <Plug>(caw:prefix)
-		" xmap <buffer> gc <Plug>(caw:prefix)
-		nmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
-		xmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
-	endif
+    if ! (&l:modifiable && &buftype ==# '')
+        " silent! nunmap <buffer> gc
+        " silent! xunmap <buffer> gc
+        silent! nunmap <buffer> <leader>/
+        silent! xunmap <buffer> <leader>/
+    else
+        " nmap <buffer> gc <Plug>(caw:prefix)
+        " xmap <buffer> gc <Plug>(caw:prefix)
+        nmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
+        xmap <buffer> <leader>/ <Plug>(caw:hatpos:toggle)
+    endif
 endfunction
 autocmd FileType * call InitCaw()
 call InitCaw()
@@ -208,24 +219,24 @@ command! -nargs=0 PluginClean :call map(dein#check_clean(), "delete(v:val, 'rf')
 
 
 " Jump Diagnostic and Show Diagnostics
-nnoremap <silent> 		<leader>cd :Lspsaga show_line_diagnostics<CR>
-nnoremap gD        		<cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap gd        		<cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap gr        		<cmd>lua vim.lsp.buf.references()<CR>
-nnoremap gi       		<cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap gh   			:Lspsaga lsp_finder<CR>
-nnoremap gs 			:Lspsaga signature_help<CR>
-nnoremap <leader>lf 	<cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>lk   	:Lspsaga hover_doc<CR>
+nnoremap <silent>       <leader>cd :Lspsaga show_line_diagnostics<CR>
+nnoremap gD             <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap gd             <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap gr             <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap gi             <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap gh             :Lspsaga lsp_finder<CR>
+nnoremap gs             :Lspsaga signature_help<CR>
+nnoremap <leader>lf     <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>lk     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ls     :Lspsaga signature_help<CR>
-nnoremap <space>wa 		<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
-nnoremap <space>wr 		<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
-nnoremap <space>wl 		<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
-nnoremap <space>D  		<cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <space>lr 		:Lspsaga rename<CR>
-nnoremap <space>ld  	:Lspsaga show_line_diagnostics<CR>
-nnoremap [e        		:Lspsaga diagnostic_jump_prev<CR>
-nnoremap ]e        		:Lspsaga diagnostic_jump_next<CR>
-nnoremap <space>lq  	<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <leader>ca 	:Lspsaga code_action<CR>
-vnoremap <leader>ca 	:<C-U>Lspsaga range_code_action<CR>
+nnoremap <space>wa      <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
+nnoremap <space>wr      <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
+nnoremap <space>wl      <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+nnoremap <space>D       <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <space>lr      :Lspsaga rename<CR>
+nnoremap <space>ld      :Lspsaga show_line_diagnostics<CR>
+nnoremap [e             :Lspsaga diagnostic_jump_prev<CR>
+nnoremap ]e             :Lspsaga diagnostic_jump_next<CR>
+nnoremap <space>lq      <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <leader>ca     :Lspsaga code_action<CR>
+vnoremap <leader>ca     :<C-U>Lspsaga range_code_action<CR>

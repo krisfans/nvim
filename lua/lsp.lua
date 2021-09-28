@@ -13,9 +13,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =vim.lsp.with(
             prefix = "➤"
         },
         signs = {
-		      enable = true,
-		      priority = 20
-		    },
+              enable = true,
+              priority = 20
+            },
     }
     )
 vim.fn.sign_define(
@@ -34,31 +34,31 @@ vim.fn.sign_define(
     )
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec([[
-		hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-		hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-		hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-		augroup lsp_document_highlight
-		autocmd! * <buffer>
-		autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		augroup END
-		]], false)
-	end
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+        hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+        hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+        hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+        augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+        ]], false)
+    end
 end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = { "clangd", "texlab", "pylsp","vimls" }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup { on_attach = on_attach }
+    nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
 local saga = require 'lspsaga'
@@ -68,9 +68,9 @@ saga.init_lsp_saga {
 -- add your config value here
 -- default value
 -- use_saga_diagnostic_sign = true
-	error_sign = '✗',
-	warn_sign = '⚡',
-	hint_sign = '●',
-	infor_sign = '●',
+    error_sign = '✗',
+    warn_sign = '⚡',
+    hint_sign = '●',
+    infor_sign = '●',
 
 }
