@@ -18,42 +18,55 @@ nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
 " defx --------------------
-nnoremap <silent> <f9>
-            \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent> <F10>
+           \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent> <F9>
+            \ :CocCommand explorer<cr>
+nnoremap <silent> <F12>
+  \ :<C-u>Fern -drawer -toggle %:h<CR>
+" "--------------------------"
+" "     vim-clap Keymap      "
+" "--------------------------"
+" nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
+" nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
+" nnoremap <silent> <Leader>fc :<C-u>Clap colors<CR>
+" nnoremap <silent> <Leader>fb :<C-u>Clap buffers<CR>
+" nnoremap <silent> <Leader>fg :<C-u>Clap grep<CR>
+" nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
+" nnoremap <silent> <Leader>fk :<C-u>Clap keymaps<CR>
 
-"--------------------------"
-"     vim-clap Keymap      "
-"--------------------------"
-nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
-nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
-nnoremap <silent> <Leader>fc :<C-u>Clap colors<CR>
-nnoremap <silent> <Leader>fb :<C-u>Clap buffers<CR>
-nnoremap <silent> <Leader>fg :<C-u>Clap grep<CR>
-nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
-nnoremap <silent> <Leader>fk :<C-u>Clap keymaps<CR>
+" "like emacs counsel-find-file
+" nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
+" nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
+" nnoremap <silent> <Leader>fa :<C-u>Clap grep ++query=<cword><cr>
+" nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
+" nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
+" nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
 
-"like emacs counsel-find-file
-nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
-nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
-nnoremap <silent> <Leader>fa :<C-u>Clap grep ++query=<cword><cr>
-nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
-nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
-nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
-
+nnoremap <silent> <leader>fh :<C-u>Telescope oldfiles<CR>
+nnoremap <silent> <leader>fc :<C-u>Telescope colorscheme<CR>
+nnoremap <silent> <leader>fb :<C-u>Telescope buffers<CR>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>fk <cmd>Telescope keymaps<cr>
+nnoremap <silent> <leader>fl :<C-u>Telescope loclist<CR>
+nnoremap <silent> <leader>fm :<C-u>Telescope marks<CR>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
+nnoremap <silent> <leader>ft <cmd>Telescope help_tags<cr>
+nnoremap <silent>  <leader>; :<C-u>Telescope buildin<CR>
 
 "--------------------------"
 "     coc-clap Keymap      "
 "--------------------------"
 " Show all diagnostics
-nnoremap <silent> <Leader>ce  :Clap coc_diagnostics<CR>
-" Manage extensions
-nnoremap <silent> <Leader>;   :Clap coc_extensions<CR>
-" Show commands
-nnoremap <silent> <Leader>,   :Clap coc_commands<CR>
-" Search workspace symbols
-nnoremap <silent> <Leader>cs  :Clap coc_symbols<CR>
-nnoremap <silent> <Leader>cS  :Clap coc_services<CR>
-nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
+" nnoremap <silent> <Leader>ce  :Clap coc_diagnostics<CR>
+" " Manage extensions
+" nnoremap <silent> <Leader>;   :Clap coc_extensions<CR>
+" " Show commands
+" nnoremap <silent> <Leader>,   :Clap coc_commands<CR>
+" " Search workspace symbols
+" nnoremap <silent> <Leader>cs  :Clap coc_symbols<CR>
+" nnoremap <silent> <Leader>cS  :Clap coc_services<CR>
+" nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
 
 
 " 注释 ---------------------
@@ -175,7 +188,7 @@ command! -nargs=0 OR  :call CocAction('runCommand', 'editor.action.organizeImpor
 nnoremap <silent> <Leader>co :<C-u>OR<CR>
 
 " multiple cursors
-nmap <expr> <silent> <C-d> <SID>select_current_word()
+nmap <expr> <silent> <C-n> <SID>select_current_word()
 function! s:select_current_word()
     if !get(b:, 'coc_cursors_activated', 0)
         return "\<Plug>(coc-cursors-word)"

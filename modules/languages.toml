@@ -6,15 +6,15 @@ on_ft = ['c','cpp']
 repo = 'jackguo380/vim-lsp-cxx-highlight'
 on_ft = ['c','cpp']
 
-[[plugins]]
-repo = 'vim-python/python-syntax'
-on_ft = 'python'
-hook_source = '''
-let g:python_highlight_all = 1
-'''
-[[plugins]]
-repo = 'vim-scripts/python_match.vim'
-on_ft = 'python'
+# [[plugins]]
+# repo = 'vim-python/python-syntax'
+# on_ft = 'python'
+# hook_source = '''
+# let g:python_highlight_all = 1
+# '''
+# [[plugins]]
+# repo = 'vim-scripts/python_match.vim'
+# on_ft = 'python'
 
 [[plugins]]
 repo = 'lervag/vimtex'
@@ -36,35 +36,35 @@ augroup vimtex_common
 augroup END
 
 if has('nvim')
-	let g:vimtex_compiler_progname = 'nvr'
+    let g:vimtex_compiler_progname = 'nvr'
 endif
 if executable('SumatraPDF.exe')
-	let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
-	let g:vimtex_view_general_options = '-reuse-instance @pdf'
-	let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+    let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
+    let g:vimtex_view_general_options = '-reuse-instance @pdf'
+    let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 else
-	let g:vimtex_view_general_viewer = 'zathura'
-	let g:vimtex_view_method = 'zathura'
+    let g:vimtex_view_general_viewer = 'zathura'
+    let g:vimtex_view_method = 'zathura'
 endif
 let g:vimtex_compiler_method = 'latexmk'
 let g:vimtex_compiler_latexmk = {
-	\ 'background': 1,
-	\ 'build_dir': '',
-	\ 'callback': 1,
-	\ 'continuous': 0,
-	\ 'executable': 'latexmk',
-	\ 'options': [
-	\     '-shell-escape',
-	\     '-file-line-error',
-	\     '-synctex=1',
-	\     '-interaction=nonstopmode',
-	\ ],
-	\ }
+    \ 'background': 1,
+    \ 'build_dir': '',
+    \ 'callback': 1,
+    \ 'continuous': 0,
+    \ 'executable': 'latexmk',
+    \ 'options': [
+    \     '-shell-escape',
+    \     '-file-line-error',
+    \     '-synctex=1',
+    \     '-interaction=nonstopmode',
+    \ ],
+    \ }
 let g:vimtex_compiler_latexmk_engines = {
-	\ '_'        : '-xelatex',
-	\ 'xelatex'  : '-xelatex',
-	\ 'pdflatex' : '-pdf',
-	\ }
+    \ '_'        : '-xelatex',
+    \ 'xelatex'  : '-xelatex',
+    \ 'pdflatex' : '-pdf',
+    \ }
 " 隐藏模式"
 set conceallevel=0
 let g:tex_conceal = ''
@@ -80,14 +80,14 @@ let g:vimtex_syntax_conceal_default = 0
 "
 " TOC settings
 let g:vimtex_toc_config = {
-	\ 'name' : 'TOC',
-	\ 'layers' : ['content', 'include'],
-	\ 'show_help' : 1,
-	\ 'show_numbers' : 1,
-	\ 'mode' : 2,
-	\ 'split_width' : 30,
-	\ 'split_pos' : 'vert botright',
-	\ }
+    \ 'name' : 'TOC',
+    \ 'layers' : ['content', 'include'],
+    \ 'show_help' : 1,
+    \ 'show_numbers' : 1,
+    \ 'mode' : 2,
+    \ 'split_width' : 30,
+    \ 'split_pos' : 'vert botright',
+    \ }
 
 
 " augroup vime_vimtex_group
@@ -101,8 +101,8 @@ let g:vimtex_toc_config = {
 " " autocmd FileType tex setl conceallevel=0
 " augroup END
 augroup vimtex_group
-	autocmd FileType tex setl nospell
-	autocmd FileType tex set syn=tex
+    autocmd FileType tex setl nospell
+    autocmd FileType tex set syn=tex
 augroup END
 
 '''
@@ -133,17 +133,17 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_edit_url_in = 'vsplit'
 let g:vim_markdown_fenced_languages = [
-	\ 'c++=cpp',
-	\ 'viml=vim',
-	\ 'bash=sh',
-	\ 'ini=dosini',
-	\ 'js=javascript',
-	\ 'json=javascript',
-	\ 'jsx=javascriptreact',
-	\ 'tsx=typescriptreact',
-	\ 'docker=Dockerfile',
-	\ 'makefile=make',
-	\ 'py=python'
-	\ ]
+    \ 'c++=cpp',
+    \ 'viml=vim',
+    \ 'bash=sh',
+    \ 'ini=dosini',
+    \ 'js=javascript',
+    \ 'json=javascript',
+    \ 'jsx=javascriptreact',
+    \ 'tsx=typescriptreact',
+    \ 'docker=Dockerfile',
+    \ 'makefile=make',
+    \ 'py=python'
+    \ ]
 '''
 

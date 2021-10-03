@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-# on_event = 'VimEnter'
+on_event = 'VimEnter'
 merged = 0
 rev = 'release'
 hook_add = '''
