@@ -1,8 +1,8 @@
 
--- require'lspconfig'.vimls.setup{}
 require'lspconfig'.texlab.setup{}
 require'lspconfig'.clangd.setup{}
-require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.pylsp.setup{}
+require'lspconfig'.pyright.setup{}
 require'lspconfig'.vimls.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =vim.lsp.with(
@@ -56,9 +56,36 @@ end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "clangd", "texlab", "pylsp","vimls" }
+local servers = { "clangd", "texlab", "pyright","vimls" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    },
+}
+Itkey_capabilities = capabilities
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = {'tsserver'}
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+        on_attach = Itkey_on_attach,
+        capabilities = Itkey_capabilities,
+    }
 end
 
 local saga = require 'lspsaga'

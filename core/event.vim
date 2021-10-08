@@ -46,6 +46,7 @@ augroup common "{{{
 
     autocmd BufNewFile,BufRead coc-settings.json setlocal filetype=jsonc
     autocmd FileType json,jsonc syntax match Comment +\/\/.\+$+
+    autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
 
     autocmd TextYankPost * silent!  lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
     " 替换尾随空格

@@ -1,4 +1,3 @@
-
 function! initself#source_file(root_path,path, ...)
     " Source user configuration files with set/global sensitivity
     let use_global = get(a:000, 0, ! has('vim_starting'))
@@ -32,12 +31,21 @@ function! initself#mkdir_as_necessary(dir, force) abort
 endfunction
 
 " Jump definition in other window
+" function! initself#definition_other_window() abort
+"   if winnr('$') >= 4 || winwidth(0) < 120
+"     exec "normal \<Plug>(coc-definition)"
+"   else
+"     exec 'vsplit'
+"     exec "normal \<Plug>(coc-definition)"
+"   endif
+" endfunction
+" Jump definition in other window
 function! initself#definition_other_window() abort
   if winnr('$') >= 4 || winwidth(0) < 120
-    exec "normal \<Plug>(coc-definition)"
+    exec "lua vim.lsp.buf.definition()"
   else
     exec 'vsplit'
-    exec "normal \<Plug>(coc-definition)"
+    exec "lua vim.lsp.buf.definition()"
   endif
 endfunction
 

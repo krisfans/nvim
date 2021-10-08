@@ -8,29 +8,29 @@ hook_source ='''
 repo = 'glepnir/lspsaga.nvim'
 on_event = ['BufReadPre','BufNewFile']
 
+# [[plugins]]
+# repo = 'windwp/nvim-autopairs'
+# on_event = 'InsertEnter'
+# hook_source = '''
+# lua << EOF
+# require('nvim-autopairs').setup()
+#     local Rule = require('nvim-autopairs.rule')
+#     local remap = vim.api.nvim_set_keymap
+#     local npairs = require('nvim-autopairs')
+# -- you can use some builtin condition
+#     local cond = require('nvim-autopairs.conds')
+# npairs.add_rules({
+#     Rule("$", "$",{"tex", "latex"})
+#     -- don't add a pair if  the previous character is xxx
+#     :with_pair(cond.not_before_regex_check("xxx", 3))
+# })
+# EOF
+# '''
 [[plugins]]
-repo = 'windwp/nvim-autopairs'
-on_event = 'InsertEnter'
-hook_source = '''
-lua << EOF
-require('nvim-autopairs').setup()
-  local Rule = require('nvim-autopairs.rule')
-  local remap = vim.api.nvim_set_keymap
-  local npairs = require('nvim-autopairs')
--- you can use some builtin condition
-  local cond = require('nvim-autopairs.conds')
-npairs.add_rules({
-  Rule("$", "$",{"tex", "latex"})
-  -- don't add a pair if  the previous character is xxx
-  :with_pair(cond.not_before_regex_check("xxx", 3))
-})
-EOF
-'''
+repo = 'LunarWatcher/auto-pairs'
+
 # [[plugins]]
 # repo = 'dcampos/cmp-snippy'
-# on_source = 'nvim-snippy'
-# [[plugins]]
-# repo = 'dcampos/compe-snippy'
 # on_source = 'nvim-snippy'
 # [[plugins]]
 # repo = 'dcampos/nvim-snippy'
@@ -41,19 +41,26 @@ EOF
 #   imap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
 #   smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
 # '''
+
 # [[plugins]]
 # repo = 'honza/vim-snippets'
+# [[plugins]]
+# repo = 'SirVer/ultisnips'
+# hook_source = '''
+# let g:UltiSnipsExpandTrigger="<cr>"
+# let g:UltiSnipsJumpForwardTrigger="<tab>"
+# let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+# '''
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
 on_event = 'InsertEnter'
 hook_add = '''
-let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
-" Jump forward or backward
-imap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
-smap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
+    let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
+    imap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+    smap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
 '''
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
@@ -62,203 +69,177 @@ on_event = 'InsertEnter'
 repo = 'krisfans/friendly-snippets'
 on_event = 'InsertEnter'
 
-# [[plugins]]
-# repo = 'hrsh7th/nvim-cmp'
-# on_event = 'InsertEnter'
-# hook_source = '''
-# lua << EOF
-#   local cmp = require("cmp")
-#   cmp.setup({
-#       snippet = {
-#           expand = function(args)
-#            vim.fn["vsnip#anonymous"](args.body)
-#           -- require 'snippy'.expand_snippet(args.body)
-#           end,
-#       },
-#       sources = {
-#           { name = "nvim_lsp" },
-#           { name = "path" },
-#           { name = "buffer" },
-#           { name = "vsnip" },
-#           { name = 'snippy' }
-#       },
-#       mapping = {
-#           ["<S-TAB>"] = cmp.mapping.select_prev_item(),
-#           ["<TAB>"] = cmp.mapping.select_next_item(),
-#           ["<C-Space>"] = cmp.mapping.complete(),
-#           ["<C-e>"] = cmp.mapping.close(),
-#           ['<CR>'] = cmp.mapping.confirm()
-#       },
-#   })
-# EOF
-# '''
-# [[plugins]]
-# repo = 'hrsh7th/cmp-buffer'
-# on_source = 'nvim-cmp'
-# [[plugins]]
-# repo = 'hrsh7th/cmp-path'
-# on_source = 'nvim-cmp'
-# [[plugins]]
-# repo = 'hrsh7th/cmp-vsnip'
-# on_source = 'nvim-cmp'
-# [[plugins]]
-# repo = 'hrsh7th/cmp-nvim-lsp'
-# on_source = 'nvim-cmp'
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-[[plugins]]
-repo = 'Shougo/ddc.vim'
-depends = ['context_filetype.vim', 'denops.vim']
+repo = 'hrsh7th/nvim-cmp'
 on_event = 'InsertEnter'
 hook_source = '''
-call ddc#custom#patch_global('sources',
-    \ ['nvim-lsp', 'vsnip', 'buffer','file'],
-    \ )
-call ddc#custom#patch_global('sourceOptions', {
-    \ '_': {
-    \   'ignoreCase': v:true,
-    \   'isVolatile': v:true,
-    \   'matchers': ['matcher_head'],
-    \   'sorters': ['sorter_rank'],
-    \ },
-    \ 'nvim-lsp': {
-    \   'mark': 'LSP',
-    \   'minAutoCompleteLength': 1,
-    \   'forceCompletionPattern': '\.\w*|:\w*|->\w*|\w*<'
-    \ },
-    \ 'around': {
-    \   'mark': 'A',
-    \ },
-    \ 'buffer': {
-    \   'mark': 'B',
-    \ },
-    \ 'vsnip': {
-    \   'mark': 'VS',
-    \   'dup': v:true
-    \ },
-    \ 'necovim': {'mark': 'Vim'},
-    \ 'deoppet': {'mark': 'DP', 'dup': v:true},
-    \ 'nextword': {
-    \   'mark': 'nextword',
-    \   'minAutoCompleteLength': 3,
-    \   'isVolatile': v:true,
-    \ },
-    \ 'file': {
-    \   'mark': 'F',
-    \   'minAutoCompleteLength': 100,
-    \   'forceCompletionPattern': '[\./]'
-    \ },
-    \ })
-
-call ddc#custom#patch_filetype(
-    \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
-    \ 'sourceOptions': {
-    \   'file': {
-    \     'forceCompletionPattern': '\S\\\S*',
-    \   },
-    \ },
-    \ 'sourceParams': {
-    \   'file': {
-    \     'mode': 'win32',
-    \   },
-    \ }})
-call ddc#custom#patch_filetype(
-    \ ['latex', 'tex'], {
-    \ 'sourceOptions': {
-    \   'nvim-lsp': {
-    \     'forceCompletionPattern': '\S',
-    \   },
-    \ },
-    \ })
-call ddc#custom#patch_global('sourceParams',{
-    \ 'file': {
-    \   'displayFile': "File",
-    \   'displayDir': "Dir",
-    \   'displaySym': "Sym",
-    \   'displayCwd': "",
-    \   'displayBuf': "",
-    \ }})
-autocmd CompleteDone * silent! pclose!
-" Use ddc.
-call ddc#enable()
-'''
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-on_source = 'ddc.vim'
-# [[plugins]]
-# repo = 'Shougo/ddc-converter_remove_overlap'
-# on_source = 'ddc.vim'
-# [[plugins]]
-# repo = 'Shougo/ddc-around'
-# on_source = 'ddc.vim'
-[[plugins]]
-repo = 'matsui54/ddc-buffer'
-on_source = 'ddc.vim'
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_source = 'ddc.vim'
-hook_source = '''
-call ddc#custom#patch_filetype(
-      \ ['vim'], 'sources',  ['necovim', 'buffer',  'file']  )
+lua << EOF
+local cmp = require("cmp")
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+               vim.fn["vsnip#anonymous"](args.body)
+             -- require 'snippy'.expand_snippet(args.body)
+        end,
+    },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "path" },
+        { name = "buffer" },
+        { name = "vsnip" },
+       -- { name = 'snippy' }
+    },
+    mapping = {
+        ["<S-TAB>"] = cmp.mapping.select_prev_item(),
+        ["<TAB>"] = cmp.mapping.select_next_item(),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm()
+    },
+})
+EOF
 '''
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
-on_source = 'nvim-lspconfig'
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
 [[plugins]]
-repo = 'matsui54/ddc-nvim-lsp-doc'
-on_source = 'ddc.vim'
-hook_source = '''
-let g:ddc_nvim_lsp_doc_config = {
-    \ 'documentation': {
-    \   'border': '',
-    \ },
-    \ 'signature': {
-    \   'border': '',
-    \ },
-    \ }
-call ddc_nvim_lsp_doc#enable()
-'''
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
 [[plugins]]
-repo = 'LumaKernel/ddc-file'
-on_source = 'ddc.vim'
-
+repo = 'hrsh7th/cmp-vsnip'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
 
 
 # [[plugins]]
-# repo = 'hrsh7th/nvim-compe'
+# repo = 'vim-denops/denops.vim'
+# [[plugins]]
+# repo = 'Shougo/ddc.vim'
+# depends = ['context_filetype.vim', 'denops.vim']
 # on_event = 'InsertEnter'
 # hook_source = '''
-#   let g:compe = {}
-#   let g:compe.enabled = v:true
-#   let g:compe.autocomplete = v:true
-#   let g:compe.debug = v:false
-#   let g:compe.min_length = 0
-#   let g:compe.preselect = 'enable'
-#   let g:compe.throttle_time = 80
-#   let g:compe.source_timeout = 200
-#   let g:compe.incomplete_delay = 400
-#   let g:compe.max_abbr_width = 100
-#   let g:compe.max_kind_width = 100
-#   let g:compe.max_menu_width = 100
-#   let g:compe.documentation = v:true
-#
-#   let g:compe.source = {}
-#   let g:compe.source.path = v:true
-#   let g:compe.source.buffer = v:true
-#   let g:compe.source.calc = v:false
-#   let g:compe.source.nvim_lsp = v:true
-#   let g:compe.source.nvim_lua = v:true
-#   let g:compe.source.vsnip = v:true
-#   let g:compe.source.snippy = v:true
-#   highlight link CompeDocumentation NormalFloat
-#   inoremap <silent><expr> <C-Space> compe#complete()
-#   inoremap <silent><expr> <CR>        compe#confirm('<CR>')
-#   inoremap <silent><expr> <C-e>       compe#close('<C-e>')
-#   inoremap <silent><expr> <C-f>       compe#scroll({ 'delta': +4 })
-#   inoremap <silent><expr> <C-d>       compe#scroll({ 'delta': -4 })
+# call ddc#custom#patch_global('sources',
+#     \ ['nvim-lsp', 'vsnip', 'buffer', 'file'],
+#     \ )
+# call ddc#custom#patch_global('sourceOptions', {
+#     \ '_': {
+#     \   'ignoreCase': v:true,
+#     \   'isVolatile': v:true,
+#     \   'matchers': ['matcher_head'],
+#     \   'sorters': ['sorter_rank'],
+#     \ },
+#     \ 'nvim-lsp': {
+#     \   'mark': 'LSP',
+#     \   'minAutoCompleteLength': 1,
+#     \   'forceCompletionPattern': '\.\w*|:\w*|->\w*|\w*<'
+#     \ },
+#     \ 'around': {
+#     \   'mark': 'A',
+#     \ },
+#     \ 'buffer': {
+#     \   'mark': 'Buffer',
+#     \ },
+#     \ 'vsnip': {
+#     \   'mark': 'Vsnip',
+#     \   'dup': v:true
+#     \ },
+#     \ 'ultisnips': {
+#     \   'mark': 'US',
+#     \   'dup': v:true,
+#     \ },
+#     \ 'necovim': {'mark': 'Vim'},
+#     \ 'deoppet': {'mark': 'DP', 'dup': v:true},
+#     \ 'nextword': {
+#     \   'mark': 'nextword',
+#     \   'minAutoCompleteLength': 3,
+#     \   'isVolatile': v:true,
+#     \ },
+#     \ 'file': {
+#     \   'mark': 'F',
+#     \   'minAutoCompleteLength': 100,
+#     \   'forceCompletionPattern': '[\./\\\\]'
+#     \ },
+#     \ })
+# call ddc#custom#patch_filetype(
+#     \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
+#     \ 'sourceOptions': {
+#     \   'file': {
+#     \     'forceCompletionPattern': '\S\\\S*',
+#     \   },
+#     \ },
+#     \ 'sourceParams': {
+#     \   'file': {
+#     \     'mode': 'win32',
+#     \   },
+#     \ }})
+# call ddc#custom#patch_filetype(
+#     \ ['latex', 'tex'], {
+#     \ 'sourceOptions': {
+#     \   'nvim-lsp': {
+#     \     'forceCompletionPattern': '\S',
+#     \   },
+#     \ },
+#     \ })
+# call ddc#custom#patch_global('sourceParams',{
+#     \ 'file': {
+#     \   'displayFile': "File",
+#     \   'displayDir': "Dir",
+#     \   'displaySym': "Sym",
+#     \   'displayCwd': "",
+#     \   'displayBuf': "",
+#     \ }})
+# autocmd CompleteDone * silent! pclose!
+# " Use ddc.
+# call ddc#enable()
 # '''
+#
+# [[plugins]]
+# repo = 'Shougo/ddc-matcher_head'
+# on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+# on_source = 'ddc.vim'
+# # [[plugins]]
+# # repo = 'Shougo/ddc-converter_remove_overlap'
+# # on_source = 'ddc.vim'
+# # [[plugins]]
+# # repo = 'Shougo/ddc-around'
+# # on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'matsui54/ddc-buffer'
+# on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'Shougo/neco-vim'
+# on_source = 'ddc.vim'
+# hook_source = '''
+# call ddc#custom#patch_filetype(
+#       \ ['vim', 'toml'], 'sources',  ['necovim', 'vsnip', 'buffer',  'file']  )
+# '''
+# [[plugins]]
+# repo = 'Shougo/ddc-nvim-lsp'
+# on_source = 'ddc.vim'
+#
+# [[plugins]]
+# repo = 'matsui54/ddc-nvim-lsp-doc'
+# on_source = 'ddc.vim'
+# hook_source = '''
+# let g:ddc_nvim_lsp_doc_config = {
+#     \ 'documentation': {
+#     \   'border': '',
+#     \ },
+#     \ 'signature': {
+#     \   'border': '',
+#     \ },
+#     \ }
+# call ddc_nvim_lsp_doc#enable()
+# '''
+# [[plugins]]
+# repo = 'LumaKernel/ddc-file'
+# on_source = 'ddc.vim'
+# # [[plugins]]
+# # repo = 'matsui54/ddc-ultisnips'
+# # on_source = 'ddc.vim'
+

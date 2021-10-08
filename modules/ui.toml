@@ -7,9 +7,9 @@ repo = 'ryanoasis/vim-devicons'
 # let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 # let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 # '''
-[[plugins]]
-repo = 'folke/lsp-colors.nvim'
-on_event = ['BufReadPre','BufNewFile']
+# [[plugins]]
+# repo = 'folke/lsp-colors.nvim'
+# on_event = ['BufReadPre','BufNewFile']
 [[plugins]] # 颜色
 repo = 'norcalli/nvim-colorizer.lua'
 on_event = ['BufReadPre','BufNewFile']
@@ -163,45 +163,7 @@ hook_source = '''
     let g:lightline#lsp#indicator_ok = ""
     call lightline#lsp#register()
 '''
-# [[plugins]]
-# repo = 'kyazdani42/nvim-tree.lua'
-# depends = 'nvim-web-devicons'
-# on_cmd = 'NvimTreeFindFile'
-# hook_source = '''
-#
-# let g:nvim_tree_icons = {
-#     \ 'default': '',
-#     \ 'symlink': '',
-#     \ 'git': {
-#     \   'unstaged': "✗",
-#     \   'staged': "✓",
-#     \   'unmerged': "",
-#     \   'renamed': "➜",
-#     \   'untracked': "★",
-#     \   'deleted': "",
-#     \   'ignored': "◌"
-#     \   },
-#     \ 'folder': {
-#     \   'arrow_open': "",
-#     \   'arrow_closed': "",
-#     \   'default': "",
-#     \   'open': "",
-#     \   'empty': "",
-#     \   'empty_open': "",
-#     \   'symlink': "",
-#     \   'symlink_open': "",
-#     \   },
-#     \   'lsp': {
-#     \     'hint': "",
-#     \     'info': "",
-#     \     'warning': "",
-#     \     'error': "",
-#     \   }
-#     \ }
-#   " let g:nvim_tree_disable_default_keybindings = 1
-# '''
-# [[plugins]]
-# repo = 'kyazdani42/nvim-web-devicons'
+
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 on_cmd = 'Defx'
@@ -316,5 +278,74 @@ hook_add = '''
     let g:defx_icons_mark_icon = ''
     let g:defx_icons_default_icon = ''
 '''
+
+# [[plugins]]
+# repo = 'https://gitee.com/krisfan_zhang/tree.nvim.git'
+# hook_source = '''
+# lua << EOF
+# vim.api.nvim_set_keymap('n', '<Space>z',
+#     ":<C-u>Tree "..
+#     " -split=vertical -direction=topleft -winwidth=30 -listed `expand('%:p:h')`<CR>",
+#     {noremap=true, silent=true})
+# local custom = require 'tree/custom'
+# custom.option('_', {root_marker='[in]:'})
+# custom.column('filename', {
+#   root_marker_highlight='Ignore',
+#   max_width=30,
+# })
+# custom.column('time', {
+#   format="%d-%M-%Y",
+# })
+# custom.column('indnet', {
+#   indent="%d-%M-%Y",
+# })
+# custom.column('mark', {
+#   readonly_icon="X",
+#   selected_icon="*",
+# })
+# custom.column('indent', {
+#     indent = ''
+# })
+# custom.option('_', {
+#         columns='mark:indent:icon:filename:type:size:time',
+#     })
+#
+# local tree = require('tree')
+# -- keymap(keys, action1, action2, ...)  action can be `vim action` or `tree action`
+#
+#
+# tree.keymap('cp', 'copy')
+# tree.keymap('m', 'move')
+# tree.keymap('p', 'paste')
+# tree.keymap('a', 'view')
+# tree.keymap('o', 'open_or_close_tree')
+# tree.keymap('R', 'open_tree_recursive')
+# tree.keymap('r', 'rename')
+# tree.keymap('x', 'execute_system')
+# tree.keymap('<C-l>', 'redraw')
+# tree.keymap('<C-g>', 'print')
+# tree.keymap('.', 'toggle_ignored_files')
+# tree.keymap('*', 'toggle_select_all')
+# tree.keymap('s', {'drop', 'split'}, 'quit')
+# tree.keymap('N', 'new_file')
+# tree.keymap('cd', {'cd', '.'})
+# tree.keymap('~', 'cd')
+# tree.keymap('<Tab>', 'toggle_select', 'j')  -- tree action and vim action
+# tree.keymap('\\', {'cd', vim.fn.getcwd})
+# tree.keymap('cD', {'call', function(context) print(vim.inspect(context)) end})
+# tree.keymap('l', 'open')
+# tree.keymap('yy', 'yank_path')
+# tree.keymap('D', 'debug')
+# tree.keymap('d', 'remove')
+# tree.keymap('E', {'open', 'vsplit'})
+# tree.keymap('h', {'cd', '..'})
+# tree.keymap('<BS>', {'cd', '..'})
+# tree.keymap('gk', {'goto', 'parent'})
+# tree.keymap('<CR>', 'drop')
+#
+# EOF
+#
+#
+# '''
 
 

@@ -20,6 +20,8 @@ nmap <leader>0 <Plug>BuffetSwitch(10)
 
 nnoremap <silent> <f9>
             \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+" nnoremap <silent> <F7>
+"            \ :<C-u>Tree -split=vertical -direction=topleft -winwidth=30 -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "
 " nnoremap <silent> <f9>
 " \ :<C-u>Fern -drawer -toggle %:h<CR>
@@ -52,6 +54,16 @@ nnoremap <silent> <leader>fm :<C-u>Telescope marks<CR>
 nnoremap <silent> <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
 nnoremap <silent> <leader>ft <cmd>Telescope help_tags<cr>
 nnoremap <silent>  <leader>; :<C-u>Telescope buildin<CR>
+
+" nnoremap <silent> <leader>fg :Rg<cr>
+" nnoremap <silent> <leader>ff :Files<cr>
+" nnoremap <silent> <leader>fb :Buffers<cr>
+" nnoremap <silent> <leader>fe :CocFzfList extensions<cr>
+" nnoremap <silent> <leader>fc :Colors<cr>
+" nnoremap <silent> <leader>fm :Marks<cr>
+" nnoremap <silent> <leader>fk :Maps<cr>
+" nnoremap <silent> <leader>fl :BLines<cr>
+" nnoremap <silent> <leader>fh :History<cr>
 
 " "--------------------------"
 " "     coc-clap Keymap      "
@@ -219,16 +231,17 @@ command! -nargs=0 PluginClean :call map(dein#check_clean(), "delete(v:val, 'rf')
 
 
 " Jump Diagnostic and Show Diagnostics
-nnoremap <silent>       <leader>cd :Lspsaga show_line_diagnostics<CR>
+nnoremap <silent>       <space>cd :Lspsaga show_line_diagnostics<CR>
 nnoremap gD             <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap gd             <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap gd             <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap gd             :<C-u>call initself#definition_other_window()<CR>
 nnoremap gr             <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap gi             <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap gh             :Lspsaga lsp_finder<CR>
 nnoremap gs             :Lspsaga signature_help<CR>
-nnoremap <leader>lf     <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader>lk     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>ls     :Lspsaga signature_help<CR>
+nnoremap <space>lf     <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <space>lk     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <space>ls     :Lspsaga signature_help<CR>
 nnoremap <space>wa      <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
 nnoremap <space>wr      <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
 nnoremap <space>wl      <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
@@ -238,5 +251,6 @@ nnoremap <space>ld      :Lspsaga show_line_diagnostics<CR>
 nnoremap [e             :Lspsaga diagnostic_jump_prev<CR>
 nnoremap ]e             :Lspsaga diagnostic_jump_next<CR>
 nnoremap <space>lq      <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <leader>ca     :Lspsaga code_action<CR>
-vnoremap <leader>ca     :<C-U>Lspsaga range_code_action<CR>
+nnoremap <space>ca     :Lspsaga code_action<CR>
+vnoremap <space>ca     :<C-U>Lspsaga range_code_action<CR>
+

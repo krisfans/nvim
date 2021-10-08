@@ -120,7 +120,6 @@ function! s:use_dein()
     endif
 
     filetype plugin indent on
-
     " Only enable syntax when vim is starting
     if has('vim_starting')
         syntax enable
@@ -132,3 +131,4 @@ function! s:use_dein()
 endfunction
 
 call s:main()
+
