@@ -4,6 +4,7 @@
     "suggest.noselect": false,
     "suggest.detailField": "abbr",
     // "suggest.snippetIndicator": "🌟",
+    "coc.preferences.colorSupport":true,
     "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {

@@ -105,7 +105,7 @@ merged = 0
 # let g:compe.max_kind_width = 100
 # let g:compe.max_menu_width = 100
 # let g:compe.documentation = v:true
-
+#
 # let g:compe.source = {}
 # let g:compe.source.path = v:true
 # let g:compe.source.buffer = v:true
@@ -124,14 +124,14 @@ merged = 0
 # repo = 'hrsh7th/vim-vsnip'
 # hook_source = '''
 # let g:vsnip_snippet_dir = expand('~/.vsnip')
-
+#
 # " Jump forward or backward
 # imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 # smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 # imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 # smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 # '''
-
-
+#
+#
 # [[plugins]]
 # repo = 'hrsh7th/vim-vsnip-integ'

@@ -14,6 +14,10 @@ hook_source = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter-refactor'
 depends = 'nvim-treesitter'
+
+[[plugins]]
+repo = 'andymass/vim-matchup'
+on_event = ['BufReadPre','BufNewFile']
 # [[plugins]]
 # rep0 = 'folke/trouble.nvim'
 # [[plugins]]
