@@ -46,10 +46,13 @@ augroup common " {{{
 
     autocmd BufNewFile,BufRead coc-settings.json setlocal filetype=jsonc
     autocmd FileType json,jsonc syntax match Comment +\/\/.\+$+
+    autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
 
     autocmd TextYankPost * silent!  lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
+    " 替换尾随空格
     autocmd BufWritePre *  silent! :%substitute/\s\+$//e
+    " 将文件格式设置为unix
+    autocmd BufWritePre *  silent! :%substitute/\r$//
     autocmd BufWritePre *  :set expandtab
     autocmd BufWritePre *  :%retab!
-
-augroup END "}}}
+augroup END " }}}
