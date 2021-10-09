@@ -1,10 +1,7 @@
 {
-    "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": false,
-    "suggest.detailField": "abbr",
     // "suggest.snippetIndicator": "🌟",
-    "coc.preferences.colorSupport":true,
     "suggest.triggerCompletionWait": 100,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {
@@ -52,22 +49,6 @@
     "diagnostic.infoSign": "●",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": true,
-    //git
-    // "git.enableGutters": true,
-    // "git.branchCharacter": "\uf418",
-    // "git.addGBlameToBufferVar": true,
-    // "git.addGBlameToVirtualText": true,
-    // "git.virtualTextPrefix": " ❯❯❯ ",
-    // "git.addedSign.hlGroup": "GitGutterAdd",
-    // "git.changedSign.hlGroup": "GitGutterChange",
-    // "git.removedSign.hlGroup": "GitGutterDelete",
-    // "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    // "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    // "git.addedSign.text": "▋",
-    // "git.changedSign.text": "▋",
-    // "git.removedSign.text": "▋",
-    // "git.topRemovedSign.text": "▔",
-    // "git.changeRemovedSign.text": "▋",
     //python
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -81,8 +62,6 @@
     "list.source.outline.defaultOptions": [
         "--auto-preview"
     ],
-    //imselect
-    "imselect.enableStatusItem": false,
     //multiple curssor
     "cursors.nextKey": "<C-n>",
     "cursors.previousKey": "<C-p>",
@@ -115,8 +94,8 @@
         "N": "addFile",
         "D": "delete"
     },
-    // coc-actions
-    "coc-actions.hideCursor": false,
-    //language
+    // coc-color
+    "coc.preferences.colorSupport": true,
+    //coc-clangd
     "clangd.semanticHighlighting": true
- }
+}
