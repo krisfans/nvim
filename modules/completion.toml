@@ -17,11 +17,11 @@ hook_add = '''
         \ 'coc-emoji',
         \ 'coc-lists',
         \ 'coc-yaml',
-        \ 'coc-db',
         \ 'coc-vimlsp',
         \ 'coc-pyright',
         \ 'coc-pairs',
         \ 'coc-toml',
+        \ 'coc-explorer'
         \ ]
 
     augroup coc_event
