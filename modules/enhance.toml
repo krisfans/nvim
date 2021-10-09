@@ -69,7 +69,7 @@ hook_source = '''
     let g:indent_blankline_char = '│'
     set colorcolumn=99999
     let g:indent_blankline_filetype_exclude = ['denite','startify','tagbar',
-        \ 'vista_kind','vista','coc-explorer','dashboard']
+        \ 'vista_kind','vista','coc-explorer','dashboard', 'json','jsonc']
 '''
 
 [[plugins]] #注释
