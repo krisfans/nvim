@@ -23,7 +23,7 @@ hook_add = '''
         \ 'coc-toml',
         \ 'coc-explorer'
         \ ]
-
+    let g:coc_default_semantic_highlight_groups = 1
     augroup coc_event
     autocmd!
     " Setup formatexpr specified filetype(s).
