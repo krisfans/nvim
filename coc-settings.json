@@ -2,7 +2,7 @@
     "suggest.timeout": 500,
     "suggest.noselect": false,
     // "suggest.snippetIndicator": "🌟",
-    "suggest.triggerCompletionWait": 100,
+    "suggest.triggerCompletionWait": 50,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {
         "keyword": "",
@@ -44,6 +44,9 @@
         "`"
     ],
     //diagnostic
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": "➤",
     "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "⚡",
     "diagnostic.infoSign": "●",
