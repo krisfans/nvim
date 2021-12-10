@@ -1,9 +1,11 @@
- require'lualine'.setup {
+
+require'lualine'.setup {
     options = {
         icons_enabled = true,
         theme = 'gruvbox',
-        component_separators = {'', ''},
-        section_separators = {'', ''},
+        -- theme = 'auto',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
         disabled_filetypes = {}
     },
     sections = {
@@ -14,7 +16,7 @@
             'diagnostics',
             -- table of diagnostic sources, available sources:
             -- nvim_lsp, coc, ale, vim_lsp
-            sources = {'coc'},
+            sources={'nvim_lsp', 'coc'},
             -- displays diagnostics from defined severity
             sections = {'error', 'warn', 'info', 'hint'},
             -- all colors are in format #rrggbb
@@ -37,6 +39,7 @@
         lualine_y = {},
         lualine_z = {}
     },
-        tabline = {},
-        extensions = {}
+    tabline = {},
+    extensions = {}
 }
+
