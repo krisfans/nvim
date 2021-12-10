@@ -6,8 +6,6 @@ repo = 'ryanoasis/vim-devicons'
 # let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 # let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
 # '''
-[[plugins]]
-repo = 'folke/lsp-colors.nvim'
 on_event = ['BufReadPre','BufNewFile']
 [[plugins]] # 颜色
 repo = 'norcalli/nvim-colorizer.lua'
@@ -16,7 +14,8 @@ hook_add = 'set termguicolors'
 hook_source = '''
     lua require'colorizer'.setup()
 '''
-
+[[plugins]]
+repo = 'folke/lsp-colors.nvim'
 
 # 主题
 [[plugins]]
@@ -45,7 +44,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'hardcoreplayers/dashboard-nvim'
+repo = 'glepnir/dashboard-nvim'
 hook_add = '''
     let g:dashboard_custom_shortcut={
         \ 'last_session' : 'SPC s l',
@@ -56,6 +55,7 @@ hook_add = '''
         \ 'find_word' : 'SPC f w',
         \ 'book_marks' : 'SPC f m',
         \ }
+let g:dashboard_default_executive ='telescope'
 '''
 [[plugins]]
 repo = 'bagrat/vim-buffet'
@@ -93,74 +93,74 @@ hook_add = '''
 #   let g:airline_powerline_fonts = 1
 #   let g:airline#extensions#vista#enabled = 0
 # '''
-# [[plugins]]
-# repo = 'hoob3rt/lualine.nvim'
-# on_event = ['BufReadPre','BufNewFile']
-# hook_source = '''
-#   lua require('line')
-# '''
 [[plugins]]
-repo = 'krisfans/lightline.vim'
+repo = 'hoob3rt/lualine.nvim'
 on_event = ['BufReadPre','BufNewFile']
-depends = 'vim-devicons'
-hook_add = '''
-    let g:lightline = {
-        \ 'colorscheme': 'gruvbox',
-        \ 'enable' : {
-        \ 'statusline': 1,
-        \ 'tabline': 0
-        \ },
-        \ 'inactive': {
-        \ 'left': [ ['filename' ] ],
-        \ 'right': [[ 'filetype' ]]
-        \ },
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'cocstatus', 'readonly', 'filename', 'modified' ],
-        \            [  'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]]
-        \ },
-        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-        \ 'subseparator': { 'left': '', 'right': '' },
-        \ 'component_function': {
-        \   'filetype': 'MyFiletype',
-        \   'fileformat': 'MyFileformat',
-        \   'cocstatus': 'coc#status'
-        \ },
-        \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ },
-        \ }
-'''
-hook_post_source = '''
-function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-function! MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-'''
-[[plugins]]
-repo = 'josa42/nvim-lightline-lsp'
-on_source = 'lightline.vim'
 hook_source = '''
-    " register compoments:
-    let g:lightline#lsp#indicator_warnings = "⚡"
-    let g:lightline#lsp#indicator_errors = "✗"
-    let g:lightline#lsp#indicator_info = "●"
-    let g:lightline#lsp#indicator_info = "●"
-    let g:lightline#lsp#indicator_ok = ""
-    call lightline#lsp#register()
+    lua require('line')
 '''
+# [[plugins]]
+# repo = 'krisfans/lightline.vim'
+# on_event = ['BufReadPre','BufNewFile']
+# depends = 'vim-devicons'
+# hook_add = '''
+#     let g:lightline = {
+#         \ 'colorscheme': 'gruvbox',
+#         \ 'enable' : {
+#         \ 'statusline': 1,
+#         \ 'tabline': 0
+#         \ },
+#         \ 'inactive': {
+#         \ 'left': [ ['filename' ] ],
+#         \ 'right': [[ 'filetype' ]]
+#         \ },
+#         \ 'active': {
+#         \   'left': [ [ 'mode', 'paste' ],
+#         \             [ 'cocstatus', 'readonly', 'filename', 'modified' ],
+#         \            [  'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]]
+#         \ },
+#         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+#         \ 'subseparator': { 'left': '', 'right': '' },
+#         \ 'component_function': {
+#         \   'filetype': 'MyFiletype',
+#         \   'fileformat': 'MyFileformat',
+#         \   'cocstatus': 'coc#status'
+#         \ },
+#         \ 'mode_map': {
+#         \ 'n' : 'N',
+#         \ 'i' : 'I',
+#         \ 'R' : 'R',
+#         \ 'v' : 'V',
+#         \ 'V' : 'VL',
+#         \ "\<C-v>": 'VB',
+#         \ 'c' : 'C',
+#         \ 's' : 'S',
+#         \ 'S' : 'SL',
+#         \ "\<C-s>": 'SB',
+#         \ 't': 'T',
+#         \ },
+#         \ }
+# '''
+# hook_post_source = '''
+# function! MyFiletype()
+#     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+# endfunction
+# function! MyFileformat()
+#     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+# endfunction
+# '''
+# [[plugins]]
+# repo = 'josa42/nvim-lightline-lsp'
+# on_source = 'lightline.vim'
+# hook_source = '''
+#     " register compoments:
+#     let g:lightline#lsp#indicator_warnings = "⚡"
+#     let g:lightline#lsp#indicator_errors = "✗"
+#     let g:lightline#lsp#indicator_info = "●"
+#     let g:lightline#lsp#indicator_info = "●"
+#     let g:lightline#lsp#indicator_ok = ""
+#     call lightline#lsp#register()
+# '''
 # [[plugins]]
 # repo = 'kyazdani42/nvim-tree.lua'
 # depends = 'nvim-web-devicons'
