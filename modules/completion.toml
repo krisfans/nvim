@@ -5,29 +5,30 @@ hook_source ='''
     lua require('lsp')
 '''
 [[plugins]]
-repo = 'glepnir/lspsaga.nvim'
+# repo = 'glepnir/lspsaga.nvim'
+repo = 'Elysium1436/lspsaga.nvim'
 on_event = ['BufReadPre','BufNewFile']
 
-# [[plugins]]
-# repo = 'windwp/nvim-autopairs'
-# on_event = 'InsertEnter'
-# hook_source = '''
-# lua << EOF
-# require('nvim-autopairs').setup()
-#     local Rule = require('nvim-autopairs.rule')
-#     local remap = vim.api.nvim_set_keymap
-#     local npairs = require('nvim-autopairs')
-# -- you can use some builtin condition
-#     local cond = require('nvim-autopairs.conds')
-# npairs.add_rules({
-#     Rule("$", "$",{"tex", "latex"})
-#     -- don't add a pair if  the previous character is xxx
-#     :with_pair(cond.not_before_regex_check("xxx", 3))
-# })
-# EOF
-# '''
 [[plugins]]
-repo = 'LunarWatcher/auto-pairs'
+repo = 'windwp/nvim-autopairs'
+on_event = 'InsertEnter'
+hook_source = '''
+lua << EOF
+require('nvim-autopairs').setup()
+    local Rule = require('nvim-autopairs.rule')
+    local remap = vim.api.nvim_set_keymap
+    local npairs = require('nvim-autopairs')
+-- you can use some builtin condition
+    local cond = require('nvim-autopairs.conds')
+npairs.add_rules({
+    Rule("$", "$",{"tex", "latex"})
+    -- don't add a pair if  the previous character is xxx
+    :with_pair(cond.not_before_regex_check("xxx", 3))
+})
+EOF
+'''
+# [[plugins]]
+# repo = 'LunarWatcher/auto-pairs'
 
 # [[plugins]]
 # repo = 'dcampos/cmp-snippy'
@@ -64,12 +65,12 @@ hook_add = '''
 '''
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
-on_event = 'InsertEnter'
+on_source = 'vim-vsnip'
 [[plugins]]
 repo = 'krisfans/friendly-snippets'
 on_event = 'InsertEnter'
-
-
+#
+#
 [[plugins]]
 repo = 'hrsh7th/nvim-cmp'
 on_event = 'InsertEnter'
@@ -121,7 +122,9 @@ on_source = 'nvim-cmp'
 # depends = ['context_filetype.vim', 'denops.vim']
 # on_event = 'InsertEnter'
 # hook_source = '''
-# call ddc#custom#patch_global('sources',
+#     " call ddc#custom#patch_global('completionMenu', 'pum.vim')
+#
+#  call ddc#custom#patch_global('sources',
 #     \ ['nvim-lsp', 'vsnip', 'buffer', 'file'],
 #     \ )
 # call ddc#custom#patch_global('sourceOptions', {
@@ -191,7 +194,8 @@ on_source = 'nvim-cmp'
 #     \   'displayCwd': "",
 #     \   'displayBuf': "",
 #     \ }})
-# autocmd CompleteDone * silent! pclose!
+# " autocmd CompleteDone * silent! pclose!
+# " autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 # " Use ddc.
 # call ddc#enable()
 # '''
@@ -221,25 +225,48 @@ on_source = 'nvim-cmp'
 # [[plugins]]
 # repo = 'Shougo/ddc-nvim-lsp'
 # on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'LumaKernel/ddc-file'
+# on_source = 'ddc.vim'
 #
 # [[plugins]]
 # repo = 'matsui54/ddc-nvim-lsp-doc'
 # on_source = 'ddc.vim'
 # hook_source = '''
 # let g:ddc_nvim_lsp_doc_config = {
-#     \ 'documentation': {
-#     \   'border': '',
-#     \ },
-#     \ 'signature': {
-#     \   'border': '',
-#     \ },
-#     \ }
+#    \ 'documentation': {
+#    \   'border': '',
+#    \ },
+#    \ 'signature': {
+#    \   'border': '',
+#    \ },
+#    \ }
 # call ddc_nvim_lsp_doc#enable()
 # '''
-# [[plugins]]
-# repo = 'LumaKernel/ddc-file'
-# on_source = 'ddc.vim'
 # # [[plugins]]
 # # repo = 'matsui54/ddc-ultisnips'
 # # on_source = 'ddc.vim'
+# # [[plugins]]
+# # repo = 'Shougo/pum.vim'
+# # on_source = 'ddc.vim'
+# # hook_source = '''
+# #  inoremap <silent><expr> <TAB>
+# #        \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+# #        \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+# #        \ '<TAB>' : ddc#manual_complete()
+# #   inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+# #   inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+# #   inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+# #   inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+# #   inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+# #
+# #   call pum#set_option('setline_insert', v:true)
+# # '''
+# # [[plugins]]
+# # repo = 'matsui54/denops-popup-preview.vim'
+# # on_source = 'ddc.vim'
+# # hook_source = '''
+# # call popup_preview#enable()
+# # '''
+#
 

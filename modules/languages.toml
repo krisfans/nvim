@@ -63,7 +63,6 @@ let g:vimtex_compiler_latexmk_engines = {
 " 隐藏模式
 set conceallevel=0
 let g:tex_conceal = ''
-let g:vimtex_syntax_conceal_default = 0
 
 "nmap <space>k <plug>(vimtex-doc-package)
 "     Esc或q退出目录

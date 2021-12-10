@@ -1,8 +1,8 @@
 
 if &compatible
-	" vint: -ProhibitSetNoCompatible
-	set nocompatible
-	" vint: +ProhibitSetNoCompatible
+  " vint: -ProhibitSetNoCompatible
+  set nocompatible
+  " vint: +ProhibitSetNoCompatible
 endif
 
 " Set main configuration directory as parent directory
@@ -10,7 +10,7 @@ let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
 " Set data/cache directory as $XDG_CACHE_HOME/vim
 let $DATA_PATH =
-	\ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
+  \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
 
 " Disable vim distribution plugins
 let g:loaded_gzip = 1
@@ -37,18 +37,18 @@ let g:loaded_netrwFileHandlers = 1
 
 " Initialize base requirements
 if has('vim_starting')
-	" Use spacebar as leader and ; as secondary-leader
-	" Required before loading plugins!
-	let g:mapleader="\<Space>"
-	" let g:maplocalleader="\<Space>"
+  " Use spacebar as leader and ; as secondary-leader
+  " Required before loading plugins!
+  let g:mapleader="\<Space>"
+  " let g:maplocalleader="\<Space>"
 
-	" Release keymappings prefixes, evict entirely for use of plug-ins.
-	nnoremap <Space>  <Nop>
-	xnoremap <Space>  <Nop>
-	nnoremap ,        <Nop>
-	xnoremap ,        <Nop>
-	nnoremap ;        <Nop>
-	xnoremap ;        <Nop>
+  " Release keymappings prefixes, evict entirely for use of plug-ins.
+  nnoremap <Space>  <Nop>
+  xnoremap <Space>  <Nop>
+  nnoremap ,        <Nop>
+  xnoremap ,        <Nop>
+  nnoremap ;        <Nop>
+  xnoremap ;        <Nop>
 
 endif
 
