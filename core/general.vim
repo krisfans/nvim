@@ -2,7 +2,8 @@ if has('vim_starting')
     set encoding=utf-8
     scriptencoding utf-8
 endif
-
+" 读取文件编码
+set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 "General settins{{{
 set mouse=a                  " 命令模式禁用鼠标
 set report=0                 " Don't report on line changes
