@@ -54,7 +54,7 @@ my vimrc for nvim
 开启界面是 `dashboard`
 ![dashboard](https://github.com/krisfans/nvim/blob/coc/fig/dashboard.png)
 
-文件树用的`defx`
+文件树用的`coc-explorer`
 ![program](https://github.com/krisfans/nvim/blob/coc/fig/filetree.png)
 ## 补全
 使用coc.nvim补全
