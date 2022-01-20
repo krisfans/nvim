@@ -76,6 +76,7 @@
     "explorer.icon.collapsed": "▸",
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
+    "explorer.icon.source": "nvim-web-devicons",
     "explorer.quitOnOpen": false,
     "explorer.floating.width": -20,
     "explorer.floating.height": -10,
@@ -99,6 +100,7 @@
     },
     //coc-clangd
     "clangd.semanticHighlighting": true,
-    "clangd.fallbackFlags": ["-lm"],
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+    "clangd.fallbackFlags": [
+        "-lm"
+    ]
 }
