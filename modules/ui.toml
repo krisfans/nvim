@@ -28,8 +28,7 @@ depends = 'nvim-treesitter'
 [[plugins]]
 repo = 'hardcoreplayers/oceanic-material'
 [[plugins]]
-repo = 'tjdevries/colorbuddy.nvim'
-depends = 'nvim-treesitter'
+repo = 'olimorris/onedarkpro.nvim'
 [[plugins]] # 启动耗时过长,可以高亮变量
 repo = 'Th3Whit3Wolf/onebuddy'
 # depends = 'colorbuddy.nvim'

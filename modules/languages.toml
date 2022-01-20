@@ -41,7 +41,6 @@ endif
 if executable('SumatraPDF.exe')
     let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
     let g:vimtex_view_general_options = '-reuse-instance @pdf'
-    let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 else
     let g:vimtex_view_general_viewer = 'zathura'
     let g:vimtex_view_method = 'zathura'

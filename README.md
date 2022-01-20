@@ -8,7 +8,7 @@ my vimrc for nvim
 │   ├── function.vim 
 │   ├── initself.vim	# 核心
 │   └── theme.vim 		# 配色主题
-├── coc-settings.json # coc配置文件
+├── coc-settings.json   # coc配置文件
 ├── core
 │   ├── core.vim 	# 核心
 │   ├── dein.vim 	# 插件管理
@@ -55,10 +55,10 @@ my vimrc for nvim
 ![dashboard](https://github.com/krisfans/nvim/blob/coc/fig/dashboard.png)
 
 文件树用的`defx`
-![program](https://github.com/krisfans/nvim/blob/coc/fig/program.png)
+![program](https://github.com/krisfans/nvim/blob/coc/fig/filetree.png)
 ## 补全
 使用coc.nvim补全
 ![complete](https://github.com/krisfans/nvim/blob/coc/fig/complete.png)
 ## 查找
-使用`vim-clap`
+使用`telescope`
 ![fuzzy](https://github.com/krisfans/nvim/blob/coc/fig/fuzzy.png)
