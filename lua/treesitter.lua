@@ -3,7 +3,8 @@ require'nvim-treesitter.configs'.setup {
     ignore_install = { "glsl" }, -- List of parsers to ignore installing
     highlight = {
         enable = true,              -- false will disable the whole extension
-        disable = { "glsl", "latex" },  -- list of language that will be disabled
+        -- disable = { "glsl", "latex" },  -- list of language that will be disabled
+        additional_vim_regex_highlighting = false,
     },
     indent = {
         enable = true

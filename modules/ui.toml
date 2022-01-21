@@ -280,6 +280,12 @@ hook_add = '''
 '''
 
 # [[plugins]]
+# repo = 'kyazdani42/nvim-tree.lua'
+# hook_add = '''
+# let g:nvim_tree_respect_buf_cwd = 1
+# let g:nvim_tree_indent_markers = 1
+# '''
+# [[plugins]]
 # repo = 'https://gitee.com/krisfan_zhang/tree.nvim.git'
 # hook_source = '''
 # lua << EOF

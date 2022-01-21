@@ -59,5 +59,5 @@ my vimrc for nvim
 ![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/complete.png)
 ![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/lsp.png)
 ## 查找
-使用`vim-clap`
+使用`telescope`
 ![fuzzy](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/fuzzy.png)

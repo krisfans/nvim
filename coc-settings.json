@@ -1,37 +1,37 @@
+
 {
-    "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": false,
-    "suggest.detailField": "abbr",
     // "suggest.snippetIndicator": "🌟",
-    "suggest.triggerCompletionWait": 100,
+    "suggest.triggerCompletionWait": 50,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {
         "keyword": "",
-        // "keyword": "גּ",
-        "variable": "",
-        "value": "",
-        "operator": "",
+        // "keyword": "",
+        "variable": "𝒙",
+        "value": "",
+        "operator": "",
         "function": "",
         "reference": "",
-        "constant": "",
-        "method": "",
+        "constant": "",
+        // "method": "",
+        "method": "",
         "struct": "פּ",
-        "class": "",
-        "interface": "",
+        "class": "",
+        "interface": "",
         "text": "ﭨ",
-        "enum": "",
-        "enumMember": "",
+        "enum": "",
+        "enumMember": "",
         "module": "",
         "color": "",
         "property": "",
         "field": "",
-        "unit": "",
+        "unit": "",
         "event": "ﮦ",
-        "file": "",
+        "file": "",
         "folder": "",
-        "snippet": "",
-        "typeParameter": "",
+        "snippet": "﬌",
+        "typeParameter": "",
         "default": ""
     },
     "yank.highlight.enable": false,
@@ -45,27 +45,14 @@
         "`"
     ],
     //diagnostic
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": "➤",
     "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "⚡",
     "diagnostic.infoSign": "●",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": true,
-    //git
-    // "git.enableGutters": true,
-    // "git.branchCharacter": "\uf418",
-    // "git.addGBlameToBufferVar": true,
-    // "git.addGBlameToVirtualText": true,
-    // "git.virtualTextPrefix": " ❯❯❯ ",
-    // "git.addedSign.hlGroup": "GitGutterAdd",
-    // "git.changedSign.hlGroup": "GitGutterChange",
-    // "git.removedSign.hlGroup": "GitGutterDelete",
-    // "git.topRemovedSign.hlGroup": "GitGutterDelete",
-    // "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    // "git.addedSign.text": "▋",
-    // "git.changedSign.text": "▋",
-    // "git.removedSign.text": "▋",
-    // "git.topRemovedSign.text": "▔",
-    // "git.changeRemovedSign.text": "▋",
     //python
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
@@ -79,31 +66,6 @@
     "list.source.outline.defaultOptions": [
         "--auto-preview"
     ],
-    //prettier
-    "coc.preferences.formatOnSaveFiletypes": [
-        "html",
-        "css",
-        "markdown",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "go",
-        "json"
-    ],
-    "prettier.statusItemText": "ⓟ ",
-    "prettier.eslintIntegration": true,
-    "prettier.tslintIntegration": false,
-    "prettier.stylelintIntegration": true,
-    "prettier.disableSuccessMessage": true,
-    //emmet
-    "emmet.includeLanguages": {
-        "vue-html": "html",
-        "javascript": "javascriptreact",
-        "typescriptreact": "typescriptreact"
-    },
-    //imselect
-    "imselect.enableStatusItem": false,
     //multiple curssor
     "cursors.nextKey": "<C-n>",
     "cursors.previousKey": "<C-p>",
@@ -115,58 +77,31 @@
     "explorer.icon.collapsed": "▸",
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
-    "explorer.quitOnOpen": true,
+    "explorer.icon.source": "nvim-web-devicons",
+    "explorer.quitOnOpen": false,
     "explorer.floating.width": -20,
     "explorer.floating.height": -10,
     "explorer.openAction.strategy": "sourceWindow",
-    // eslint
-    "eslint.filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
-    "eslint.autoFix": true,
-    "eslint.autoFixOnSave": true,
-    // coc-actions
-    "coc-actions.hideCursor": false,
-    //language
-    "clangd.semanticHighlighting": true
-    // Cspell
-    // "cSpell.fixSpellingWithRenameProvider": true,
-    // "cSpell.showStatus": false,
-    // "cSpell.enabledLanguageIds": [
-    //   "asciidoc",
-    //   "c",
-    //   "cpp",
-    //   "csharp",
-    //   "css",
-    //   "git-commit",
-    //   "gitcommit",
-    //   "go",
-    //   "haskell",
-    //   "html",
-    //   "java",
-    //   "javascript",
-    //   "javascriptreact",
-    //   "json",
-    //   "jsonc",
-    //   "latex",
-    //   "less",
-    //   "markdown",
-    //   "php",
-    //   "plaintext",
-    //   "python",
-    //   "pug",
-    //   "restructuredtext",
-    //   "rust",
-    //   "scala",
-    //   "scss",
-    //   "text",
-    //   "typescript",
-    //   "typescriptreact",
-    //   "yaml",
-    //   "yml",
-    //   "vim"
-    // ]
+    "explorer.keyMappings.global": {
+        ".": "toggleHidden",
+        "<cr>": [
+            "wait",
+            "expandable?",
+            [
+                "wait",
+                "expanded?",
+                "collapse",
+                "expand"
+            ],
+            "open"
+        ],
+        "l": "cd",
+        "N": "addFile",
+        "D": "delete"
+    },
+    //coc-clangd
+    "clangd.semanticHighlighting": true,
+    "clangd.fallbackFlags": [
+        "-lm"
+    ]
 }
