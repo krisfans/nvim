@@ -1,5 +1,5 @@
 
-" Set main configuration directory as parent directory
+" Set main configuration directory as parent directory   ~/config/nvim
 let $VIM_PATH =
     \ get(g:, 'etc_vim_path',
     \   exists('*stdpath') ? stdpath('config') :
@@ -9,7 +9,7 @@ let $VIM_PATH =
     \   fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
     \ )
 
-" Set data/cache directory as $XDG_CACHE_HOME/nvim
+" Set data/cache directory as $XDG_CACHE_HOME/nvim   ~/.cache/nvim
 if has('nvim')
     let $DATA_PATH =
         \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/nvim')
@@ -17,8 +17,11 @@ else
     let $DATA_PATH =
         \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
 endif
+
 " Collection of  plugins list config file-paths
-let s:config_paths = split(globpath('$VIM_PATH/modules', '*'), '\n')
+" ~/.config/nvim/modules/a.toml
+" ~/.config/nvim/modules/b.toml ...
+let s:modules_config_paths = split(globpath('$VIM_PATH/modules', '*'), '\n')
 
 function! s:main()
     if has('vim_starting')
@@ -98,9 +101,9 @@ function! s:use_dein()
     if dein#load_state(l:cache_path)
 
         " Start propagating file paths and plugin presets
-        call dein#begin(l:cache_path, extend([expand('<sfile>')], s:config_paths))
+        call dein#begin(l:cache_path, extend([expand('<sfile>')], s:modules_config_paths))
 
-        for l:repo_toml in s:config_paths
+        for l:repo_toml in s:modules_config_paths
             call dein#load_toml(l:repo_toml)
         endfor
 
