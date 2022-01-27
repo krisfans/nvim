@@ -22,9 +22,13 @@ repo = 'folke/lsp-colors.nvim'
 repo = 'mhartington/oceanic-next'
 [[plugins]] # 耗时2ms
 repo = 'lifepillar/vim-gruvbox8'
-[[plugins]]
-repo = 'glepnir/zephyr-nvim'
-depends = 'nvim-treesitter'
+hook_source = '''
+    let g:gruvbox_italics = 0
+'''
+# [[plugins]]
+# repo = 'glepnir/zephyr-nvim'
+# merged = 0
+# depends = 'nvim-treesitter'
 [[plugins]]
 repo = 'hardcoreplayers/oceanic-material'
 [[plugins]]
@@ -33,13 +37,17 @@ repo = 'olimorris/onedarkpro.nvim'
 repo = 'Th3Whit3Wolf/onebuddy'
 # depends = 'colorbuddy.nvim'
 [[plugins]]
+repo = 'shaunsingh/solarized.nvim'
+[[plugins]]
 repo = 'Th3Whit3Wolf/one-nvim'
 depends = 'nvim-treesitter'
+[[plugins]]
+repo = 'Th3Whit3Wolf/space-nvim'
 [[plugins]] # 耗时15ms
 repo = 'krisfans/vim-monokai'
 hook_source = '''
-    let g:monokai_term_italic = 1
-    let g:monokai_gui_italic = 1
+    let g:monokai_term_italic = 0
+    let g:monokai_gui_italic = 0
 '''
 
 [[plugins]]
@@ -72,26 +80,26 @@ hook_add = '''
         hi! BuffetCurrentBuffer cterm=NONE ctermbg=119 ctermfg=8 guibg=#b8bb26 guifg=#282828
     endfunction
 '''
-#
-# gruvbox
-  # black        = '#282828',
-  # white        = '#ebdbb2',
-  # red          = '#fb4934',
-  # green        = '#b8bb26',
-  # blue         = '#83a598',
-  # yellow       = '#fe8019',
-  # gray         = '#a89984',
-  # darkgray     = '#3c3836',
-  # lightgray    = '#504945',
-  # inactivegray = '#7c6f64',
-# [[plugins]]
-# repo = 'vim-airline/vim-airline'
-# on_event = ['BufReadPre','BufNewFile']
-# hook_add = '''
+# #
+# # gruvbox
+#   # black        = '#282828',
+#   # white        = '#ebdbb2',
+#   # red          = '#fb4934',
+#   # green        = '#b8bb26',
+#   # blue         = '#83a598',
+#   # yellow       = '#fe8019',
+#   # gray         = '#a89984',
+#   # darkgray     = '#3c3836',
+#   # lightgray    = '#504945',
+#   # inactivegray = '#7c6f64',
+# # [[plugins]]
+# # repo = 'vim-airline/vim-airline'
+# # on_event = ['BufReadPre','BufNewFile']
+# # hook_add = '''
 
-#   let g:airline_powerline_fonts = 1
-#   let g:airline#extensions#vista#enabled = 0
-# '''
+# #   let g:airline_powerline_fonts = 1
+# #   let g:airline#extensions#vista#enabled = 0
+# # '''
 [[plugins]]
 repo = 'hoob3rt/lualine.nvim'
 on_event = ['BufReadPre','BufNewFile']
@@ -103,42 +111,7 @@ hook_source = '''
 # on_event = ['BufReadPre','BufNewFile']
 # depends = 'vim-devicons'
 # hook_add = '''
-#     let g:lightline = {
-#         \ 'colorscheme': 'gruvbox',
-#         \ 'enable' : {
-#         \ 'statusline': 1,
-#         \ 'tabline': 0
-#         \ },
-#         \ 'inactive': {
-#         \ 'left': [ ['filename' ] ],
-#         \ 'right': [[ 'filetype' ]]
-#         \ },
-#         \ 'active': {
-#         \   'left': [ [ 'mode', 'paste' ],
-#         \             [ 'cocstatus', 'readonly', 'filename', 'modified' ],
-#         \            [  'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]]
-#         \ },
-#         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-#         \ 'subseparator': { 'left': '', 'right': '' },
-#         \ 'component_function': {
-#         \   'filetype': 'MyFiletype',
-#         \   'fileformat': 'MyFileformat',
-#         \   'cocstatus': 'coc#status'
-#         \ },
-#         \ 'mode_map': {
-#         \ 'n' : 'N',
-#         \ 'i' : 'I',
-#         \ 'R' : 'R',
-#         \ 'v' : 'V',
-#         \ 'V' : 'VL',
-#         \ "\<C-v>": 'VB',
-#         \ 'c' : 'C',
-#         \ 's' : 'S',
-#         \ 'S' : 'SL',
-#         \ "\<C-s>": 'SB',
-#         \ 't': 'T',
-#         \ },
-#         \ }
+# source $VIM_PATH/config/lightline.vim
 # '''
 # hook_post_source = '''
 # function! MyFiletype()
@@ -197,177 +170,37 @@ hook_source = '''
 #     \ }
 #   " let g:nvim_tree_disable_default_keybindings = 1
 # '''
-# [[plugins]]
-# repo = 'kyazdani42/nvim-web-devicons'
+
 # [[plugins]]
 # repo = 'Shougo/defx.nvim'
 # on_cmd = 'Defx'
 # hook_source = '''
-# autocmd FileType defx  setlocal noautochdir
-# autocmd FileType defx setlocal shiftwidth=2  tabstop=2  softtabstop=2
-# autocmd FileType defx setlocal nonumber
-# autocmd FileType defx setlocal norelativenumber
-# autocmd FileType defx setlocal signcolumn=yes
-# call defx#custom#option('_', {
-#     \ 'winwidth': 30,
-#     \ 'split': 'vertical',
-#     \ 'direction': 'topleft',
-#     \ 'show_ignored_files': 0,
-#     \ 'columns': 'indent:indent:git:icons:filename',
-#     \ 'floating_preview': 1,
-#     \ 'vertical_preview': 1,
-#     \ 'preview_height': 50,
-#     \ })
-#
-#
-# call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
-#
-# " Events
-# " ---
-#
-# augroup user_plugin_defx
-# autocmd!
-#     " Define defx window mappings
-#     autocmd FileType defx call <SID>defx_mappings()
-#
-#     " Delete defx if it's the only buffer left in the window
-#     autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
-#
-#     " Move focus to the next window if current buffer is defx
-#     autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
-# augroup END
-#
-#     " Internal functions
-# function! s:defx_toggle_tree() abort
-#     " Open current file, or toggle directory expand/collapse
-#     if defx#is_directory()
-#         return defx#do_action('open_or_close_tree')
-#     endif
-#     return defx#do_action('multi', ['drop'])
-# endfunction
-#
-# function! s:defx_mappings() abort
-#     " Defx window keyboard mappings
-#
-#     nnoremap <silent><buffer><expr> l     defx#do_action('drop')
-#     nnoremap <silent><buffer><expr> h     defx#async_action('cd', ['..'])
-#     nnoremap <silent><buffer><expr> <cr>  <sid>defx_toggle_tree()
-#     nnoremap <silent><buffer><expr> <BS>  defx#async_action('cd', ['..'])
-#     nnoremap <silent><buffer><expr> st    defx#do_action('multi', [['drop', 'tabnew'], 'quit'])
-#     nnoremap <silent><buffer><expr> s     defx#do_action('open', 'botright vsplit')
-#     nnoremap <silent><buffer><expr> i     defx#do_action('open', 'botright split')
-#     nnoremap <silent><buffer><expr> N     defx#do_action('new_file')                      " 新建文件/文件夹
-#     nnoremap <silent><buffer><expr> D     defx#do_action('remove')                        " 删除
-#     nnoremap <silent><buffer><expr> Y     defx#do_action('copy')                          " 复制
-#     nnoremap <silent><buffer><expr> P     defx#do_action('paste')                         " 粘贴
-#     nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
-#     nnoremap <silent><buffer><expr> V     defx#do_action('preview')
-#     " nnoremap <silent><buffer><expr> N     defx#do_action('new_multiple_files')
-#     nnoremap <silent><buffer><expr> r     defx#do_action('rename')
-#     nnoremap <silent><buffer><expr> x     defx#do_action('execute_system')
-#     nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')
-#     nnoremap <silent><buffer><expr> yy    defx#do_action('yank_path')
-#     nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-#     nnoremap <silent><buffer><expr> q     defx#do_action('quit')
-#     nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-#     \ ':<C-u>wincmd w<CR>' :
-#     \ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
-#     " Defx's buffer management
-#     nnoremap <silent><buffer><expr> q      defx#do_action('quit')
-#     nnoremap <silent><buffer><expr> se     defx#do_action('save_session')
-#     nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
-#     nnoremap <silent><buffer><expr> <C-g>  defx#do_action('print')
-#     " File/dir management
-#     nnoremap <silent><buffer><expr><nowait> c  defx#do_action('copy')
-#     nnoremap <silent><buffer><expr><nowait> m  defx#do_action('move')
-#     nnoremap <silent><buffer><expr><nowait> p  defx#do_action('paste')
-#     nnoremap <silent><buffer><expr><nowait> r  defx#do_action('rename')
-#     nnoremap <silent><buffer><expr> cd         defx#do_action('change_vim_cwd')                " 将当前目录设置为工作目录
-#
-#     " Change directory
-#     nnoremap <silent><buffer><expr><nowait> \  defx#do_action('cd', getcwd())
-#     nnoremap <silent><buffer><expr><nowait> &  defx#do_action('cd', getcwd())
-#     nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
-#     nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
-#     nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
-#
-#     " Selection
-#     nnoremap <silent><buffer><expr> *  defx#do_action('toggle_select_all')
-#     nnoremap <silent><buffer><expr><nowait> <Space>
-#     \ defx#do_action('toggle_select') . 'j'
-#
-#     nnoremap <silent><buffer><expr> S  defx#do_action('toggle_sort', 'Time')
-#     nnoremap <silent><buffer><expr> C
-#     \ defx#do_action('toggle_columns', 'indent:mark:filename:type:size:time')
-# endfunction
-#     autocmd FileType defx setlocal nonumber
-#     autocmd FileType defx setlocal norelativenumber
-#     autocmd FileType defx setlocal signcolumn=yes
-# '''
-
-# [[plugins]]
-# repo = 'kristijanhusak/defx-icons'
-# on_source = 'defx.nvim'
-# hook_add = '''
-#     let g:defx_icons_column_length = 2
-#     let g:defx_icons_mark_icon = ''
-#     let g:defx_icons_default_icon = ''
-# '''
-#
-
-# [[plugins]] # 文件树
-# repo = 'lambdalisue/fern.vim'
-# on_cmd = 'Fern'
-# hook_source = '''
-# let g:fern#renderer = "nerdfont"
-#
-# function! s:fern_local_init() abort
-#     nmap <buffer>
-#         \ <Plug>(fern-action-expand)
-#         \ <Plug>(fern-action-expand:stay)
-#     " nmap <buffer>
-#         "\ <Plug>(fern-my-leave-and-tcd)
-#         "\ <Plug>(fern-action-leave)<Plug>(fern-wait)<Plug>(fern-action-tcd:root)
-#     nmap <buffer><expr>
-#         \ <Plug>(fern-my-open-or-expand-or-collapse)
-#         \ fern#smart#leaf(
-#         \   "<Plug>(fern-action-open)",
-#         \   "<Plug>(fern-action-expand)",
-#         \   "<Plug>(fern-action-collapse)",
-#         \ )
-#     nmap <buffer><nowait> <Return>    <Plug>(fern-my-open-or-expand-or-collapse)
-#     nmap <buffer><nowait> <Backspace> <Plug>(fern-action-leave)
-#     nmap <buffer><nowait> l <Plug>(fern-action-open-or-enter)
-#     nmap <buffer><nowait> h <Plug>(fern-action-leave)
-#     nmap <buffer><nowait> . <Plug>(fern-action-hidden:toggle)
-#     nmap <buffer><nowait> N <Plug>(fern-action-new-file)
-#     nmap <buffer><nowait> D <Plug>(fern-action-remove)
-#     nmap <buffer><nowait> T <Plug>(fern-action-terminal)
-# endfunction
-#
-# augroup my-fern
-#   autocmd! *
-#   autocmd FileType fern call s:fern_local_init()
-#   autocmd FileType fern setlocal shiftwidth=2  tabstop=2  softtabstop=2
-# augroup END
-# '''
-# [[plugins]] # 文件树图标
-# repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-# on_source = 'fern.vim'
-# depends = 'nerdfont.vim'
-# hook_source = '''
-# let g:fern#renderer#nerdfont#leading = "  "
-# '''
-# [[plugins]]
-# repo = 'lambdalisue/nerdfont.vim'
-# [[plugins]]
-# repo = 'lambdalisue/glyph-palette.vim'
-# hook_source = '''
-# augroup my-glyph-palette
-#   autocmd! *
-#   autocmd FileType fern call glyph_palette#apply()
-#   autocmd FileType nerdtree,startify call glyph_palette#apply()
-# augroup END
+# source $VIM_PATH/config/defx.vim
 # '''
 
 
+[[plugins]] # 文件树
+repo = 'lambdalisue/fern.vim'
+on_cmd = 'Fern'
+hook_source = '''
+    source $VIM_PATH/config/fern.vim
+'''
+[[plugins]] # 文件树图标
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+on_source = 'fern.vim'
+depends = 'nerdfont.vim'
+hook_source = '''
+let g:fern#renderer#nerdfont#leading = "  "
+'''
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim'
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
+on_source = 'fern.vim'
+hook_source = '''
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
+'''

@@ -46,7 +46,7 @@
     //diagnostic
     "diagnostic.messageTarget": "echo",
     "diagnostic.virtualText": true,
-    "diagnostic.virtualTextPrefix": "➤",
+    "diagnostic.virtualTextPrefix": "➤ ",
     "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "⚡",
     "diagnostic.infoSign": "●",

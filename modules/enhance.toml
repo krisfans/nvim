@@ -19,7 +19,7 @@ depends = 'nvim-treesitter'
 repo = 'andymass/vim-matchup'
 on_event = ['BufReadPre','BufNewFile']
 # [[plugins]]
-# rep0 = 'folke/trouble.nvim'
+# repo = 'folke/trouble.nvim'
 # [[plugins]]
 # repo = 'luochen1990/rainbow'
 # on_ft = [
@@ -81,69 +81,7 @@ on_map = { nx = '<Plug>' }
 repo = 'liuchengxu/vista.vim'
 on_cmd = ['Vista', 'Vista!', 'Vista!!']
 hook_source = '''
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_disable_statusline = 1
-" let g:vista_default_executive = 'ctags'
-" let g:vista_echo_cursor_strategy = 'echo'
-" let g:vista_echo_cursor = 0
-let g:vista_vimwiki_executive = 'markdown'
-let g:vista_executive_for = {
-    \ 'c': 'coc',
-    \ 'cpp': 'coc',
-    \ 'vimwiki': 'markdown',
-    \ 'pandoc': 'markdown',
-    \ 'markdown': 'toc',
-    \ 'yaml': 'coc',
-    \ 'typescript': 'coc',
-    \ 'typescriptreact': 'coc',
-    \ }
-let g:vista#renderer#icons = {}
-let g:vista#renderer#icons = {
-    \ 'func': "",
-    \ 'function': "",
-    \ 'functions': "",
-    \ 'var': "𝒙",
-    \ 'variable': "𝒙",
-    \ 'variables': "𝒙",
-    \ 'const': "",
-    \ 'constant': "",
-    \ 'constructor': "略",
-    \ 'method': "",
-    \ 'package': "",
-    \ 'packages': "",
-    \ 'enum': "",
-    \ 'enummember': "",
-    \ 'enumerator': "",
-    \ 'module': "",
-    \ 'modules': "",
-    \ 'type': "",
-    \ 'typedef': "",
-    \ 'types': "",
-    \ 'field': "",
-    \ 'fields': "",
-    \ 'macro': "",
-    \ 'macros': "",
-    \ 'map': "פּ",
-    \ 'class': "",
-    \ 'augroup': "פּ",
-    \ 'struct': "",
-    \ 'union': "鬒",
-    \ 'member': "",
-    \ 'target': "",
-    \ 'property': "襁",
-    \ 'prototype': "襁",
-    \ 'interface': "",
-    \ 'namespace': "",
-    \ 'subroutine': "羚",
-    \ 'implementation': "",
-    \ 'typeParameter': "",
-    \ 'default': "",
-    \ 'label': '笠',
-    \ 'chapter': '',
-    \ 'section': '',
-    \ 'subsection': '',
-    \ 'subsubsection': '',
-    \ }
+    source $VIM_PATH/config/vista.vim
 '''
 
 
@@ -188,26 +126,7 @@ on_map = '<Plug>(EasyAlign)'
 # build = 'bash install.sh'
 # on_map = { n = '<Plug>' }
 # hook_source = '''
-#     let g:clap_cache_directory = $DATA_PATH . '/clap'
-#     let g:clap_layout = { 'relative': 'editor' }
-#     " let g:clap_theme = 'material_design_dark'
-#     let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
-#     " let g:clap_layout = { 'relative': 'editor' }
-#     " let g:clap_enable_icon = 1
-#     " let g:clap_search_box_border_style = 'curve'
-#     " let g:clap_provider_grep_enable_icon = 1
-#     " let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
-#     " " A funtion to config highlight of ClapSymbol
-#     " " when the background color is opactiy
-#     " function! s:ClapSymbolHL() abort
-#     "     let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
-#     "     if s:current_bgcolor == ''
-#     "         hi ClapSymbol guibg=NONE ctermbg=NONE
-#     "     endif
-#     " endfunction
-#                 "
-#     " autocmd User ClapOnEnter call s:ClapSymbolHL()
-#     hi default link ClapPreview Pmenu
+# source $VIM_PATH/config/clap.vim
 # '''
 # [[plugins]]
 # repo = 'vn-ki/coc-clap'
@@ -228,67 +147,6 @@ require('telescope').setup({
 EOF
 '''
 
-# [[plugins]]
-# repo = 'junegunn/fzf'
-# build ='./install --all'
-# merged = 0
-# [[plugins]]
-# repo = 'junegunn/fzf.vim'
-# hook_source = '''
-# let g:vista_fzf_preview = ['down:50%']
-# let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-# set rtp+=/usr/local/opt/fzf
-# set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
-# let g:coc_fzf_preview='right:50%'
-# let g:fzf_preview_window = 'right:50%'
-#
-# "" Change the position, if set this, the window will split right
-# "let g:fzf_layout = { 'right': '~50%' }
-#
-# let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-#
-# "nnoremap <silent> <leader>a :Ag<cr>
-# nnoremap <silent> <leader>a :Rg<cr>
-# nnoremap <silent> <leader>f :Files<cr>
-# nnoremap <silent> <leader>b :Buffers<cr>
-# nnoremap <silent> <leader>e :CocFzfList extensions<cr>
-# nnoremap <silent> <leader>ss :Snippets<cr>
-# nnoremap <silent> <leader>ct :Colors<cr>
-# nnoremap <silent> <leader>mk :Marks<cr>
-#
-# " For fuzzy finding current file lines, much better than '/' to search
-# nnoremap <silent> <leader>l :BLines<cr>
-#
-# " Git searches
-# nnoremap <silent> <leader>gf :GFiles?<cr>
-# nnoremap <silent> <leader>gl :Commits<cr>
-# nnoremap <silent> <leader>si :History<cr>
-#
-# command! -bang Config call fzf#vim#files($root, <bang>0)
-# nnoremap <silent> <leader>w :Config<cr>
-#
-#
-# let g:fzf_colors =
-#   \ { 'fg':      ['fg', 'Normal'],
-#     \ 'bg':      ['bg', 'Normal'],
-#     \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-#     \ 'bg+':     ['bg', 'Keyword', 'CursorColumn'],
-#     \ 'hl+':     ['fg', 'Statement'],
-#     \ 'info':    ['fg', 'PreProc'],
-#     \ 'border':  ['fg', 'Ignore'],
-#     \ 'prompt':  ['fg', 'Conditional'],
-#     \ 'pointer': ['fg', 'Exception'],
-#     \ 'marker':  ['fg', 'Keyword'],
-#     \ 'spinner': ['fg', 'Label'],
-#     \ 'header':  ['fg', 'Comment']
-#     \ }
-# '''
-# [[plugins]]
-# repo = 'yuki-yano/fzf-preview.vim'
-# rev = 'release/rpc'
-# hook_source = '''
-# let g:fzf_preview_use_dev_icons = 1
-# '''
 # [[plugins]]
 # repo = 'Yggdroot/LeaderF'
 # build = ':LeaderfInstallCExtension'
