@@ -48,11 +48,3 @@ function! initself#definition_other_window() abort
     exec "lua vim.lsp.buf.definition()"
   endif
 endfunction
-
-" COC select the current word
-function! initself#select_current_word()
-    if !get(g:, 'coc_cursors_activated', 0)
-        return "\<Plug>(coc-cursors-word)"
-    endif
-    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
-endfunction

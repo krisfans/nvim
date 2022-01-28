@@ -1,8 +1,6 @@
 
 if &compatible
-  " vint: -ProhibitSetNoCompatible
   set nocompatible
-  " vint: +ProhibitSetNoCompatible
 endif
 
 " Set main configuration directory as parent directory
@@ -10,7 +8,7 @@ let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
 " Set data/cache directory as $XDG_CACHE_HOME/vim
 let $DATA_PATH =
-  \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
+  \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/nvim')
 
 " Disable vim distribution plugins
 let g:loaded_gzip = 1
