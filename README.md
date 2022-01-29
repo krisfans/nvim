@@ -9,6 +9,15 @@ my vimrc for nvim
 │   ├── initself.vim    # 核心
 │   └── theme.vim       # 配色主题
 ├── coc-settings.json # coc配置文件
+├── config         # 某些插件配置
+│   ├── clap.vim
+│   ├── coc.vim
+│   ├── ddc.vim
+│   ├── defx.vim
+│   ├── fern.vim
+│   ├── lightline.vim
+│   ├── vimtex.vim
+│   └── vista.vim
 ├── core
 │   ├── core.vim    # 核心
 │   ├── dein.vim    # 插件管理
@@ -48,16 +57,28 @@ my vimrc for nvim
 
 ```
 
+## 文件加载顺序
+
+[init.vim](./init.vim)->[core.vim](./core/core.vim)->[dein.vim](./core/dein.vim)
+->[general.vim](./core/general.vim)->[event.vim](./core/event.vim)
+->[pmap.vim](./core/pmap.vim)->[vmap.vim](./core/vmap.vim)
+
 ## 插件管理器
+
 插件管理器是`dein`
 
 ## 主题
+
 文件树用的`defx`
 ![program](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/program.png)
+
 ## 补全
+
 使用cpm补全
 ![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/complete.png)
 ![complete](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/lsp.png)
+
 ## 查找
+
 使用`telescope`
 ![fuzzy](https://github.com/krisfans/nvim/blob/nvim_lsp/fig/fuzzy.png)
