@@ -10,7 +10,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'sorters': ['sorter_rank'],
     \ },
     \ 'nvim-lsp': {
-    \   'maxSize': 500,
+    \   'maxSize': 100,
     \   'mark': 'LSP',
     \   'minAutoCompleteLength': 1,
     \   'forceCompletionPattern': '\.\w*|:\w*|->\w*|\w*<'
@@ -38,6 +38,7 @@ call ddc#custom#patch_global('sourceOptions', {
     \ },
     \ 'file': {
     \   'mark': 'F',
+    \   'isVolatile': v:true,
     \   'minAutoCompleteLength': 100,
     \   'forceCompletionPattern': '[\./\\\\]'
     \ },
