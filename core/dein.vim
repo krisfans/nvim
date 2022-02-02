@@ -1,4 +1,3 @@
-
 " Set main configuration directory as parent directory   ~/config/nvim
 let $VIM_PATH =
     \ get(g:, 'etc_vim_path',

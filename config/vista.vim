@@ -9,7 +9,7 @@ let g:vista_executive_for = {
     \ 'cpp': 'coc',
     \ 'vimwiki': 'markdown',
     \ 'pandoc': 'markdown',
-    \ 'markdown': 'toc',
+    \ 'markdown': 'coc',
     \ 'yaml': 'coc',
     \ 'typescript': 'coc',
     \ 'typescriptreact': 'coc',

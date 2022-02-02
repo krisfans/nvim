@@ -25,12 +25,14 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-" 刷新补全列表
-autocmd TextChangedI * silent call coc#refresh()
-autocmd CursorMovedI * silent call coc#refresh()
-autocmd TextChangedP * silent call coc#refresh()
+if dein#tap('coc.nvim')
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" 刷新补全列表
+    " autocmd TextChangedI * silent call coc#refresh()
+    " autocmd CursorMovedI * silent call coc#refresh()
+    " autocmd TextChangedP * silent call coc#refresh()
+endif
 "Use tab for trigger completion with characters ahead and navigate
 inoremap <silent><expr> <TAB>
 \ pumvisible() ? "\<C-n>" :
@@ -44,3 +46,4 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+

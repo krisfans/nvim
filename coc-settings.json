@@ -29,10 +29,19 @@
         "event": "ﮦ",
         "file": "",
         "folder": "",
-        "snippet": "﬌",
+        "snippet": "",
         "typeParameter": "",
         "default": ""
     },
+    //pairs
+    // "pairs.enableCharacters": [
+    //     "(",
+    //     "[",
+    //     "{",
+    //     "'",
+    //     "\"",
+    //     "`"
+    // ],
     //diagnostic
     "diagnostic.messageTarget": "echo",
     "diagnostic.virtualText": true,
@@ -84,10 +93,13 @@
             ],
             "open"
         ],
+        "n": "addFile",
         "l": "cd",
         "N": "addFile",
         "D": "delete"
     },
+    //coc-clangd
+    "semanticTokens.filetypes": ["c","cpp"],
     "clangd.fallbackFlags": [
         "-lm"
     ]

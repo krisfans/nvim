@@ -1,4 +1,3 @@
-
 function! SetServerName()
     if has('win32')
         let nvim_server_file = $TEMP . "/curnvimserver.txt"
@@ -66,18 +65,7 @@ let g:vimtex_toc_config = {
     \ 'split_pos' : 'vert botright',
     \ }
 
-
-" augroup vime_vimtex_group
-" autocmd!
-" autocmd FileType tex setl tw=80 fo+=tmM fo-=l spell spelllang=nl,en_gb
-" autocmd FileType tex setl fo+=t
-" autocmd FileType tex setl fo-=l
-" autocmd FileType tex setl fo+=mM
-" autocmd FileType tex setl spell
-" autocmd FileType tex setl spelllang=nl,en_gb
-" " autocmd FileType tex setl conceallevel=0
-" augroup END
-augroup vimtex_group
+augroup my_vimtex_group
     autocmd FileType tex setl nospell
     autocmd FileType tex set syn=tex
 augroup END

@@ -1,14 +1,14 @@
 augroup common " {{{
     autocmd!
     " Reload vim config automatically
-    autocmd BufWritePost $VIM_PATH/{*.vim,*.yaml,vimrc} nested
+    autocmd BufWritePost $VIM_PATH/{init.vim,*.yaml,vimrc} nested
                 \ source $MYVIMRC | redraw
 
     " Reload Vim script automatically if setlocal autoread
-    autocmd BufWritePost,FileWritePost *.vim nested
-                \ if &l:autoread > 0 | source <afile> |
-                \   echo 'source ' . bufname('%') |
-                \ endif
+    " autocmd BufWritePost,FileWritePost *.vim nested
+    "            \ if &l:autoread > 0 | source <afile> |
+    "            \   echo 'source ' . bufname('%') |
+    "            \ endif
 
     " Update filetype on save if empty
     autocmd BufWritePost * nested

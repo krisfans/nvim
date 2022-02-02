@@ -1,6 +1,7 @@
 [[plugins]] # coc
 repo = 'neoclide/coc.nvim'
-on_event = 'VimEnter'
+if = 'g:registered_lsp ==# "coc"'
+# on_event = 'VimEnter'
 merged = 0
 rev = 'release'
 hook_add = '''
@@ -11,7 +12,6 @@ hook_add = '''
 repo = 'honza/vim-snippets'
 if = 'has("python3")'
 merged = 0
-
 
 [[plugins]] # 自动配对
 repo = 'windwp/nvim-autopairs'
@@ -31,6 +31,156 @@ npairs.add_rules({
 })
 EOF
 '''
+# [[plugins]]
+# repo = 'LunarWatcher/auto-pairs'
 
 
+[[plugins]] # nvim_lsp
+repo = 'neovim/nvim-lspconfig'
+if = 'g:registered_lsp ==# "nvim_lsp"'
+on_event = ['BufReadPre','BufNewFile']
+hook_source ='''
+    lua require('lsp')
+'''
+[[plugins]]
+# repo = 'glepnir/lspsaga.nvim'
+repo = 'Elysium1436/lspsaga.nvim'
+if = 'g:registered_lsp ==# "nvim_lsp"'
+on_event = ['BufReadPre','BufNewFile']
+
+[[plugins]] # lsp符号
+repo = 'onsails/lspkind-nvim'
+on_source = 'nvim-cmp'
+
+
+[[plugins]]
+repo = 'dcampos/nvim-snippy'
+if = 'g:registered_snippet ==# "snippy"'
+on_event = 'InsertEnter'
+hook_source = '''
+  imap <expr> <Tab> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-next)' : '<Tab>'
+  smap <expr> <Tab> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
+  imap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
+  smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<Tab>'
+'''
+
+# [[plugins]]
+# repo = 'SirVer/ultisnips'
+# hook_source = '''
+# let g:UltiSnipsExpandTrigger="<cr>"
+# let g:UltiSnipsJumpForwardTrigger="<tab>"
+# let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+# '''
+
+[[plugins]] # vsnip
+repo = 'hrsh7th/vim-vsnip'
+if = 'g:registered_snippet ==# "vsnip"'
+on_event = 'InsertEnter'
+hook_add = '''
+    let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
+    imap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+    smap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
+'''
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+on_source = 'vim-vsnip'
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_event = 'InsertEnter'
+# [[plugins]]
+# repo = 'krisfans/friendly-snippets'
+# on_event = 'InsertEnter'
+#
+#
+[[plugins]] # cmp 补全
+repo = 'hrsh7th/nvim-cmp'
+if = 'g:registered_completion ==# "cmp"'
+on_event = 'InsertEnter'
+hook_source = '''
+    lua require('completion')
+'''
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'dcampos/cmp-snippy'
+on_source = 'nvim-cmp'
+
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+if = 'g:registered_completion ==# "ddc"'
+[[plugins]] # ddc 补全
+repo = 'Shougo/ddc.vim'
+if = 'g:registered_completion ==# "ddc"'
+depends = ['context_filetype.vim', 'denops.vim']
+on_event = 'InsertEnter'
+hook_source = '''
+    source $VIM_PATH/config/ddc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_source = 'ddc.vim'
+hook_source = '''
+    let g:popup_preview_config = {
+          \'border': v:false,
+          \ }
+call popup_preview#enable()
+'''
+
+
+# # [[plugins]]
+# # repo = 'Shougo/pum.vim'
+# # on_source = 'ddc.vim'
+# # hook_source = '''
+# #  inoremap <silent><expr> <TAB>
+# #        \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+# #        \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+# #        \ '<TAB>' : ddc#manual_complete()
+# #   inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+# #   inoremap <C-n>   <Cmd>call pum#map#select_relative(+1)<CR>
+# #   inoremap <C-p>   <Cmd>call pum#map#select_relative(-1)<CR>
+# #   inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+# #   inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+# #
+# #   call pum#set_option('setline_insert', v:true)
+# # '''
+# #
 

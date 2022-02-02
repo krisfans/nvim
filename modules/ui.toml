@@ -16,6 +16,7 @@ hook_source = '''
 '''
 [[plugins]]
 repo = 'folke/lsp-colors.nvim'
+on_event = ['BufReadPre','BufNewFile']
 
 # 主题
 [[plugins]]
@@ -25,10 +26,6 @@ repo = 'lifepillar/vim-gruvbox8'
 hook_source = '''
     let g:gruvbox_italics = 0
 '''
-# [[plugins]]
-# repo = 'glepnir/zephyr-nvim'
-# merged = 0
-# depends = 'nvim-treesitter'
 [[plugins]]
 repo = 'hardcoreplayers/oceanic-material'
 [[plugins]]
@@ -69,6 +66,7 @@ repo = 'bagrat/vim-buffet'
 depends = 'vim-devicons'
 on_event = ['BufReadPre','BufNewFile']
 hook_add = '''
+    let g:buffet_show_index = 1
     let g:buffet_powerline_separators = 1
     let g:buffet_left_trunc_icon = "\uf0a8"
     let g:buffet_right_trunc_icon = "\uf0a9"
@@ -171,36 +169,43 @@ hook_source = '''
 #   " let g:nvim_tree_disable_default_keybindings = 1
 # '''
 
-# [[plugins]]
-# repo = 'Shougo/defx.nvim'
-# on_cmd = 'Defx'
-# hook_source = '''
-# source $VIM_PATH/config/defx.vim
-# '''
 
 
-[[plugins]] # 文件树
+[[plugins]] # defx 文件树
+repo = 'Shougo/defx.nvim'
+on_cmd = 'Defx'
+hook_source = '''
+    source $VIM_PATH/config/defx.vim
+'''
+[[plugins]] # defx 文件树图标
+repo = 'kristijanhusak/defx-icons'
+on_source = 'defx.nvim'
+hook_add = '''
+    let g:defx_icons_column_length = 2
+    let g:defx_icons_mark_icon = ''
+    let g:defx_icons_default_icon = ''
+'''
+[[plugins]] # defx git
+repo = 'kristijanhusak/defx-git'
+on_source = 'defx.nvim'
+
+
+[[plugins]] # Fern文件树
 repo = 'lambdalisue/fern.vim'
 on_cmd = 'Fern'
 hook_source = '''
     source $VIM_PATH/config/fern.vim
 '''
 [[plugins]] # 文件树图标
+repo = 'lambdalisue/nerdfont.vim'
+on_event = ['BufReadPre','BufNewFile']
+[[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 on_source = 'fern.vim'
 depends = 'nerdfont.vim'
-hook_source = '''
-let g:fern#renderer#nerdfont#leading = "  "
-'''
-[[plugins]]
-repo = 'lambdalisue/nerdfont.vim'
 [[plugins]]
 repo = 'lambdalisue/glyph-palette.vim'
 on_source = 'fern.vim'
-hook_source = '''
-augroup my-glyph-palette
-  autocmd! *
-  autocmd FileType fern call glyph_palette#apply()
-  autocmd FileType nerdtree,startify call glyph_palette#apply()
-augroup END
-'''
+[[plugins]] # Fern git
+repo = 'lambdalisue/fern-git-status.vim'
+depends = 'fern.vim'

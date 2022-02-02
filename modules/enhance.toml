@@ -18,6 +18,10 @@ depends = 'nvim-treesitter'
 [[plugins]]
 repo = 'andymass/vim-matchup'
 on_event = ['BufReadPre','BufNewFile']
+
+[[plugins]]
+repo = 'nathom/filetype.nvim'
+hook_add = 'let g:did_load_filetypes = 1'
 # [[plugins]]
 # repo = 'folke/trouble.nvim'
 # [[plugins]]

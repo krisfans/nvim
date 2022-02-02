@@ -2,8 +2,8 @@
 "--------------------------"
 "     vim-buffet Keymap    "
 "--------------------------"
-nnoremap  ]b :<C-u>bp<CR>
-nnoremap  [b :<C-u>bn<CR>
+nnoremap  ]b :<C-u>bn<CR>
+nnoremap  [b :<C-u>bp<CR>
 nnoremap <silent> <Leader>bc :Bonly<CR>
 nnoremap <silent> <Leader>bx :Bw<CR>
 nmap <leader>1 <Plug>BuffetSwitch(1)
@@ -23,10 +23,9 @@ nnoremap <silent> <F10>
 nnoremap <silent> <F9>
             \ :CocCommand explorer<cr>
 nnoremap <silent> <F12>
-  \ :<C-u>Fern -drawer -toggle %:h<CR>
-" "--------------------------"
-" "     vim-clap Keymap      "
-" "--------------------------"
+            \ :<C-u>Fern -drawer -toggle %:h<CR>
+
+" "     vim-clap Keymap
 " nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
 " nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
 " nnoremap <silent> <Leader>fc :<C-u>Clap colors<CR>
@@ -84,8 +83,6 @@ function! InitCaw() abort
     endif
 endfunction
 autocmd FileType * call InitCaw()
-call InitCaw()
-
 
 
 nmap <silent> sa <Plug>(operator-sandwich-add)
@@ -135,38 +132,6 @@ xmap <silent> if <Plug>(textobj-function-i)
 "--------------------------"
 "     Coc Keymap           "
 "--------------------------"
-" CocLSP
-" nmap <silent> gd <Plug>(coc-definition)
-nmap gd             :call function#CocJumpDefinition()<cr>
-nmap gr             <Plug>(coc-references)
-nmap gi             <Plug>(coc-implementation)
-nmap <Leader>lr     <Plug>(coc-rename)
-nmap <Leader>lT     <Plug>(coc-type-definition)
-nmap <leader>lf     :call CocAction('format')<CR>
-nmap <leader>lk     :call CocActionAsync('doHover')<CR>
-nmap  [e            <Plug>(coc-diagnostic-prev)
-nmap  ]e            <Plug>(coc-diagnostic-next)
-nmap <Leader>lt     :<C-u>Vista!!<CR>
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-cursor)
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>lq  <Plug>(coc-fix-current)
-" Do default action for next item.
-nmap <silent> [a  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nmap <silent> ]a  :<C-u>CocPrev<CR>
-" Remap for rename current word
-" Remap for format selected region
-vmap <Leader>cf  <Plug>(coc-format-selected)
-nmap <Leader>cf  <Plug>(coc-format-selected)
-" Fix autofix problem of current line
-nmap <Leader>cF  <Plug>(coc-fix-current)
-" Remap keys for gotos
 
 
 
@@ -187,14 +152,6 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 command! -nargs=0 OR  :call CocAction('runCommand', 'editor.action.organizeImport')
 nnoremap <silent> <Leader>co :<C-u>OR<CR>
 
-" multiple cursors
-nmap <expr> <silent> <C-n> <SID>select_current_word()
-function! s:select_current_word()
-    if !get(b:, 'coc_cursors_activated', 0)
-        return "\<Plug>(coc-cursors-word)"
-    endif
-    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
-endfunc
 
 " coc-snippet
 nmap <leader>s :CocCommand snippets.editSnippets<cr>
@@ -219,3 +176,66 @@ command! -nargs=0 PluginClean :call map(dein#check_clean(), "delete(v:val, 'rf')
 nnoremap Q :Bclose<cr>
 
 vmap <Enter> <Plug>(EasyAlign)
+
+
+function! s:Lsp_my_mapping()
+if dein#tap('coc.nvim') && g:registered_lsp ==# 'coc'
+    " CocLSP
+    " nmap <silent> gd <Plug>(coc-definition)
+    nmap gd             :call function#JumpDefinition()<cr>
+    nmap gr             <Plug>(coc-references)
+    nmap gi             <Plug>(coc-implementation)
+    nmap <Leader>lr     <Plug>(coc-rename)
+    nmap <Leader>lT     <Plug>(coc-type-definition)
+    nmap <leader>lf     :call CocAction('format')<CR>
+    nmap <leader>lk     :call CocActionAsync('doHover')<CR>
+    nmap  [e            <Plug>(coc-diagnostic-prev)
+    nmap  ]e            <Plug>(coc-diagnostic-next)
+    nmap <Leader>lt     :<C-u>Vista!!<CR>
+    " Applying codeAction to the selected region.
+    xmap <leader>la  <Plug>(coc-codeaction-selected)
+    nmap <leader>la  <Plug>(coc-codeaction-selected)
+    nmap <leader>ca  <Plug>(coc-codeaction-cursor)
+    " Remap keys for applying codeAction to the current buffer.
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    " Apply AutoFix to problem on the current line.
+    nmap <leader>lq  <Plug>(coc-fix-current)
+    " Do default action for next item.
+    nmap <silent> [a  :<C-u>CocNext<CR>
+    " Do default action for previous item.
+    nmap <silent> ]a  :<C-u>CocPrev<CR>
+    " Remap for rename current word
+    " Remap for format selected region
+    vmap <Leader>cf  <Plug>(coc-format-selected)
+    nmap <Leader>cf  <Plug>(coc-format-selected)
+    " Fix autofix problem of current line
+    nmap <Leader>cF  <Plug>(coc-fix-current)
+
+elseif dein#tap('nvim-lspconfig') && g:registered_lsp ==# 'nvim_lsp'
+        " Jump Diagnostic and Show Diagnostics
+    nnoremap <silent>       <space>cd :Lspsaga show_line_diagnostics<CR>
+    nnoremap gD             <cmd>lua vim.lsp.buf.declaration()<CR>
+    nnoremap gd             :call function#JumpDefinition()<CR>
+    " nnoremap gd             :<C-u>call initself#definition_other_window()<CR>
+    nnoremap gr             <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap gi             <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap gh             :Lspsaga lsp_finder<CR>
+    nnoremap gs             :Lspsaga signature_help<CR>
+    nnoremap <space>lf     <cmd>lua vim.lsp.buf.formatting()<CR>
+    nnoremap <space>lk     <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <space>ls     :Lspsaga signature_help<CR>
+    nnoremap <space>wa      <cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
+    nnoremap <space>wr      <cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
+    nnoremap <space>wl      <cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+    nnoremap <space>D       <cmd>lua vim.lsp.buf.type_definition()<CR>
+    nnoremap <space>lr      :Lspsaga rename<CR>
+    nnoremap <space>ld      :Lspsaga show_line_diagnostics<CR>
+    nnoremap [e             :Lspsaga diagnostic_jump_prev<CR>
+    nnoremap ]e             :Lspsaga diagnostic_jump_next<CR>
+    nnoremap <space>lq      <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+    nnoremap <space>ca     :Lspsaga code_action<CR>
+    vnoremap <space>ca     :<C-U>Lspsaga range_code_action<CR>
+endif
+endfunction
+call s:Lsp_my_mapping()
+

@@ -1,8 +1,5 @@
-
 if &compatible
-  " vint: -ProhibitSetNoCompatible
   set nocompatible
-  " vint: +ProhibitSetNoCompatible
 endif
 
 " Set main configuration directory as parent directory
@@ -11,6 +8,15 @@ let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 " Set data/cache directory as $XDG_CACHE_HOME/nvim
 let $DATA_PATH =
   \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/nvim')
+
+" LSP 客服端 coc nivm_lsp
+let g:registered_lsp = "nvim_lsp"
+" 补全插件 coc or ddc or cmp
+let g:registered_completion = "cmp"
+" 代码片段 vnsip ultisnip snippy
+let g:registered_snippet = "snippy"
+
+
 
 " Disable vim distribution plugins
 let g:loaded_gzip = 1

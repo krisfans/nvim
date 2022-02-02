@@ -59,13 +59,22 @@ endfunction
 
 
 " Jump definition in other window
-function! function#CocJumpDefinition() abort
-  if winnr('$') >= 4 || winwidth(0) < 120
-    exec "normal \<Plug>(coc-definition)"
-  else
-    exec 'vsplit'
-    exec "normal \<Plug>(coc-definition)"
-  endif
+function! function#JumpDefinition() abort
+    if winnr('$') >= 4 || winwidth(0) < 120
+        if g:registered_lsp ==# 'coc'
+            exec "normal \<Plug>(coc-definition)"
+        else
+            exec "<cmd>lua vim.lsp.buf.definition()"
+        endif
+    else
+        if g:registered_lsp ==# 'coc'
+            exec 'vsplit'
+            exec "normal \<Plug>(coc-definition)"
+        else
+            exec 'vsplit'
+            exec "lua vim.lsp.buf.definition()"
+        endif
+    endif
 endfunction
 
 
