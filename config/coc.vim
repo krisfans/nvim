@@ -10,10 +10,8 @@ let g:coc_global_extensions =[
     \ 'coc-texlab',
     \ 'coc-emoji',
     \ 'coc-lists',
-    \ 'coc-yaml',
     \ 'coc-vimlsp',
     \ 'coc-pyright',
-    \ 'coc-pairs',
     \ 'coc-toml',
     \ 'coc-explorer'
     \ ]

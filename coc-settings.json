@@ -33,16 +33,6 @@
         "typeParameter": "",
         "default": ""
     },
-    "yank.highlight.enable": false,
-    //pairs
-    "pairs.enableCharacters": [
-        "(",
-        "[",
-        "{",
-        "'",
-        "\"",
-        "`"
-    ],
     //diagnostic
     "diagnostic.messageTarget": "echo",
     "diagnostic.virtualText": true,
@@ -98,8 +88,6 @@
         "N": "addFile",
         "D": "delete"
     },
-    //coc-clangd
-    "clangd.semanticHighlighting": true,
     "clangd.fallbackFlags": [
         "-lm"
     ]

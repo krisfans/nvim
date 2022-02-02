@@ -13,26 +13,24 @@ if = 'has("python3")'
 merged = 0
 
 
-# [[plugins]]
-# repo = 'windwp/nvim-autopairs'
-# on_event = 'InsertEnter'
-# hook_source = '''
-# lua << EOF
-# --require('nvim-autopairs').setup()
-# require('nvim-autopairs').setup()
-# local Rule = require('nvim-autopairs.rule')
-# local remap = vim.api.nvim_set_keymap
-# local npairs = require('nvim-autopairs')
-# -- you can use some builtin condition
-# local cond = require('nvim-autopairs.conds')
-# npairs.add_rules({
-#   Rule("$", "$",{"tex", "latex"})
-#     -- don't add a pair if  the previous character is xxx
-#     :with_pair(cond.not_before_regex_check("xxx", 3))
-#      }
-# )
-# EOF
-# '''
+[[plugins]] # 自动配对
+repo = 'windwp/nvim-autopairs'
+on_event = 'InsertEnter'
+hook_source = '''
+lua << EOF
+require('nvim-autopairs').setup()
+    local Rule = require('nvim-autopairs.rule')
+    local remap = vim.api.nvim_set_keymap
+    local npairs = require('nvim-autopairs')
+-- you can use some builtin condition
+    local cond = require('nvim-autopairs.conds')
+npairs.add_rules({
+    Rule("$", "$",{"tex", "latex"})
+    -- don't add a pair if  the previous character is xxx
+    :with_pair(cond.not_before_regex_check("xxx", 3))
+})
+EOF
+'''
 
 
 
