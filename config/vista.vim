@@ -1,19 +1,25 @@
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_disable_statusline = 1
-" let g:vista_default_executive = 'ctags'
+if g:registered_lsp ==# "coc"
+    let g:vista_default_executive = 'coc'
+elseif g:registered_lsp ==# "nvim_lsp"
+    let g:vista_default_executive = 'nvim_lsp'
+else
+    let g:vista_default_executive = 'ctags'
+endif
 " let g:vista_echo_cursor_strategy = 'echo'
 " let g:vista_echo_cursor = 0
 let g:vista_vimwiki_executive = 'markdown'
-let g:vista_executive_for = {
-    \ 'c': 'coc',
-    \ 'cpp': 'coc',
-    \ 'vimwiki': 'markdown',
-    \ 'pandoc': 'markdown',
-    \ 'markdown': 'coc',
-    \ 'yaml': 'coc',
-    \ 'typescript': 'coc',
-    \ 'typescriptreact': 'coc',
-    \ }
+" let g:vista_executive_for = {
+"    \ 'c': 'coc',
+"    \ 'cpp': 'coc',
+"    \ 'vimwiki': 'markdown',
+"    \ 'pandoc': 'markdown',
+"    \ 'markdown': 'coc',
+"    \ 'yaml': 'coc',
+"    \ 'typescript': 'coc',
+"    \ 'typescriptreact': 'coc',
+"    \ }
 let g:vista#renderer#icons = {}
 let g:vista#renderer#icons = {
     \ 'func': "",
