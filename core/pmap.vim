@@ -23,7 +23,7 @@ nnoremap <silent> <F10>
 nnoremap <silent> <F9>
             \ :CocCommand explorer<cr>
 nnoremap <silent> <F12>
-            \ :<C-u>Fern -drawer -toggle %:h<CR>
+            \ :<C-u>Fern -drawer -toggle -width=30 %:h<CR>
 
 " "     vim-clap Keymap
 " nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
@@ -213,6 +213,7 @@ if dein#tap('coc.nvim') && g:registered_lsp ==# 'coc'
 
 elseif dein#tap('nvim-lspconfig') && g:registered_lsp ==# 'nvim_lsp'
         " Jump Diagnostic and Show Diagnostics
+    nmap <Leader>lt     :<C-u>Vista!!<CR>
     nnoremap <silent>       <space>cd :Lspsaga show_line_diagnostics<CR>
     nnoremap gD             <cmd>lua vim.lsp.buf.declaration()<CR>
     nnoremap gd             :call function#JumpDefinition()<CR>
