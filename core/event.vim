@@ -52,7 +52,7 @@ augroup common " {{{
     " 替换尾随空格
     autocmd BufWritePre *  silent! :%substitute/\s\+$//e
     " 将文件格式设置为unix
-    autocmd BufWritePre *  silent! :%substitute/\r$//
+    autocmd BufWritePre *  silent! :set fileformat=unix
     autocmd BufWritePre *  :set expandtab
     autocmd BufWritePre *  :%retab!
 augroup END " }}}
