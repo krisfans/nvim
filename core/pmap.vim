@@ -231,9 +231,9 @@ elseif dein#tap('nvim-lspconfig') && g:registered_lsp ==# 'nvim_lsp'
     nnoremap <space>D       <cmd>lua vim.lsp.buf.type_definition()<CR>
     nnoremap <space>lr      :Lspsaga rename<CR>
     nnoremap <space>ld      :Lspsaga show_line_diagnostics<CR>
-    nnoremap [e             :Lspsaga diagnostic_jump_prev<CR>
-    nnoremap ]e             :Lspsaga diagnostic_jump_next<CR>
-    nnoremap <space>lq      <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+    nnoremap [e             <cmd>lua vim.diagnostic.goto_prev()<CR><CR>
+    nnoremap ]e             <cmd>lua vim.diagnostic.goto_next()<CR>
+    nnoremap <space>lq      <cmd>lua vim.diagnostic.setloclist()<CR><CR>
     nnoremap <space>ca     :Lspsaga code_action<CR>
     vnoremap <space>ca     :<C-U>Lspsaga range_code_action<CR>
 endif
