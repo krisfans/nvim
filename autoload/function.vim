@@ -29,30 +29,30 @@ function! function#RunResult() abort " 先保存，再格式化，最后运行�
         " echo expand('%:p:r')
         set splitbelow
         if &filetype == 'c'
-            :!clang % -std=c99 -lm -O2 -o %<
-        :sp
-            :term time %:p:r && rm %:p:r
-            " exec "new +resize10 term:// time %:p:r && rm %:p:r"
-            " exec "!rm %:p:r"
+            :!clang "%" -std=c99 -lm -O2 -o "%<"
+            :sp
+            :term time  "%:p:r"  && rm "%:p:r"
+            " exec "new +resize10 term:// time  "%:p:r"  && rm %:p:r"
+            " exec "!rm  "%:p:r" "
         elseif &filetype == 'cpp'
-            :!clang++ -std=c++11 % -O2  -o %<
-        :sp
-            :term time %:p:r && rm %:p:r
+            :!clang++ -std=c++11 "%" -O2  -o "%<"
+            :sp
+            :term time  "%:p:r"  && rm "%:p:r"
         elseif &filetype == "fortran"
-            :!gfortran % -Wall  -O2 -o %<
-        :sp
-            :term time %:p:r && rm %<
+            :!gfortran "%" -Wall  -O2 -o "%<"
+            :sp
+            :term time  "%:p:r"  && rm "%<"
         elseif &filetype == 'python'
-        :sp
-            :term time python3 -u %
+            :sp
+            :term time python3 -u "%"
         " elseif &filetype == 'markdown'
             " :InstantMarkdownPreview
         elseif &filetype == 'tex'
             silent! exec "VimtexStop"
             silent! exec "VimtexCompile"
         elseif &filetype == 'gnuplot'
-            :cd %:p:h
-            :!gnuplot.exe %
+            :cd  "%:p:h"
+            :!gnuplot.exe "%"
         endif
     endif
 endfunction
