@@ -1,12 +1,12 @@
 {
     "suggest.timeout": 500,
     "suggest.noselect": false,
-    // "suggest.snippetIndicator": "🌟",
+    "suggest.snippetIndicator": "🌟",
     "suggest.triggerCompletionWait": 50,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {
-        "keyword": "",
-        // "keyword": "",
+        // "keyword": "",
+        "keyword": "",
         "variable": "𝒙",
         "value": "",
         "operator": "",
