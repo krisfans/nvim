@@ -1,3 +1,5 @@
+" Disable Vim's native pack feature
+set packpath=
 " Set main configuration directory as parent directory   ~/config/nvim
 let $VIM_PATH =
     \ get(g:, 'etc_vim_path',
