@@ -1,11 +1,8 @@
-[[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
 [[plugins]] # 图标
-repo = 'ryanoasis/vim-devicons'
-# hook_source = '''
-# let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-# let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tex'] = ''
-# '''
+repo = 'kyazdani42/nvim-web-devicons'
+on_event = ['BufReadPre','BufNewFile']
+[[plugins]] # 图标
+repo = 'lambdalisue/nerdfont.vim'
 on_event = ['BufReadPre','BufNewFile']
 [[plugins]] # 颜色
 repo = 'norcalli/nvim-colorizer.lua'
@@ -62,12 +59,13 @@ hook_add = '''
 let g:dashboard_default_executive ='telescope'
 '''
 [[plugins]]
-repo = 'bagrat/vim-buffet'
-depends = 'vim-devicons'
+repo = 'krisfans/vim-buffet'
+depends = 'nerdfont.vim'
 on_event = ['BufReadPre','BufNewFile']
-hook_add = '''
+hook_source = '''
     let g:buffet_show_index = 1
     let g:buffet_powerline_separators = 1
+    let g:buffet_use_devicons = 1
     let g:buffet_left_trunc_icon = "\uf0a8"
     let g:buffet_right_trunc_icon = "\uf0a9"
     " Note: Make sure the function is defined before `vim-buffet` is loaded.
@@ -107,16 +105,16 @@ hook_source = '''
 # [[plugins]]
 # repo = 'krisfans/lightline.vim'
 # on_event = ['BufReadPre','BufNewFile']
-# depends = 'vim-devicons'
-# hook_add = '''
-# source $VIM_PATH/config/lightline.vim
+# depends = 'nerdfont.vim'
+# hook_source = '''
+#     source $VIM_PATH/config/lightline.vim
 # '''
 # hook_post_source = '''
 # function! MyFiletype()
-#     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+#     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . nerdfont#find() : 'no ft') : ''
 # endfunction
 # function! MyFileformat()
-#     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+#     return winwidth(0) > 70 ? (&fileformat . ' ' . nerdfont#fileformat#find()) : ''
 # endfunction
 # '''
 # [[plugins]]
@@ -131,45 +129,6 @@ hook_source = '''
 #     let g:lightline#lsp#indicator_ok = ""
 #     call lightline#lsp#register()
 # '''
-# [[plugins]]
-# repo = 'kyazdani42/nvim-tree.lua'
-# depends = 'nvim-web-devicons'
-# on_cmd = 'NvimTreeFindFile'
-# hook_source = '''
-#
-# let g:nvim_tree_icons = {
-#     \ 'default': '',
-#     \ 'symlink': '',
-#     \ 'git': {
-#     \   'unstaged': "✗",
-#     \   'staged': "✓",
-#     \   'unmerged': "",
-#     \   'renamed': "➜",
-#     \   'untracked': "★",
-#     \   'deleted': "",
-#     \   'ignored': "◌"
-#     \   },
-#     \ 'folder': {
-#     \   'arrow_open': "",
-#     \   'arrow_closed': "",
-#     \   'default': "",
-#     \   'open': "",
-#     \   'empty': "",
-#     \   'empty_open': "",
-#     \   'symlink': "",
-#     \   'symlink_open': "",
-#     \   },
-#     \   'lsp': {
-#     \     'hint': "",
-#     \     'info': "",
-#     \     'warning': "",
-#     \     'error': "",
-#     \   }
-#     \ }
-#   " let g:nvim_tree_disable_default_keybindings = 1
-# '''
-
-
 
 [[plugins]] # defx 文件树
 repo = 'Shougo/defx.nvim'
@@ -196,9 +155,6 @@ on_cmd = 'Fern'
 hook_source = '''
     source $VIM_PATH/config/fern.vim
 '''
-[[plugins]] # 文件树图标
-repo = 'lambdalisue/nerdfont.vim'
-on_event = ['BufReadPre','BufNewFile']
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 on_source = 'fern.vim'
