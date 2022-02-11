@@ -1,12 +1,12 @@
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_disable_statusline = 1
-if g:registered_lsp ==# "coc"
-    let g:vista_default_executive = 'coc'
-elseif g:registered_lsp ==# "nvim_lsp"
-    let g:vista_default_executive = 'nvim_lsp'
-else
-    let g:vista_default_executive = 'ctags'
-endif
+" if g:registered_lsp ==# "coc"
+"     let g:vista_default_executive = 'coc'
+" elseif g:registered_lsp ==# "nvim_lsp"
+"     let g:vista_default_executive = 'nvim_lsp'
+" else
+"     let g:vista_default_executive = 'ctags'
+" endif
 " let g:vista_echo_cursor_strategy = 'echo'
 " let g:vista_echo_cursor = 0
 let g:vista_vimwiki_executive = 'markdown'

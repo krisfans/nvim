@@ -31,20 +31,20 @@ function! function#RunResult() abort " 先保存，再格式化，最后运行�
         if &filetype == 'c'
             :!clang "%" -std=c99 -lm -O2 -o "%<"
             :sp
-            :term time  "%:p:r"  && rm "%:p:r"
-            " exec "new +resize10 term:// time  "%:p:r"  && rm %:p:r"
-            " exec "!rm  "%:p:r" "
+            :term "%:p:r" && rm "%:p:r"
+            " exec "new +resize10 term://   "%:p:r"  && rm %:p:r"
+            " exec "!rm "%:p:r" "
         elseif &filetype == 'cpp'
-            :!clang++ -std=c++11 "%" -O2  -o "%<"
+            :!clang++ -std=c++11 "%" -O2 -o "%<"
             :sp
-            :term time  "%:p:r"  && rm "%:p:r"
+            :term "%:p:r" && rm "%:p:r"
         elseif &filetype == "fortran"
-            :!gfortran "%" -Wall  -O2 -o "%<"
+            :!gfortran "%" -Wall -O2 -o "%<"
             :sp
-            :term time  "%:p:r"  && rm "%<"
+            :term  "%:p:r"  && rm "%<"
         elseif &filetype == 'python'
             :sp
-            :term time python3 -u "%"
+            :term  python3 -u "%"
         " elseif &filetype == 'markdown'
             " :InstantMarkdownPreview
         elseif &filetype == 'tex'

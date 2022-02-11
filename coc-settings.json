@@ -1,7 +1,6 @@
 {
     "suggest.timeout": 500,
     "suggest.noselect": false,
-    "suggest.snippetIndicator": "🌟",
     "suggest.triggerCompletionWait": 50,
     "suggest.echodocSupport": true,
     "suggest.completionItemKindLabels": {
@@ -43,9 +42,9 @@
     //     "`"
     // ],
     //diagnostic
-    "diagnostic.messageTarget": "echo",
-    "diagnostic.virtualText": true,
-    "diagnostic.virtualTextPrefix": "➤ ",
+    // "diagnostic.messageTarget": "echo",
+    // "diagnostic.virtualText": true,
+    // "diagnostic.virtualTextPrefix": "➤ ",
     "diagnostic.errorSign": "✗",
     "diagnostic.warningSign": "⚡",
     "diagnostic.infoSign": "●",
@@ -64,10 +63,6 @@
     "list.source.outline.defaultOptions": [
         "--auto-preview"
     ],
-    //multiple curssor
-    "cursors.nextKey": "<C-n>",
-    "cursors.previousKey": "<C-p>",
-    "cursors.cancelKey": "<esc>",
     //sessions
     "session.directory": "~/.cache/vim/session",
     // coc-explorer
@@ -75,7 +70,7 @@
     "explorer.icon.collapsed": "▸",
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source": "nvim-web-devicons",
+    // "explorer.icon.source": "nvim-web-devicons",
     "explorer.quitOnOpen": false,
     "explorer.floating.width": -20,
     "explorer.floating.height": -10,
@@ -94,8 +89,8 @@
             "open"
         ],
         "n": "addFile",
+        "N": "addDirectory",
         "l": "cd",
-        "N": "addFile",
         "D": "delete"
     },
     //coc-clangd

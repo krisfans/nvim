@@ -6,15 +6,19 @@ endif
 let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
 " Set data/cache directory as $XDG_CACHE_HOME/nvim
+if has("nvim")
 let $DATA_PATH =
   \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/nvim')
-
+else
+let $DATA_PATH =
+  \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
+endif
 " LSP 客服端 coc nivm_lsp
 let g:registered_lsp = "nvim_lsp"
 " 补全插件 coc or ddc or cmp
-let g:registered_completion = "cmp"
+let g:registered_completion = "ddc"
 " 代码片段 vnsip ultisnip snippy
-let g:registered_snippet = "snippy"
+let g:registered_snippet = "vsnip"
 
 
 

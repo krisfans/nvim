@@ -78,19 +78,16 @@ set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
 set viewdir=$DATA_PATH/view/
 " 历史记录
-set history=1000
+set history=2000
 " 拼写检查
-set spellfile=~/.cache/vim/spell/en.utf-8.add
+set spellfile=$DATA_PATH/spell/en.utf-8.add
 
 
 " 缩进
 set cc=80               " 高亮80列
 set textwidth=80        " Text width maximum chars before wrapping
-set smartindent
-set smarttab
-set copyindent
+set smartindent smarttab copyindent cindent
 set tabstop=4  softtabstop=4 shiftwidth=4
-set cindent             " 按照C语言的形式缩进
 " 时间
 set timeout ttimeout    " 按键超时 {{{
 set updatetime=100      " Idle time to write swap and trigger CursorHold
@@ -154,7 +151,7 @@ set showcmd            " Show command in status line
 set cmdheight=1        " Height of the command line
 set cmdwinheight=5     " Command-line lines
 set noruler            " 禁用默认的ruler
-set shortmess=aFc      " 短
+set shortmess=aFcI     " 短
 set fillchars+=vert:\| " add a bar for vertical splits
 set fcs=eob:\          " 隐藏 ~ tila
 set list               " 字符
@@ -263,3 +260,14 @@ augroup user_secure
                 \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
                 \ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
 augroup END
+
+if !has("nvim")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' |
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif

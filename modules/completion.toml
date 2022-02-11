@@ -66,6 +66,7 @@ hook_source = '''
 
 # [[plugins]]
 # repo = 'SirVer/ultisnips'
+# if = 'g:registered_snippet ==# "ultisnips"'
 # hook_source = '''
 # let g:UltiSnipsExpandTrigger="<cr>"
 # let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -76,8 +77,8 @@ hook_source = '''
 repo = 'hrsh7th/vim-vsnip'
 if = 'g:registered_snippet ==# "vsnip"'
 on_event = 'InsertEnter'
-hook_add = '''
-    let g:vsnip_snippet_dir = expand('~/.config/nvim/snips')
+hook_source = '''
+    let g:vsnip_snippet_dir = expand('$VIM_PATH/nvim/snips')
     imap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
     smap <expr> <Tab> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'    : '<Tab>'
     imap <expr> <S-Tab> vsnip#jumpable(-1)    ? '<Plug>(vsnip-jump-prev)'    : '<S-Tab>'
@@ -88,7 +89,7 @@ repo = 'hrsh7th/vim-vsnip-integ'
 on_source = 'vim-vsnip'
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
-on_event = 'InsertEnter'
+on_source = 'vim-vsnip'
 # [[plugins]]
 # repo = 'krisfans/friendly-snippets'
 # on_event = 'InsertEnter'
@@ -154,6 +155,9 @@ repo = 'Shougo/neco-vim'
 on_source = 'ddc.vim'
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
+on_source = 'ddc.vim'
+[[plugins]]
+repo = 'matsui54/ddc-ultisnips'
 on_source = 'ddc.vim'
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'

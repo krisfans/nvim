@@ -1,6 +1,6 @@
 " call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources',
-    \ ['nvim-lsp', 'vsnip', 'buffer', 'file'],
+    \ ['nvim-lsp', 'vsnip', 'file', 'buffer'],
     \ )
 call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
@@ -8,7 +8,6 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'isVolatile': v:true,
     \   'matchers': ['matcher_head'],
     \   'sorters': ['sorter_rank'],
-    \   'converters': ['converter_remove_overlap'],
     \ },
     \ 'nvim-lsp': {
     \   'maxSize': 100,
@@ -42,7 +41,8 @@ call ddc#custom#patch_global('sourceOptions', {
     \   'mark': 'F',
     \   'isVolatile': v:true,
     \   'minAutoCompleteLength': 100,
-    \   'forceCompletionPattern': '[\./\\\\]'
+    \   'forceCompletionPattern': '\S/\S*',
+    \   'dup': v:true
     \ },
     \ })
 call ddc#custom#patch_filetype(
@@ -79,7 +79,7 @@ call ddc#custom#patch_global('sourceParams',{
     \ }})
 " Use neocovim
 call ddc#custom#patch_filetype(
-      \ ['vim', 'toml'], 'sources',  ['necovim', 'vsnip', 'buffer',  'file']  )
+      \ ['vim', 'toml'], 'sources',  ['necovim', 'vsnip', 'file', 'buffer' ]  )
 " Use Customized labels
 call ddc#custom#patch_global('sourceParams', {
     \ 'nvim-lsp': { 'kindLabels': {
