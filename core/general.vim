@@ -13,6 +13,8 @@ set hidden                   " hide buffers when abandoned instead of unload
 set fileformats=unix,dos,mac " 文件格式
 set magic                    " 正则查找
 set synmaxcol=2500           " 不高亮语法高亮过长的行
+set novisualbell             " 错误响铃，不闪烁
+" set noeb vb t_vb=          " 错误不响铃，不闪烁
 
 " set autochdir " 自动设当前编辑的文件所在目录为当前工作路径,
 " 这样defx无法工作
