@@ -18,8 +18,8 @@ nmap <leader>9 <Plug>BuffetSwitch(9)
 nmap <leader>0 <Plug>BuffetSwitch(10)
 
 " defx --------------------
-nnoremap <silent> <F10>
-            \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
+" nnoremap <silent> <F10>
+"             \ :<C-u>Defx -resume -toggle `expand('%:p:h')` -search=`expand('%:p')`<CR>
 nnoremap <silent> <F9> :CocCommand explorer<cr>
 nnoremap <silent> <F12>
             \ :<C-u>Fern -drawer -toggle -width=30 %:h<CR>
@@ -53,7 +53,7 @@ nnoremap <silent> <F12>
 " nnoremap <silent> <Leader>cs  :Clap coc_symbols<CR>
 " nnoremap <silent> <Leader>cS  :Clap coc_services<CR>
 " nnoremap <silent> <leader>ct  :Clap coc_outline<CR>
-nnoremap <silent> <leader>fh :<C-u>Telescope oldfiles<CR>
+nnoremap <silent> <leader>fh :<C-u>Telescope mru<CR>
 nnoremap <silent> <leader>fc :<C-u>Telescope colorscheme<CR>
 nnoremap <silent> <leader>fb :<C-u>Telescope buffers<CR>
 nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>

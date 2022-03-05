@@ -130,23 +130,23 @@ hook_source = '''
 #     call lightline#lsp#register()
 # '''
 
-[[plugins]] # defx 文件树
-repo = 'Shougo/defx.nvim'
-on_cmd = 'Defx'
-hook_source = '''
-    source $VIM_PATH/config/defx.vim
-'''
-[[plugins]] # defx 文件树图标
-repo = 'kristijanhusak/defx-icons'
-on_source = 'defx.nvim'
-hook_add = '''
-    let g:defx_icons_column_length = 2
-    let g:defx_icons_mark_icon = ''
-    let g:defx_icons_default_icon = ''
-'''
-[[plugins]] # defx git
-repo = 'kristijanhusak/defx-git'
-on_source = 'defx.nvim'
+# [[plugins]] # defx 文件树
+# repo = 'Shougo/defx.nvim'
+# on_cmd = 'Defx'
+# hook_source = '''
+#     source $VIM_PATH/config/defx.vim
+# '''
+# [[plugins]] # defx 文件树图标
+# repo = 'kristijanhusak/defx-icons'
+# on_source = 'defx.nvim'
+# hook_add = '''
+#     let g:defx_icons_column_length = 2
+#     let g:defx_icons_mark_icon = ''
+#     let g:defx_icons_default_icon = ''
+# '''
+# [[plugins]] # defx git
+# repo = 'kristijanhusak/defx-git'
+# on_source = 'defx.nvim'
 
 
 [[plugins]] # Fern文件树
